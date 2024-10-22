@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="homeParent" prefHeight="601.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.HomeController">
+    <children>
+        <BorderPane prefHeight="554.0" prefWidth="993.0" stylesheets="@../../static/css/base/Home.css">
+            <top>
+                <HBox id="header" alignment="CENTER_RIGHT" spacing="20" styleClass="header">
+                    <children>
+                        <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
+                            <children>
+                                <Button styleClass="nav-button" text="Inicio" />
+                                <Button styleClass="nav-button" text="Productos" />
+                                <Button styleClass="nav-button" text="Ofertas" />
+                                <Button styleClass="nav-button" text="Contacto" />
+                                <ComboBox fx:id="filterButton" prefHeight="29.0" prefWidth="78.0" />
+                                <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="174.0" />
+                                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </top>
+
+            <center>
+                <HBox prefHeight="480.0" prefWidth="998.0" spacing="10">
+                    <children>
+                        <VBox id="aside" prefHeight="480.0" prefWidth="464.0" spacing="10" styleClass="aside">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="283.0" styleClass="aside-title" text="Usuario" />
+                                <Button prefHeight="32.0" prefWidth="297.0" styleClass="aside-button" text="Perfil" />
+                                <Button prefHeight="32.0" prefWidth="343.0" styleClass="aside-button" text="Notificaciones" />
+                                <Button prefHeight="32.0" prefWidth="299.0" styleClass="aside-button" text="Mensajes" />
+                                <Button prefHeight="32.0" prefWidth="322.0" styleClass="aside-button" text="Configuración" />
+      
+                              <!-- Mover el HBox del logout aquí -->
+                                <HBox fx:id="containerLogout" alignment="CENTER" prefHeight="57.0" prefWidth="247.0" spacing="10">
+                                    <children>
+                                        <!-- Imagen de perfil redondeada -->
+                                        <ImageView fx:id="imgProfile" fitHeight="41.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-image">
+                                 <image>
+                                    <Image url="@../../static/media/images/util/profile.jpeg" />
+                                 </image></ImageView>
+
+                                        <!-- Texto con el nombre del usuario -->
+                                        <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="128.0">
+                                            <children>
+                                                <Label fx:id="userName" styleClass="user-name" text="Jean Franco" />
+                                                <Label fx:id="userRole" styleClass="user-role" text="ADMINISTRADOR" />
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Botón de logout con icono -->
+                                        <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
+                                            <graphic>
+                                                <ImageView fitHeight="36.0" fitWidth="45.0">
+                                                    <image>
+                                                        <Image url="@../../static/media/images/util/logout.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                        </Button>
+                                    </children>
+                           <VBox.margin>
+                              <Insets top="235.0" />
+                           </VBox.margin>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+
+                        <VBox id="product-area" prefHeight="480.0" prefWidth="670.0" spacing="10">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="644.0" styleClass="section-title" text="Productos Destacados" />
+                                <HBox alignment="center" spacing="10">
+                                    <children>
+                                        <VBox styleClass="product">
+                                            <children>
+                                                <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product1.jpg" />
+                                       </image></ImageView>
+                                                <Label text="Nombre del Producto" />
+                                                <Label styleClass="price" text="Precio" />
+                                                <Button styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product2.jpg" />
+                                       </image></ImageView>
+                                                <Label text="Nombre del Producto" />
+                                                <Label styleClass="price" text="Precio" />
+                                                <Button styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product3.jpg" />
+                                       </image></ImageView>
+                                                <Label text="Nombre del Producto" />
+                                                <Label styleClass="price" text="Precio" />
+                                                <Button styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product4.jpg" />
+                                       </image></ImageView>
+                                                <Label text="Nombre del Producto" />
+                                                <Label styleClass="price" text="Precio" />
+                                                <Button styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <!-- Repite este bloque para más productos -->
+                                </HBox>
+                                <Label layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="644.0" styleClass="section-title" text="Productos de Interes">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
+                        <HBox alignment="center" prefHeight="227.0" prefWidth="638.0" spacing="10">
+                           <children>
+                              <VBox styleClass="product">
+                                 <children>
+                                    <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product5.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Nombre del Producto" />
+                                    <Label styleClass="price" text="Precio" />
+                                    <Button styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product6.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Nombre del Producto" />
+                                    <Label styleClass="price" text="Precio" />
+                                    <Button styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product7.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Nombre del Producto" />
+                                    <Label styleClass="price" text="Precio" />
+                                    <Button styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fitHeight="150" fitWidth="150">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product8.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="Nombre del Producto" />
+                                    <Label styleClass="price" text="Precio" />
+                                    <Button styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                            </children>
+                        </VBox>
+                        <AnchorPane prefHeight="456.0" prefWidth="29.0">
+                            <children>
+                                <Button fx:id="buttonNext1" layoutY="36.0" mnemonicParsing="false" prefHeight="216.0" prefWidth="35.0" styleClass="buttonNext" text="&gt;">
+                                    <font>
+                                        <Font name="Arial" size="19.0" />
+                                    </font>
+                                </Button>
+                        <Button fx:id="buttonNext2" layoutX="1.0" layoutY="300.0" mnemonicParsing="false" prefHeight="216.0" prefWidth="35.0" styleClass="buttonNext" text="&gt;">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </Button>
+                            </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </center>
+
+            <bottom>
+                <HBox id="footer" prefHeight="28.0" prefWidth="909.0" styleClass="footer">
+                    <children>
+                        <Label text="© 2024 Tienda Online. Todos los derechos reservados." />
+                    </children>
+               <BorderPane.margin>
+                  <Insets top="15.0" />
+               </BorderPane.margin>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+
+
+</AnchorPane>

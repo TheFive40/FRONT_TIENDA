@@ -1,0 +1,128 @@
+/* General */
+.root {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #f0f0f0;
+}
+
+/* Sección izquierda (Imagen y texto) */
+.left-section {
+    -fx-background-color: #f45b69;
+    -fx-padding: 40px;
+}
+
+.left-label {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+}
+
+.left-label-small {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.rocket {
+    -fx-text-fill: white;
+    -fx-font-size: 60px;
+}
+
+/* Sección derecha (Formulario) */
+.right-section {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 40px;
+    -fx-border-radius: 15px;
+}
+
+/* Títulos del formulario */
+.form-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Estilo general del CheckBox */
+.check-box {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+}
+
+/* Personalización del cuadro del CheckBox */
+.check-box .box {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px;
+    -fx-min-width: 15px;
+    -fx-min-height: 15px;
+}
+
+/* Estilo cuando el CheckBox está seleccionado */
+.check-box:selected .box {
+    -fx-background-color: #f45b69;  /* Mismo color que el botón */
+    -fx-border-color: #f45b69;
+}
+
+/* Estilo del marcador dentro del CheckBox */
+.check-box:selected .mark {
+    -fx-background-color: white;
+    -fx-padding: 3px;
+    -fx-shape: "M 0 5 L 3 9 L 8 0";
+}
+
+/* Efecto hover sobre el CheckBox */
+.check-box:hover .box {
+    -fx-border-color: #3498db; /* Cambia el color del borde al pasar el ratón */
+}
+
+
+/* TextFields transparentes */
+.text-field, .password-field {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+    -fx-padding: 10px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: transparent;
+}
+
+/* Botón redondeado */
+.btn-ingresar {
+    -fx-background-color: #f45b69;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-border-radius: 25px; /* Más redondeado */
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0, 0, 1);
+}
+
+.btn-ingresar:hover {
+    -fx-background-color: #e74c3c;
+}
+
+.btn-ingresar:pressed {
+    -fx-background-color: #c0392b;
+}
+
+/* Estilo para los enlaces */
+.hyperlink {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 12px;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #2980b9;
+}
+
+/* Estilo para el CheckBox */
+.check-box {
+    -fx-text-fill: white;
+}

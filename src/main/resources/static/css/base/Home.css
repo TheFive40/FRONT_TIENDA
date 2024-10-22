@@ -1,0 +1,186 @@
+/* Estilo general */
+.root {
+    -fx-background-color: #f0f0f0; /* Fondo general atractivo */
+}
+
+/* Header */
+.header {
+    -fx-background-color: #232f3e; /* Color de fondo del header */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+.nav-button {
+    -fx-background-color: transparent; /* Fondo transparente para botones */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-min-width: 80px; /* Ancho mínimo */
+    -fx-border-color: transparent;
+    -fx-margin: 5; /* Margen para separar botones */
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Color al pasar el mouse */
+}
+
+/* Icono de usuario */
+.user-icon {
+    -fx-margin: 10; /* Margen para separar el icono del texto */
+}
+
+/* Aside */
+#aside {
+    -fx-background-color: #e9ecef; /* Fondo del aside */
+    -fx-padding: 10; /* Espaciado interno */
+    -fx-min-width: 150px; /* Ancho mínimo para el aside */
+}
+
+.aside-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;  /* Color oscuro para buen contraste */
+    -fx-padding: 10;  /* Espaciado interno */
+}
+
+
+.aside-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #007BFF;  /* Color azul moderno */
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-padding: 10 15;  /* Espaciado interno y externo */
+    -fx-border-radius: 5px;
+    -fx-margin: 5;
+}
+.aside-button:hover {
+    -fx-background-color: rgba(0, 123, 255, 0.1); /* Fondo sutil al pasar el mouse */
+}
+
+/* Área de productos */
+#product-area {
+    -fx-background-color: white; /* Fondo blanco para la sección de productos */
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-margin: 10; /* Margen para separar el título */
+}
+
+/* Productos */
+.product {
+    -fx-alignment: center;
+    -fx-margin: 5; /* Margen para separar productos */
+    -fx-border-color: #e7e7e7;
+    -fx-border-width: 1px;
+    -fx-background-color: #ffffff; /* Fondo de cada producto */
+}
+
+.price {
+    -fx-text-fill: #b12704; /* Color para el precio */
+    -fx-font-weight: bold;
+}
+
+/* Botón de producto */
+.product-button {
+    -fx-background-color: #ffa41c; /* Color del botón */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-margin: 5; /* Margen para separar el botón del texto */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.product-button:hover {
+    -fx-background-color: #ff8c00; /* Color al pasar el mouse */
+}
+
+/* Footer */
+#footer {
+    -fx-background-color: #232f3e; /* Color de fondo del footer */
+    -fx-text-fill: white;
+    -fx-alignment: center; /* Centrar el texto */
+    -fx-margin: 10; /* Margen para separar del resto de la página */
+}
+/* Estilo para el ComboBox (filterButton) */
+#filterButton {
+    -fx-background-color: #F0F0F0; /* Color de fondo */
+    -fx-border-radius: 2; /* Bordes redondeados */
+    -fx-padding: 5px; /* Relleno interno */
+}
+
+#filterButton:focused {
+    -fx-border-color: #F90; /* Color de borde al estar enfocado */
+}
+
+/* Estilo para el TextField (searchTextField) */
+#searchTextField {
+    -fx-pref-height: 30px; /* Altura preferida */
+    -fx-pref-width: 200px; /* Ancho preferido */
+    -fx-background-color: #FFFFFF; /* Color de fondo blanco */
+    -fx-border-radius: 5; /* Bordes redondeados */
+    -fx-padding: 5px; /* Relleno interno */
+}
+
+#searchTextField:focused {
+    -fx-border-color: #F90; /* Color de borde al estar enfocado */
+}
+
+/* Estilo para el Button (searchButton) */
+#searchButton {
+    -fx-background-color: #F90; /* Color de fondo */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-padding: 5px 15px; /* Relleno del botón */
+    -fx-border-radius: 5; /* Bordes redondeados */
+}
+
+#searchButton:hover {
+    -fx-background-color: #D77; /* Color de fondo al pasar el ratón */
+}
+/* Estilo para el botón transparente (buttonNext1) */
+/* Estilo para el botón transparente (buttonNext1) */
+.buttonNext {
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #FF6F00; /* Color del texto (NRGRO) */
+    -fx-border-color: #FF6F00; /* Borde del botón en el mismo color */
+    -fx-border-radius: 10; /* Bordes redondeados */
+    -fx-padding: 5px 15px; /* Relleno del botón */
+    -fx-cursor: hand; /* Cambia el cursor a una mano al pasar el ratón */
+
+}
+/* Caja de logout */
+#containerLogout {
+    -fx-background-color: #232f3e; /* Fondo oscuro para hacer contraste */
+    -fx-padding: 10; /* Espaciado interno */
+    -fx-border-radius: 10; /* Bordes redondeados */
+    -fx-background-radius: 10; /* Bordes del fondo redondeados */
+}
+
+/* Imagen de perfil redondeada */
+.profile-image {
+    -fx-background-radius: 50; /* Bordes redondeados */
+    -fx-border-radius: 50; /* Redondear la imagen */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Sombra ligera */
+}
+
+/* Nombre del usuario */
+.user-name {
+    -fx-text-fill: white; /* Texto en blanco */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold; /* Negrita */
+}
+
+/* Rol del usuario */
+.user-role {
+    -fx-text-fill: #ff8c00; /* Color de rol (naranja) */
+    -fx-font-size: 11px;
+}
+
+/* Botón de logout */
+.logout-button {
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-cursor: hand; /* Cursor de mano */
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Color al pasar el mouse */
+}

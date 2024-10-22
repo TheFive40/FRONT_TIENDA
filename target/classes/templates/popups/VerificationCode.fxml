@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="rootPane" alignment="CENTER" prefHeight="222.0" prefWidth="417.0" spacing="15" styleClass="verification-container" stylesheets="@../../static/css/popups/VerificationCode.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.auth.VerificationCodeController">
+   <children>
+   
+       <Label styleClass="verification-label" text="Enter Verification Code" />
+       <TextField fx:id="verificationCodeField" maxWidth="270.0" prefHeight="39.0" prefWidth="270.0" promptText="6-digit code" styleClass="verification-input" />
+       <Button onAction="#handleVerify" prefHeight="37.0" prefWidth="125.0" styleClass="verify-button" text="Verify" />
+   </children>
+
+</VBox>

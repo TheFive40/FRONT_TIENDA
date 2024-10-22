@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="659.0" prefWidth="568.0" stylesheets="@../../static/css/auth/SignUp.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.auth.SignUpController">
+    <children>
+        <!-- Contenedor principal -->
+        <VBox alignment="CENTER" layoutX="-1.0" prefHeight="659.0" prefWidth="576.0" spacing="20.0">
+           <children>
+               <!-- Sección del avatar en la parte superior -->
+               <VBox alignment="CENTER" prefHeight="143.0" prefWidth="576.0" styleClass="avatar-section">
+               <children>
+                  <Label text="Create your account" textFill="WHITE">
+                     <font>
+                        <Font size="52.0" />
+                     </font>
+                  </Label>
+               </children>
+               </VBox>
+   
+                                 <!-- Sección del formulario -->
+               <VBox alignment="CENTER" prefHeight="502.0" prefWidth="576.0" spacing="10.0" styleClass="form-section">
+                   <children>
+                       <!-- Campos del formulario de registro -->
+                       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="509.0" spacing="10.0">
+                           <children>
+                               <TextField fx:id="firstNameField" prefHeight="42.0" prefWidth="291.0" promptText="First Name" styleClass="input-field" />
+                               <TextField fx:id="lastNameField" prefHeight="42.0" prefWidth="238.0" promptText="Last Name" styleClass="input-field" />
+                           </children>
+                       </HBox>
+                  <HBox prefHeight="42.0" prefWidth="389.0">
+                     <children>
+         
+                                                                 <TextField fx:id="userNameField" prefHeight="42.0" prefWidth="351.0" promptText="User Name" styleClass="input-field">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                             <TextField fx:id="emailField" prefHeight="42.0" prefWidth="304.0" promptText="Email Address" styleClass="input-field">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox />
+                  <HBox>
+                     <children>
+                             <PasswordField fx:id="passwordField" onKeyPressed="#handlePasswordEvent" prefHeight="42.0" prefWidth="512.0" promptText="Password" styleClass="input-field">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </PasswordField>
+                        <Label fx:id="lblPassword" prefHeight="41.0" prefWidth="87.0" textFill="#07ff00">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                             <PasswordField fx:id="confirmPasswordField" onKeyPressed="#handleConfirmPasswordEvent" prefHeight="42.0" prefWidth="480.0" promptText="Confirm Password" styleClass="input-field">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </PasswordField>
+                        <Label fx:id="lblConfirmPassword" prefHeight="49.0" prefWidth="56.0" textFill="#2eff00">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                             <TextField fx:id="phoneNumberField" prefHeight="42.0" prefWidth="480.0" promptText="Phone Number" styleClass="input-field">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+   
+                                         <!-- Botón de enviar -->
+                       <Button onAction="#handleSubmit" prefWidth="340.0" styleClass="submit-button" text="Submit">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Hyperlink onAction="#handleBackToLogin" text="Volver al login">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Hyperlink>
+                   </children>
+               </VBox>
+           </children>
+        </VBox>
+    </children>
+</AnchorPane>
