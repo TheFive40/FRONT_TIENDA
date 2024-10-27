@@ -1,4 +1,5 @@
 package io.github.thefive40.tienda_front.model.impl;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.thefive40.tienda_front.TiendaFrontApplication;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -22,13 +24,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Getter
 @Setter
 public class AuthImpl implements AuthRepository {
-    private boolean commit = false;
+    private volatile AtomicBoolean commit = new AtomicBoolean ( );
     private ObjectMapper mapper;
     private EmailService emailService;
 
-    public AuthImpl(EmailService emailService){
+    public AuthImpl ( EmailService emailService ) {
         this.emailService = emailService;
     }
+
     @Autowired
     private void setMapper ( ObjectMapper mapper ) {
         this.mapper = mapper;
@@ -75,12 +78,23 @@ public class AuthImpl implements AuthRepository {
     }
 
     @Override
-    public boolean sendRegistration ( UserDTO userDTO ) {
-        return sendRequest ( userDTO, false );
+    public void sendRegistration ( UserDTO userDTO ) {
+        sendRequest ( userDTO, false );
     }
 
     @Override
     public void commit () {
-        commit = true;
+        commit.set ( true );
     }
+
+    @Override
+    public boolean isCommit () {
+        return commit.get();
+    }
+
+    @Override
+    public void uncommit () {
+        commit.set ( false );
+    }
+
 }

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuthRepository {
     boolean sendLogin ( String email, String password );
-    boolean sendRegistration ( UserDTO userDTO );
+    void sendRegistration ( UserDTO userDTO );
     void commit();
     boolean isCommit();
-    void setCommit( boolean commit );
+    void uncommit ();
 }

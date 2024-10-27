@@ -1,13 +1,18 @@
 package io.github.thefive40.tienda_front.service;
 import io.github.thefive40.tienda_front.model.dto.UserDTO;
 import javafx.concurrent.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserRegistrationService {
 
     private AuthService service;
-
+    private Logger logger = LoggerFactory.getLogger ( UserRegistrationService.class );
 
     public UserRegistrationService ( AuthService service ) {
         this.service = service;
@@ -24,20 +29,15 @@ public class UserRegistrationService {
      * the JavaFX Application Thread, ensuring a responsive user interface.
      */
     public void registerUser ( UserDTO userDTO ) {
-        Task<Void> task = new Task<> ( ) {
-            @Override
-            protected Void call () {
-                while (true) {
-                    if (service.isCommit ( )) {
-                        userDTO.saveImage ( "/static/media/images/util/profile.jpeg" );
-                        service.register ( userDTO );
-                        break;
-                    }
-                }
-                return null;
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor ( );
+        scheduler.scheduleAtFixedRate ( () -> {
+            logger.info ( "is commit: " + service.isCommit() );
+            if (service.isCommit ( )) {
+                userDTO.saveImage ( "/static/media/images/util/profile.jpeg" );
+                service.register ( userDTO );
+                scheduler.shutdown ( );
             }
-        };
-        new Thread ( task ).start ( );
+        }, 0, 50, TimeUnit.MILLISECONDS );
     }
 
 }

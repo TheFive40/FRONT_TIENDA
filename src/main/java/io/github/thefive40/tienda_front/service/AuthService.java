@@ -24,12 +24,11 @@ public class AuthService {
         return authRepository.sendLogin ( email, password );
     }
 
-    public boolean register ( UserDTO userDTO ) {
+    public void register ( UserDTO userDTO ) {
         if (authRepository.isCommit ()){
-            authRepository.setCommit ( false );
-            return authRepository.sendRegistration ( userDTO );
+            authRepository.uncommit ();
+            authRepository.sendRegistration ( userDTO );
         }
-        return false;
     }
     public boolean isCommit(){
         return authRepository.isCommit();

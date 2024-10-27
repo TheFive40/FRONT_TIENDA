@@ -1,13 +1,24 @@
 package io.github.thefive40.tienda_front.model.dto;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import lombok.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 /**
  * Data Transfer Object (DTO) class for handling user information.
  * This class includes validations for fields such as email and password
@@ -21,6 +32,7 @@ import java.nio.file.Paths;
 @ToString
 
 public class UserDTO implements Serializable, Cloneable {
+    private final Logger logger = LoggerFactory.getLogger ( UserDTO.class );
     /**
      * User's email address.
      * Validated using the @Email annotation.
@@ -43,6 +55,7 @@ public class UserDTO implements Serializable, Cloneable {
     private String lastName;
     private String phone;
     private byte[] image;
+
     /**
      * Constructor for creating a UserDTO with email and password only.
      *
@@ -53,6 +66,7 @@ public class UserDTO implements Serializable, Cloneable {
         this.email = email;
         this.password = password;
     }
+
     /**
      * Constructor for creating a UserDTO with additional personal information.
      *
@@ -76,15 +90,18 @@ public class UserDTO implements Serializable, Cloneable {
      * @param url The file path of the image.
      */
     public void saveImage ( String url ) {
-        Path path = Paths.get ( url );
-        try {
-            byte[] fileByte = Files.readAllBytes ( path);
-            setImage ( fileByte );
+        ImageView imageView = new ImageView ( new Image ( url ) );
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage ( imageView.getImage ( ), null );
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream ( )) {
+            ImageIO.write ( bufferedImage, "jpeg", byteArrayOutputStream );
+            setImage ( byteArrayOutputStream.toByteArray () );
         } catch (IOException e) {
-            throw new RuntimeException ( e );
-
+            e.printStackTrace ( );
         }
+
+
     }
+
     /**
      * Creates a copy of this UserDTO object.
      *

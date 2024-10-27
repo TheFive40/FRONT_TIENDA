@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -63,6 +64,7 @@ public class SignUpController implements Initializable {
 
     private AuthError authError;
     @Getter
+    @Setter
     private UserDTO currentUser;
 
     @Override
