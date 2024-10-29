@@ -32,7 +32,6 @@ import java.nio.file.Paths;
 @ToString
 
 public class UserDTO implements Serializable, Cloneable {
-    private final Logger logger = LoggerFactory.getLogger ( UserDTO.class );
     /**
      * User's email address.
      * Validated using the @Email annotation.
@@ -54,8 +53,10 @@ public class UserDTO implements Serializable, Cloneable {
     private String name;
     private String lastName;
     private String phone;
-    private byte[] image;
-
+    //private byte[] image;
+    private String url;
+    private String secretKey;
+    private String initVector;
     /**
      * Constructor for creating a UserDTO with email and password only.
      *
@@ -89,7 +90,7 @@ public class UserDTO implements Serializable, Cloneable {
      *
      * @param url The file path of the image.
      */
-    public void saveImage ( String url ) {
+    /*public void saveImage ( String url ) {
         ImageView imageView = new ImageView ( new Image ( url ) );
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage ( imageView.getImage ( ), null );
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream ( )) {
@@ -100,7 +101,7 @@ public class UserDTO implements Serializable, Cloneable {
         }
 
 
-    }
+    }*/
 
     /**
      * Creates a copy of this UserDTO object.

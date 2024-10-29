@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-@Component
+@Component("LoginController")
 @Lazy
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class LoginController implements Initializable {
@@ -65,8 +65,8 @@ public class LoginController implements Initializable {
 
     public void handleLogin () {
         if (authService.login ( emailField.getText ( ), passwordField.getText ( ) )) {
-            stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
             currentUser = userService.getUserByEmail ( emailField.getText ( ) );
+            stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
             return;
         }
         authError.show ( );

@@ -1,8 +1,6 @@
 package io.github.thefive40.tienda_front.service;
 import io.github.thefive40.tienda_front.model.dto.UserDTO;
 import javafx.concurrent.Task;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -12,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 public class UserRegistrationService {
 
     private AuthService service;
-    private Logger logger = LoggerFactory.getLogger ( UserRegistrationService.class );
 
     public UserRegistrationService ( AuthService service ) {
         this.service = service;
@@ -31,9 +28,8 @@ public class UserRegistrationService {
     public void registerUser ( UserDTO userDTO ) {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor ( );
         scheduler.scheduleAtFixedRate ( () -> {
-            logger.info ( "is commit: " + service.isCommit() );
             if (service.isCommit ( )) {
-                userDTO.saveImage ( "/static/media/images/util/profile.jpeg" );
+                //userDTO.saveImage ( "/static/media/images/util/profile.jpeg" );
                 service.register ( userDTO );
                 scheduler.shutdown ( );
             }

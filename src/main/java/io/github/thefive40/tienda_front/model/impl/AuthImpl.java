@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -89,7 +90,7 @@ public class AuthImpl implements AuthRepository {
 
     @Override
     public boolean isCommit () {
-        return commit.get();
+        return commit.get ( );
     }
 
     @Override

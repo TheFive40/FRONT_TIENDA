@@ -24,7 +24,7 @@ public class UserService implements UserRepository {
 
     @Override
     public UserDTO getUserByEmail ( String email ) {
-        return sendRequest ( "" );
+        return sendRequest ( "http://localhost:6060/api/users/email/" + email );
     }
 
     @Override
