@@ -5,7 +5,6 @@
     -fx-border-width: 2px;
 }
 
-/* Aplicar el mismo color a la raíz de la ventana */
 .root {
     -fx-background-color: #2a2a2a;
 }

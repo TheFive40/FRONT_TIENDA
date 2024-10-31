@@ -7,10 +7,7 @@ import io.github.thefive40.tienda_front.service.ReadImageService;
 import io.github.thefive40.tienda_front.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -53,7 +50,13 @@ public class HomeController implements Initializable {
     private Label userRole;
 
     @FXML
+    private TitledPane titledCarrito;
+
+    @FXML
     private ComboBox<?> filterButton;
+    @FXML
+    private Accordion cartAccordion;
+
 
     private ReadImageService imageService;
 
@@ -64,6 +67,7 @@ public class HomeController implements Initializable {
     private LoginController login;
 
     private UserService userService;
+
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -79,13 +83,14 @@ public class HomeController implements Initializable {
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) );
         signUp = context.getBean ( "SignUpController", SignUpController.class );
         login = context.getBean ( "LoginController", LoginController.class );
-        if (signUp.getCurrentUser ( ) != null){
+        if (signUp.getCurrentUser ( ) != null) {
             //imgProfile.setImage ( imageService.convertToImage ( signUp.getCurrentUser ( ).getImage ( ) ) );
-        }
-        else{
+        } else {
             imgProfile.setImage ( new Image ( "/static/media/images/util/profile.jpeg" ) );
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         }
         imgProfile.setClip ( clip );
+        titledCarrito.setExpanded ( true );
+        cartAccordion.setExpandedPane ( titledCarrito );
     }
 }

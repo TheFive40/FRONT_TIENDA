@@ -1,10 +1,8 @@
-/* General */
 .root {
     -fx-font-family: 'Arial', sans-serif;
     -fx-background-color: #f0f0f0;
 }
 
-/* Sección del avatar (parte superior) */
 .avatar-section {
     -fx-background-color: #4a90e2;
     -fx-padding: 30px;
@@ -16,7 +14,6 @@
     -fx-text-fill: white;
 }
 
-/* Sección del formulario (parte inferior) */
 .form-section {
     -fx-background-color: white;
     -fx-padding: 20px;
@@ -24,7 +21,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
 }
 
-/* Campos de entrada */
 .input-field {
     -fx-background-color: #f9f9f9;
     -fx-border-color: #dcdcdc;
@@ -39,7 +35,6 @@
     -fx-background-color: #ffffff;
 }
 
-/* Botón de Submit */
 .submit-button {
     -fx-background-color: #f45b69;
     -fx-text-fill: white;
@@ -56,7 +51,6 @@
     -fx-background-color: #c0392b;
 }
 
-/* Estilo del VBox que contiene el formulario */
 .vbox {
     -fx-spacing: 20px;
 }

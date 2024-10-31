@@ -5,20 +5,16 @@
 <AnchorPane fx:id="loginParent" prefHeight="489.0" prefWidth="668.0" stylesheets="@../../static/css/auth/Login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.auth.LoginController">
 
                 <children>
-        <!-- Contenedor para dividir en dos columnas -->
         <HBox prefHeight="489.0" prefWidth="668.0">
            <children>
-               <!-- Sección izquierda (Imagen o mensaje) -->
                <VBox alignment="CENTER" prefHeight="469.0" prefWidth="307.0" spacing="20.0" styleClass="left-section">
                    <children>
                        <Label styleClass="left-label" text="Be part of our awesome team" wrapText="true" />
                        <Label styleClass="left-label-small" text="and have fun with us" />
-                       <!-- Placeholder para imagen de cohete -->
                        <Label styleClass="rocket" text="🚀" />
                    </children>
                </VBox>
    
-                           <!-- Sección derecha (Formulario de login) -->
                <VBox alignment="CENTER" prefHeight="431.0" prefWidth="370.0" spacing="20.0" styleClass="right-section">
                    <children>
                        <Label styleClass="form-title" text="Inicio de seccion" />
