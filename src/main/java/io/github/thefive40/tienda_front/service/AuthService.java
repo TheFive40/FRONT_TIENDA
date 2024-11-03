@@ -1,6 +1,6 @@
 package io.github.thefive40.tienda_front.service;
 
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.repository.AuthRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,10 @@ public class AuthService {
         return authRepository.sendLogin ( email, password );
     }
 
-    public void register ( UserDTO userDTO ) {
+    public void register ( ClientDTO clientDTO ) {
         if (authRepository.isCommit ()){
             authRepository.uncommit ();
-            authRepository.sendRegistration ( userDTO );
+            authRepository.sendRegistration ( clientDTO );
         }
     }
     public boolean isCommit(){

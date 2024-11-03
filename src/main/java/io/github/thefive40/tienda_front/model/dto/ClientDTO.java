@@ -1,23 +1,13 @@
 package io.github.thefive40.tienda_front.model.dto;
-
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import lombok.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Data Transfer Object (DTO) class for handling user information.
@@ -31,7 +21,7 @@ import java.nio.file.Paths;
 @NoArgsConstructor
 @ToString
 
-public class UserDTO implements Serializable, Cloneable {
+public class ClientDTO implements Serializable, Cloneable {
     /**
      * User's email address.
      * Validated using the @Email annotation.
@@ -50,20 +40,37 @@ public class UserDTO implements Serializable, Cloneable {
     @Pattern(regexp = "^(?:(?=.*[A-Z])(?=.*[a-z]).{12,}$|(?=.*[A-Z])(?=.*[a-z])(?=(.*\\d){3,}).{5,}$|(?=.*[a-z])(?=.*[@$!%*?&]).{2,}$|(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&]).{2,}$|(?=.*\\d)(?=.*[@$!%*?&]).{2,}$|(?=.*[A-Z])(?=.*[a-z])(?=(.*\\d){3,})(?=.*[@$!%*?&]).{9,}$)$",
             message = "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial")
     private String password;
+    private Long idClient;
+    @NotNull
     private String name;
-    private String lastName;
+    @NotNull
+    private String lastname;
+
     private String phone;
-    //private byte[] image;
+
     private String url;
-    private String secretKey;
+
+    private String secret_key;
+
     private String initVector;
+
+    private Date registrationDate;
+
+    private List<ProductDTO> products = new ArrayList<> ();
+
+    private List<OrderDTO> orders = new ArrayList<> ();
+
+    private List<ReviewDTO> reviews = new ArrayList<> ();
+
+    private List<ShoppingCartDTO> shoppingCart = new ArrayList<> ();
+
     /**
      * Constructor for creating a UserDTO with email and password only.
      *
      * @param email    User's email address.
      * @param password User's password.
      */
-    public UserDTO ( String email, String password ) {
+    public ClientDTO ( String email, String password ) {
         this.email = email;
         this.password = password;
     }
@@ -77,31 +84,15 @@ public class UserDTO implements Serializable, Cloneable {
      * @param lastName User's last name.
      * @param phone    User's phone number.
      */
-    public UserDTO ( String email, String password, String name, String lastName, String phone ) {
+    public ClientDTO ( String email, String password, String name, String lastName, String phone ) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.lastName = lastName;
+        this.lastname = lastName;
         this.phone = phone;
+        this.registrationDate = new Date (  );
     }
 
-    /**
-     * Loads an image from the specified file path and stores it as a byte array.
-     *
-     * @param url The file path of the image.
-     */
-    /*public void saveImage ( String url ) {
-        ImageView imageView = new ImageView ( new Image ( url ) );
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage ( imageView.getImage ( ), null );
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream ( )) {
-            ImageIO.write ( bufferedImage, "jpeg", byteArrayOutputStream );
-            setImage ( byteArrayOutputStream.toByteArray () );
-        } catch (IOException e) {
-            e.printStackTrace ( );
-        }
-
-
-    }*/
 
     /**
      * Creates a copy of this UserDTO object.
@@ -109,11 +100,11 @@ public class UserDTO implements Serializable, Cloneable {
      * @return A cloned copy of the current UserDTO.
      */
     @Override
-    public UserDTO clone () {
+    public ClientDTO clone () {
         try {
             // TODO: copy mutable
             //  state here, so the clone can't change the internals of the original
-            return (UserDTO) super.clone ( );
+            return (ClientDTO) super.clone ( );
         } catch (CloneNotSupportedException e) {
             throw new AssertionError ( );
         }

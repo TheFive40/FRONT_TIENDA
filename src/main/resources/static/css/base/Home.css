@@ -1,6 +1,3 @@
-.root {
-    -fx-background-color: #f0f0f0;
-}
 
 
 .header {
@@ -239,4 +236,86 @@
 #quantityLabel {
     -fx-font-size: 12px;
     -fx-text-fill: #333;
+}
+.root {
+    -fx-background-color: #f4f4f9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+#headerLabel {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-padding: 20 0 20 50;
+}
+
+#columnImagen, #columnId, #columnName, #columnEmail, #columnTel, #columnRol, #columnOpciones {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8px 15px;
+}
+
+#columnImagen:hover, #columnId:hover, #columnName:hover, #columnEmail:hover, #columnTel:hover, #columnRol:hover, #columnOpciones:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Filas de Datos */
+#idClient1, #clientName1, #clientEmail1, #clientTel1, #clientRol1,
+#idClient2, #clientName2, #clientEmail2, #clientTel2, #clientRol2,
+#idClient3, #clientName3, #clientEmail3, #clientTel3, #clientRol3,
+#idClient4, #clientName4, #clientEmail4, #clientTel4, #clientRol4,
+#idClient5, #clientName5, #clientEmail5, #clientTel5, #clientRol5 {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 14px;
+}
+
+#clientEdit1, #clientEdit2, #clientEdit3, #clientEdit4, #clientEdit5 {
+    -fx-background-color: #3498db; /* Azul para el botón de Editar */
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+}
+#clientRemove1, #clientRemove2, #clientRemove3, #clientRemove4, #clientRemove5 {
+    -fx-background-color: #e74c3c; /* Rojo para el botón de Eliminar */
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+}
+#clientEdit1:hover, #clientRemove1:hover,
+#clientEdit2:hover, #clientRemove2:hover,
+#clientEdit3:hover, #clientRemove3:hover,
+#clientEdit4:hover, #clientRemove4:hover,
+#clientEdit5:hover, #clientRemove5:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Paginación */
+#btnBefore, #btnAfter {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+}
+
+#btnBefore:hover, #btnAfter:hover {
+    -fx-background-color: #27ae60;
+}
+
+#footer {
+    -fx-background-color: #bdc3c7;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+#footer .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+}
+#clientEdit1:hover, #clientEdit2:hover, #clientEdit3:hover, #clientEdit4:hover, #clientEdit5:hover {
+    -fx-background-color: #2980b9;
+}
+
+#clientRemove1:hover, #clientRemove2:hover, #clientRemove3:hover, #clientRemove4:hover, #clientRemove5:hover {
+    -fx-background-color: #c0392b;
 }

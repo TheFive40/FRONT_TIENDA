@@ -3,7 +3,7 @@ package io.github.thefive40.tienda_front.model.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.thefive40.tienda_front.TiendaFrontApplication;
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.repository.AuthRepository;
 import io.github.thefive40.tienda_front.service.EmailService;
 import lombok.Getter;
@@ -17,7 +17,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -42,17 +41,17 @@ public class AuthImpl implements AuthRepository {
 
     @Override
     public boolean sendLogin ( String email, String password ) {
-        UserDTO userDTO = new UserDTO ( email, password );
-        return sendRequest ( userDTO, true );
+        ClientDTO clientDTO = new ClientDTO ( email, password );
+        return sendRequest ( clientDTO, true );
     }
 
-    protected boolean sendRequest ( UserDTO userDTO, boolean isLogin ) {
+    protected boolean sendRequest ( ClientDTO clientDTO, boolean isLogin ) {
         String page = (isLogin) ? "login" : "signup";
         AtomicBoolean result = new AtomicBoolean ( false );
         HttpClient client = HttpClient.newHttpClient ( );
-        String json = null;
+        String json;
         try {
-            json = mapper.writeValueAsString ( userDTO );
+            json = mapper.writeValueAsString ( clientDTO );
         } catch (JsonProcessingException e) {
             throw new RuntimeException ( e );
         }
@@ -79,8 +78,8 @@ public class AuthImpl implements AuthRepository {
     }
 
     @Override
-    public void sendRegistration ( UserDTO userDTO ) {
-        sendRequest ( userDTO, false );
+    public void sendRegistration ( ClientDTO clientDTO ) {
+        sendRequest ( clientDTO, false );
     }
 
     @Override

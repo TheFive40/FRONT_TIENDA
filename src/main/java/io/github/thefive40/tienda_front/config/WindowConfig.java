@@ -31,6 +31,16 @@ public class WindowConfig {
         loader.setControllerFactory ( context::getBean );
         return loader.load();
     }
+
+    @Bean
+    @Scope("prototype")
+    public AnchorPane clientParent() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/Cliente.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+
+    }
+
     @Bean
     @Scope("prototype")
     public VBox verificationParent() throws IOException {

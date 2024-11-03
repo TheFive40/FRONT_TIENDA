@@ -1,6 +1,6 @@
 package io.github.thefive40.tienda_front.service;
 
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.repository.AuthValidatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,27 +11,27 @@ import org.springframework.validation.Validator;
 @Service
 public class AuthValidatorService implements AuthValidatorRepository {
 
-    private UserDTO userDTO;
+    private ClientDTO clientDTO;
 
     @Autowired
-    private void inject ( UserDTO userDTO ) {
-        this.userDTO = userDTO;
+    private void inject ( ClientDTO clientDTO ) {
+        this.clientDTO = clientDTO;
     }
 
     @Autowired
     private Validator validator;
 
     public boolean isStrongPassword ( String password ) {
-        userDTO.setPassword ( password );
-        BindingResult bindingResult = new BeanPropertyBindingResult ( userDTO, "userDTO" );
-        validator.validate ( userDTO, bindingResult );
+        clientDTO.setPassword ( password );
+        BindingResult bindingResult = new BeanPropertyBindingResult ( clientDTO, "userDTO" );
+        validator.validate ( clientDTO, bindingResult );
         return !bindingResult.hasFieldErrors ( "password" );
     }
 
     @Override
-    public boolean isCredentialsValid ( UserDTO userDTO ) {
-        BindingResult bindingResult = new BeanPropertyBindingResult ( userDTO, "userDTO" );
-        validator.validate ( userDTO, bindingResult );
+    public boolean isCredentialsValid ( ClientDTO clientDTO ) {
+        BindingResult bindingResult = new BeanPropertyBindingResult ( clientDTO, "userDTO" );
+        validator.validate ( clientDTO, bindingResult );
         return !bindingResult.hasErrors ();
     }
 

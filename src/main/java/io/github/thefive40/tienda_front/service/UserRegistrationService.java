@@ -1,5 +1,5 @@
 package io.github.thefive40.tienda_front.service;
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import javafx.concurrent.Task;
 import org.springframework.stereotype.Service;
 import java.util.concurrent.Executors;
@@ -22,15 +22,15 @@ public class UserRegistrationService {
      * {@link AuthService} is committed to proceeding with the registration.
      * Once the service confirms that it is committed, it registers a new user
      * using the provided details from the input fields, encapsulated in a
-     * {@link UserDTO}. The task runs in the background to avoid blocking
+     * {@link ClientDTO}. The task runs in the background to avoid blocking
      * the JavaFX Application Thread, ensuring a responsive user interface.
      */
-    public void registerUser ( UserDTO userDTO ) {
+    public void registerUser ( ClientDTO clientDTO ) {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor ( );
         scheduler.scheduleAtFixedRate ( () -> {
             if (service.isCommit ( )) {
-                //userDTO.saveImage ( "/static/media/images/util/profile.jpeg" );
-                service.register ( userDTO );
+                clientDTO.setUrl ( "/static/media/images/util/profile.jpeg" );
+                service.register ( clientDTO );
                 scheduler.shutdown ( );
             }
         }, 0, 50, TimeUnit.MILLISECONDS );

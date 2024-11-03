@@ -1,6 +1,6 @@
 package io.github.thefive40.tienda_front.controller.auth;
 
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.notifications.error.AuthError;
 import io.github.thefive40.tienda_front.service.AuthService;
 import io.github.thefive40.tienda_front.service.UserService;
@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
     private UserService userService;
     private AuthError authError;
     @Getter
-    private UserDTO currentUser;
+    private ClientDTO currentUser;
 
 
     @Autowired

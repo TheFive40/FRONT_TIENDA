@@ -1,5 +1,5 @@
 package io.github.thefive40.tienda_front.controller.auth;
-import io.github.thefive40.tienda_front.model.dto.UserDTO;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.notifications.error.AuthError;
 import io.github.thefive40.tienda_front.service.EmailService;
 import io.github.thefive40.tienda_front.service.AuthValidatorService;
@@ -65,7 +65,7 @@ public class SignUpController implements Initializable {
     private AuthError authError;
     @Getter
     @Setter
-    private UserDTO currentUser;
+    private ClientDTO currentUser;
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
@@ -74,7 +74,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void handleSubmit () throws MessagingException {
-        currentUser = new UserDTO (
+        currentUser = new ClientDTO (
                 emailField.getText ( ),
                 passwordField.getText ( ),
                 firstNameField.getText ( ),
@@ -123,8 +123,8 @@ public class SignUpController implements Initializable {
         prototypeStage.show ( );
     }
 
-    protected boolean validateUser ( UserDTO userDTO ) {
-        if (!           authValidateService.isCredentialsValid ( userDTO )) {
+    protected boolean validateUser ( ClientDTO clientDTO ) {
+        if (!           authValidateService.isCredentialsValid ( clientDTO )) {
             authError.show ( );
             return false;
         }
