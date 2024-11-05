@@ -9,6 +9,7 @@ import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -20,7 +21,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -31,89 +34,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class ClientController implements Initializable {
 
-    @FXML
-    private Label clientRol5;
-
-    @FXML
-    private Label clientRol4;
-
-    @FXML
-    private ImageView clientImg1;
-
-    @FXML
-    private Label clientEmail5;
-
-    @FXML
-    private ImageView clientImg2;
-
-    @FXML
-    private ImageView clientImg3;
-
-    @FXML
-    private Label clientEmail2;
-
-    @FXML
-    private ImageView clientImg4;
-
-    @FXML
-    private Button columnRol;
-
-    @FXML
-    private Label clientEmail1;
-
-    @FXML
-    private ImageView clientImg5;
-
-    @FXML
-    private Label clientEmail4;
-
-    @FXML
-    private Label clientEmail3;
-
-    @FXML
-    private Button columnOpciones;
-
-    @FXML
-    private Label clientRol1;
-
-    @FXML
-    private Label clientRol3;
-
-    @FXML
-    private Label clientRol2;
-
-    @FXML
-    private Button btnAfter;
-
-    @FXML
-    private Label idClient1;
-
-    @FXML
     private Button btnLogout;
-
-    @FXML
-    private Label idClient5;
-
-    @FXML
-    private Label idClient4;
-
-    @FXML
-    private Label idClient3;
-
-    @FXML
-    private Label idClient2;
-
-    @FXML
-    private Button columnEmail;
 
     @FXML
     private AnchorPane homeParent;
 
     @FXML
-    private HBox containerLogout;
-
+    private TextField txtPage;
     @FXML
-    private TextField page;
+    private TextField txtTotalPage;
 
     @FXML
     private Button columnImagen;
@@ -146,39 +75,6 @@ public class ClientController implements Initializable {
     private TextField searchTextField;
 
     @FXML
-    private Label clientName3;
-
-    @FXML
-    private Label clientTel5;
-
-    @FXML
-    private Button clientEdit5;
-
-    @FXML
-    private Label clientName2;
-
-    @FXML
-    private Label clientTel4;
-
-    @FXML
-    private Label clientName5;
-
-    @FXML
-    private Label clientName4;
-
-    @FXML
-    private Label clientTel1;
-
-    @FXML
-    private Label clientName1;
-
-    @FXML
-    private Label clientTel3;
-
-    @FXML
-    private Label clientTel2;
-
-    @FXML
     private Label userName;
 
     @FXML
@@ -192,9 +88,8 @@ public class ClientController implements Initializable {
 
     @FXML
     private Button clientEdit4;
-
     @FXML
-    private Button columnTel;
+    private Button btnInicio;
 
     @FXML
     private Label userRole;
@@ -221,14 +116,21 @@ public class ClientController implements Initializable {
 
     private UtilityService utilityService;
 
+    private List<ClientDTO> clients;
+
+    private ApplicationContext context;
+
+    private Logger logger;
+
     @Autowired
     public void inject ( UserService service, Stage stage, LoginController login, SignUpController signUpController
-            , UtilityService utilityService ) {
+            , UtilityService utilityService, ApplicationContext context ) {
         this.userService = service;
         this.stage = stage;
         this.login = login;
         this.signUp = signUpController;
         this.utilityService = utilityService;
+        this.context=context;
     }
 
     @FXML
@@ -280,15 +182,42 @@ public class ClientController implements Initializable {
     void handleRemoveClient5 ( ActionEvent event ) {
 
     }
+    @FXML
+    void handleMenuInicio(){
+        stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+    }
+    @FXML
+    void handleBefore () {
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
 
-    @Override
-    public void initialize ( URL url, ResourceBundle resourceBundle ) {
-        List<ClientDTO> clients = userService.findAll ( );
+        }
         fillTableClients ( clients );
     }
 
+    @FXML
+    void handleAfter () {
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && utilityService.totalPages ( clients ) >
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
+        }
+        fillTableClients ( clients );
+    }
+
+    @Override
+    public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        clients = userService.findAll ( );
+        txtTotalPage.setText ( utilityService.totalPages ( clients ) + "" );
+        txtPage.setText ( "1" );
+        fillTableClients ( clients );
+        imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
+                Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) ) );
+        userName.setText ( login.getCurrentUser ( ).getName ( ) );
+    }
+
     public void fillTableClients ( List<ClientDTO> clients ) {
-        List<ClientDTO> clientDTOS = utilityService.getClientsByPage ( 1, clients );
+        List<ClientDTO> clientDTOS = utilityService.getClientsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
             Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
@@ -324,7 +253,11 @@ public class ClientController implements Initializable {
                 buttonEdit.setVisible ( true );
                 buttonRemove.setVisible ( true );
             }
-
         } );
+    }
+
+    @Autowired
+    public void setLogger ( Logger logger ) {
+        this.logger = logger;
     }
 }

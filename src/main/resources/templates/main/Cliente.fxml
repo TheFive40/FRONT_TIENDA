@@ -34,7 +34,7 @@
                         <VBox id="aside" prefHeight="607.0" prefWidth="250.0" spacing="10" styleClass="aside">
                             <children>
                                 <Label alignment="CENTER" prefHeight="25.0" prefWidth="283.0" styleClass="aside-title" text="Menu principal" />
-                                <Button prefHeight="42.0" prefWidth="149.0" styleClass="aside-button" text="Inicio">
+                                <Button fx:id="btnInicio" onAction="#handleMenuInicio" prefHeight="42.0" prefWidth="149.0" styleClass="aside-button" text="Inicio">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,7 +102,7 @@
                         </VBox>
                   <VBox prefHeight="607.0" prefWidth="964.0">
                      <children>
-                        <Label prefHeight="32.0" prefWidth="242.0" text="Clientes">
+                        <Label fx:id="labelClientes" prefHeight="32.0" prefWidth="242.0" text="Clientes">
                            <font>
                               <Font name="Berlin Sans FB" size="32.0" />
                            </font>
@@ -110,6 +110,11 @@
                               <Insets bottom="2.0" top="50.0" />
                            </VBox.margin>
                         </Label>
+                        <AnchorPane>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </AnchorPane>
                         <VBox prefHeight="126.0" prefWidth="862.0">
                            <children>
                               <HBox prefHeight="26.0" prefWidth="930.0" spacing="30.0">
@@ -162,13 +167,27 @@
                                           </Label>
                                           <Button fx:id="clientEdit1" mnemonicParsing="false" onAction="#handleEditClient1" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
-                                                <Insets left="20.0" top="30.0" />
+                                                <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                           <Button fx:id="clientRemove1" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient1" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                        </children>
                                        <VBox.margin>
@@ -209,13 +228,27 @@
                                           </Label>
                                           <Button fx:id="clientEdit2" mnemonicParsing="false" onAction="#handleEditClient2" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
-                                                <Insets left="20.0" top="30.0" />
+                                                <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                           <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient2" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -253,13 +286,27 @@
                                           </Label>
                                           <Button fx:id="clientEdit3" mnemonicParsing="false" onAction="#handleEditClient3" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
-                                                <Insets left="20.0" top="30.0" />
+                                                <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                           <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient3" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -297,13 +344,27 @@
                                           </Label>
                                           <Button fx:id="clientEdit4" mnemonicParsing="false" onAction="#handleEditClient4" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
-                                                <Insets left="20.0" top="30.0" />
+                                                <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                           <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient4" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -341,36 +402,67 @@
                                           </Label>
                                           <Button fx:id="clientEdit5" mnemonicParsing="false" onAction="#handleEditClient5" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
-                                                <Insets left="20.0" top="30.0" />
+                                                <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                           <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient5" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
                                           </Button>
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="180.0" spacing="30.0">
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="254.0" spacing="30.0">
                                  <children>
-                                    <TextField fx:id="page" editable="false" prefHeight="25.0" prefWidth="46.0">
+                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Registrar" />
+                                    <Label prefHeight="17.0" prefWidth="54.0" text="Page:">
                                        <HBox.margin>
-                                          <Insets />
+                                          <Insets right="-40.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtPage" layoutX="20.0" layoutY="10.0" prefHeight="25.0" prefWidth="46.0">
+                                       <HBox.margin>
+                                          <Insets right="-20.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <Button fx:id="btnBefore" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="&lt;" />
-                                    <Button fx:id="btnAfter" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="&gt;" />
+                                    <TextField fx:id="txtTotalPage" editable="false" prefHeight="25.0" prefWidth="46.0">
+                                       <HBox.margin>
+                                          <Insets right="-20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="btnBefore" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBefore" prefHeight="25.0" prefWidth="40.0" text="&lt;">
+                                       <HBox.margin>
+                                          <Insets right="-20.0" />
+                                       </HBox.margin></Button>
+                                    <Button fx:id="btnAfter" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAfter" prefHeight="25.0" prefWidth="40.0" text="&gt;" />
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                                  <VBox.margin>
-                                    <Insets left="725.0" top="10.0" />
+                                    <Insets left="568.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                            </children>
+                           <VBox.margin>
+                              <Insets top="-5.0" />
+                           </VBox.margin>
                         </VBox>
                      </children>
                   </VBox>

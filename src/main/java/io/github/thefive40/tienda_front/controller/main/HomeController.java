@@ -230,7 +230,7 @@ public class HomeController implements Initializable {
         if (signUp.getCurrentUser ( ) != null) {
             imgProfile.setImage ( new Image ( signUp.getCurrentUser ().getUrl () )  );
             userName.setText ( signUp.getCurrentUser ().getName () );
-        } else {
+        } else if(login.getCurrentUser () != null){
             imgProfile.setImage ( new Image ( login.getCurrentUser ().getUrl () ) );
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         }
