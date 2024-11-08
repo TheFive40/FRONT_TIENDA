@@ -1,5 +1,6 @@
 package io.github.thefive40.tienda_front.controller.main.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
@@ -23,7 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -33,6 +33,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 @Component("clientController")
 @Getter
@@ -117,9 +118,17 @@ public class ClientController implements Initializable {
         Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "clientEdit", GridPane.class ) ) );
         stage.setTitle ( "Actualizar" );
-        stage.show ();
+        stage.show ( );
     }
 
+    @FXML
+    void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
+        Button button = (Button) event.getSource ( );
+        clientEdit = utilityService.findClientDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientEdit.setStatus ( false );
+        userService.update ( clientEdit );
+        fillTableClients ( clients );
+    }
 
     @FXML
     void handleMenuInicio () {
@@ -168,6 +177,9 @@ public class ClientController implements Initializable {
 
     public void fillTableClients ( List<ClientDTO> clients ) {
         List<ClientDTO> clientDTOS = utilityService.getClientsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
+        Stream<ClientDTO> clientDTOStream = clientDTOS.stream ( ).filter ( ClientDTO::isStatus );
+        clientDTOS = clientDTOStream.toList ( );
+        List<ClientDTO> finalClientDTOS = clientDTOS;
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
             Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
@@ -182,28 +194,36 @@ public class ClientController implements Initializable {
             Label rolLabel = (Label) container.getChildren ( ).get ( 5 );
             Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
             Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
-            if (count >= clientDTOS.size ( )) {
-                idLabel.setText ( "" );
-                nameLabel.setText ( "" );
-                emailLabel.setText ( "" );
-                telLabel.setText ( "" );
-                rolLabel.setText ( "" );
-                imageView.setImage ( null );
-                buttonEdit.setVisible ( false );
-                buttonRemove.setVisible ( false );
+            if (count >= finalClientDTOS.size ( )) {
+                clearUserInfoFields ( idLabel, nameLabel, emailLabel, telLabel,
+                        rolLabel, imageView, buttonEdit, buttonRemove );
             } else {
-                ClientDTO client = clientDTOS.get ( count );
-                imageView.setImage ( new Image ( client.getUrl ( ) ) );
-                idLabel.setText ( String.valueOf ( client.getIdClient ( ) ) );
-                nameLabel.setText ( client.getName ( ) );
-                emailLabel.setText ( client.getEmail ( ) );
-                telLabel.setText ( client.getPhone ( ) );
-                rolLabel.setText ( client.getRole ( ) );
-                imageView.setClip ( clip );
-                buttonEdit.setVisible ( true );
-                buttonRemove.setVisible ( true );
+                ClientDTO client = finalClientDTOS.get ( count );
+                if (client.isStatus ( )) {
+                    imageView.setImage ( new Image ( client.getUrl ( ) ) );
+                    idLabel.setText ( String.valueOf ( client.getIdClient ( ) ) );
+                    nameLabel.setText ( client.getName ( ) );
+                    emailLabel.setText ( client.getEmail ( ) );
+                    telLabel.setText ( client.getPhone ( ) );
+                    rolLabel.setText ( client.getRole ( ) );
+                    imageView.setClip ( clip );
+                    buttonEdit.setVisible ( true );
+                    buttonRemove.setVisible ( true );
+                }
             }
         } );
+    }
+
+    void clearUserInfoFields ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
+                               Label rolLabel, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
+        idLabel.setText ( "" );
+        nameLabel.setText ( "" );
+        emailLabel.setText ( "" );
+        telLabel.setText ( "" );
+        rolLabel.setText ( "" );
+        imageView.setImage ( null );
+        buttonEdit.setVisible ( false );
+        buttonRemove.setVisible ( false );
     }
 
     @Autowired

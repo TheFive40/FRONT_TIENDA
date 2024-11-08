@@ -73,7 +73,7 @@ public class ClientEditController implements Initializable {
         passwordField.setText ( clientDTO.getPassword ( ) );
         int index = Collections.binarySearch ( rolComboBox.getItems ( ), clientDTO.getRole ( ) );
         rolComboBox.selectionModelProperty ( ).get ( ).select ( index );
-        estadoField.setText ( "Activo" );
+        estadoField.setText ( (clientDTO.isStatus ()) ? "Activo":"Inactivo" );
     }
 
     @FXML
@@ -85,7 +85,9 @@ public class ClientEditController implements Initializable {
         clientDTO.setLastname ( apellidoField.getText ( ) );
         clientDTO.setPhone ( telefonoField.getText ( ) );
         clientDTO.setEmail ( emailField.getText ( ) );
-        clientDTO.setPassword ( passwordField.getText ( ) );
+        clientDTO.setPassword ( passwordField.getText () );
+        clientDTO.setStatus ( estadoField.getText ( ).equalsIgnoreCase ( "Activo" ) );
+        System.out.println (clientDTO.getInitVector () );
         userService.update ( clientDTO );
         new AlertRegister ().showUpdateClient ();
     }

@@ -140,22 +140,22 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="1">
+                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" text="Jean Franco Boom Bolaño" wrapText="true">
+                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="12.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="jeanf2805@gmail.com">
+                                          <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="320 4438661">
+                                          <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -177,7 +177,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove1" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove1" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
@@ -201,22 +201,22 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="2">
+                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" text="Jean Franco Boom Bolaño" wrapText="true">
+                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="12.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="jeanf2805@gmail.com">
+                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="320 4438661">
+                                          <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -238,7 +238,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
@@ -259,22 +259,22 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="3">
+                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" text="Jean Franco Boom Bolaño" wrapText="true">
+                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="12.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="jeanf2805@gmail.com">
+                                          <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="320 4438661">
+                                          <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -296,7 +296,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
@@ -317,22 +317,22 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="4">
+                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" text="Jean Franco Boom Bolaño" wrapText="true">
+                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="12.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="jeanf2805@gmail.com">
+                                          <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="320 4438661">
+                                          <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -354,7 +354,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
@@ -375,22 +375,22 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="5">
+                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" text="Jean Franco Boom Bolaño" wrapText="true">
+                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="12.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="jeanf2805@gmail.com">
+                                          <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="320 4438661">
+                                          <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -412,7 +412,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>

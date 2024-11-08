@@ -34,6 +34,7 @@ public class UserRegistrationService {
             if (service.isCommit ( )) {
                 clientDTO.setUrl ( "/static/media/images/util/profile.jpeg" );
                 clientDTO.setRole ( "Cliente" );
+                clientDTO.setStatus ( true );
                 service.register ( clientDTO );
                 scheduler.shutdown ( );
             }
