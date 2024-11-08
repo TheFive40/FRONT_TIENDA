@@ -1,4 +1,4 @@
-package io.github.thefive40.tienda_front.controller.main;
+package io.github.thefive40.tienda_front.controller.main.client;
 
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
@@ -17,10 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -31,13 +34,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+@Component("clientController")
+@Getter
 public class ClientController implements Initializable {
 
-    private Button btnLogout;
-
     @FXML
-    private AnchorPane homeParent;
+    private Button btnLogout;
 
     @FXML
     private TextField txtPage;
@@ -45,31 +47,15 @@ public class ClientController implements Initializable {
     private TextField txtTotalPage;
 
     @FXML
-    private Button columnImagen;
-
-    @FXML
-    private Button clientRemove1;
-
-    @FXML
     private Button searchButton;
 
-    @FXML
-    private Button clientRemove2;
 
     @FXML
     private ImageView imgProfile;
 
-    @FXML
-    private Button clientRemove3;
-
-    @FXML
-    private Button clientRemove4;
 
     @FXML
     private Button columnId;
-
-    @FXML
-    private Button clientRemove5;
 
     @FXML
     private TextField searchTextField;
@@ -77,17 +63,6 @@ public class ClientController implements Initializable {
     @FXML
     private Label userName;
 
-    @FXML
-    private Button clientEdit1;
-
-    @FXML
-    private Button clientEdit2;
-
-    @FXML
-    private Button clientEdit3;
-
-    @FXML
-    private Button clientEdit4;
     @FXML
     private Button btnInicio;
 
@@ -122,6 +97,8 @@ public class ClientController implements Initializable {
 
     private Logger logger;
 
+    private ClientDTO clientEdit;
+
     @Autowired
     public void inject ( UserService service, Stage stage, LoginController login, SignUpController signUpController
             , UtilityService utilityService, ApplicationContext context ) {
@@ -130,62 +107,33 @@ public class ClientController implements Initializable {
         this.login = login;
         this.signUp = signUpController;
         this.utilityService = utilityService;
-        this.context=context;
+        this.context = context;
     }
 
     @FXML
-    void handleEditClient1 ( ActionEvent event ) {
-
+    void handleEditClient ( ActionEvent event ) {
+        Button button = (Button) event.getSource ( );
+        clientEdit = utilityService.findClientDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "clientEdit", GridPane.class ) ) );
+        stage.setTitle ( "Actualizar" );
+        stage.show ();
     }
 
-    @FXML
-    void handleRemoveClient1 ( ActionEvent event ) {
-
-    }
 
     @FXML
-    void handleEditClient2 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleRemoveClient2 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleEditClient3 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleRemoveClient3 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleEditClient4 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleRemoveClient4 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleEditClient5 ( ActionEvent event ) {
-
-    }
-
-    @FXML
-    void handleRemoveClient5 ( ActionEvent event ) {
-
-    }
-    @FXML
-    void handleMenuInicio(){
+    void handleMenuInicio () {
         stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
     }
+
+    @FXML
+    void handleClientRegister () {
+        Stage root_stage = new Stage ( );
+        root_stage.setScene ( new Scene ( context.getBean ( "clientRegister", AnchorPane.class ) ) );
+        root_stage.setTitle ( "Registrar Cliente" );
+        root_stage.show ( );
+    }
+
     @FXML
     void handleBefore () {
         if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
@@ -213,7 +161,9 @@ public class ClientController implements Initializable {
         fillTableClients ( clients );
         imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) ) );
-        userName.setText ( login.getCurrentUser ( ).getName ( ) );
+        if (login.getCurrentUser ( ) != null)
+            userName.setText ( login.getCurrentUser ( ).getName ( ) );
+        else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
     }
 
     public void fillTableClients ( List<ClientDTO> clients ) {
@@ -248,7 +198,7 @@ public class ClientController implements Initializable {
                 nameLabel.setText ( client.getName ( ) );
                 emailLabel.setText ( client.getEmail ( ) );
                 telLabel.setText ( client.getPhone ( ) );
-                rolLabel.setText ( "Administrador" );
+                rolLabel.setText ( client.getRole ( ) );
                 imageView.setClip ( clip );
                 buttonEdit.setVisible ( true );
                 buttonRemove.setVisible ( true );

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.thefive40.tienda_front.TiendaFrontApplication;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
+import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.repository.AuthRepository;
 import io.github.thefive40.tienda_front.service.EmailService;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;

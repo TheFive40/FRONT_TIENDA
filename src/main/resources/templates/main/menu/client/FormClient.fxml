@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="619.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.client.popups.RegisterClientController">
+   <children>
+      <Pane layoutX="276.0" prefHeight="649.0" prefWidth="156.0" styleClass="pane-section">
+         <children>
+            <ImageView fitHeight="206.0" fitWidth="131.0" layoutX="64.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../static/media/images/icon/pino.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="37.0" layoutY="221.0" text="¡ Hola !" />
+            <Label layoutX="21.0" layoutY="268.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="Registra tus datos " />
+            <Label layoutX="44.0" layoutY="287.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="para unirte" />
+            <Label layoutX="26.0" layoutY="306.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="a nuestro equipo" />
+            <ImageView fitHeight="129.0" fitWidth="94.0" layoutX="37.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../static/media/images/icon/pino.png" />
+               </image>
+            </ImageView>
+         </children>
+         <stylesheets>
+            <URL value="@../../../../static/css/base/menus/FormClient.css" />
+         </stylesheets>
+      </Pane>
+      <Label layoutX="39.0" layoutY="29.0" styleClass="register-title" text="Formulario de Registro">
+         <stylesheets>
+            <URL value="@../../../../static/css/base/menus/FormClient.css" />
+         </stylesheets></Label>
+      <VBox layoutX="39.0" layoutY="93.0" prefHeight="401.0" prefWidth="222.0">
+         <children>
+            <TextField fx:id="txtName" prefHeight="42.0" prefWidth="269.0" promptText="Nombre" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtLastName" prefHeight="35.0" prefWidth="200.0" promptText="Apellido" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtTel" prefHeight="35.0" prefWidth="200.0" promptText="Telefono" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtEmail" prefHeight="35.0" prefWidth="200.0" promptText="Email" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtCargo" prefHeight="35.0" prefWidth="200.0" promptText="Cargo" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <PasswordField fx:id="txtPassword" prefHeight="33.0" prefWidth="222.0" promptText="Contraseña" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <PasswordField fx:id="txtConfirmPassword" prefHeight="35.0" prefWidth="200.0" promptText="Confirmar Contraseña" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+         </children>
+      </VBox>
+      <Button layoutX="67.0" layoutY="555.0" mnemonicParsing="false" onAction="#handleRegisterClient" prefHeight="45.0" prefWidth="168.0" styleClass="register-button" text="Registrar">
+         <stylesheets>
+            <URL value="@../../../../static/css/base/menus/FormClient.css" />
+         </stylesheets></Button>
+      <CheckBox layoutX="47.0" layoutY="513.0" mnemonicParsing="false" text="Acepto los Términos y Condiciones" />
+   </children>
+</AnchorPane>

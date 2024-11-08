@@ -56,6 +56,8 @@ public class ClientDTO implements Serializable, Cloneable {
 
     private Date registrationDate;
 
+    private String role;
+
     private List<ProductDTO> products = new ArrayList<> ();
 
     private List<OrderDTO> orders = new ArrayList<> ();

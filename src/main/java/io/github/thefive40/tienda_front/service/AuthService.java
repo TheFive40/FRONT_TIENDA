@@ -30,6 +30,8 @@ public class AuthService {
             authRepository.sendRegistration ( clientDTO );
         }
     }
+
+
     public boolean isCommit(){
         return authRepository.isCommit();
     }

@@ -2,6 +2,7 @@ package io.github.thefive40.tienda_front.config;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,18 @@ public class WindowConfig {
     @Bean
     @Scope("prototype")
     public AnchorPane clientParent() throws IOException {
-        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/Cliente.fxml" ) );
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/client/Client.fxml" ) );
         loader.setControllerFactory ( context::getBean );
         return loader.load();
 
+    }
+
+    @Bean
+    @Scope("prototype")
+    public AnchorPane clientRegister() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/client/FormClient.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
     }
 
     @Bean
@@ -63,7 +72,14 @@ public class WindowConfig {
         loader.setControllerFactory ( context::getBean );
         return loader.load ( );
     }
+    @Bean
+    @Scope("prototype")
+    public GridPane clientEdit() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/client/ClientEdit.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ();
 
+    }
     @Bean
     @Scope("prototype")
     public VBox verificationCodePane () throws IOException {

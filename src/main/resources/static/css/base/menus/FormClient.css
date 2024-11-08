@@ -1,0 +1,74 @@
+/* Estilo para el formulario */
+.root {
+    -fx-background-color: #1a1a2e;
+    -fx-padding: 20px;
+}
+
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fafafa;
+    -fx-alignment: center;
+}
+.check-box {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+}
+
+.link {
+    -fx-text-fill: #c1c1c1;
+    -fx-underline: true;
+    -fx-font-size: 12px;
+}
+
+.link:hover {
+    -fx-text-fill: #007bff;
+}
+
+.input-field {
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.input-field:focused {
+    -fx-border-color: #3498db;
+}
+
+.register-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.register-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.register-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-alignment: center;
+}
+
+.pane-section {
+    -fx-background-color: #2ecc71;
+    -fx-padding: 40px;
+    -fx-alignment: center;
+    -fx-border-radius: 200px 0 0 200px;
+    -fx-background-radius: 600px 0 0 600px;
+}
+
+.pane-description {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+    -fx-font-weight: normal;
+}

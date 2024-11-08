@@ -1,7 +1,10 @@
 package io.github.thefive40.tienda_front.service;
+
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
+import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import javafx.concurrent.Task;
 import org.springframework.stereotype.Service;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +33,7 @@ public class UserRegistrationService {
         scheduler.scheduleAtFixedRate ( () -> {
             if (service.isCommit ( )) {
                 clientDTO.setUrl ( "/static/media/images/util/profile.jpeg" );
+                clientDTO.setRole ( "Cliente" );
                 service.register ( clientDTO );
                 scheduler.shutdown ( );
             }

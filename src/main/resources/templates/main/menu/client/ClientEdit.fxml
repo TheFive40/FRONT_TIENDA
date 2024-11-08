@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<GridPane fx:id="mainGrid" hgap="15" style="-fx-background-color: #f3f3f3; -fx-padding: 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-width: 1;" stylesheets="@../../../../static/css/base/menus/ClientEdit.css" vgap="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.client.popups.ClientEditController">
+
+    <!-- Column and Row constraints for layout -->
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50.0" />
+        <ColumnConstraints percentWidth="50.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+    </rowConstraints>
+   <children>
+      <VBox prefHeight="14.0" prefWidth="201.0">
+         <children>
+         
+             <!-- Información Personal Section -->
+             <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Información Personal:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+      </VBox>
+       <Label style="-fx-text-fill: #333;" text="Nombre:" GridPane.rowIndex="1" />
+       <TextField fx:id="nombreField" promptText="Ingrese el nombre" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   
+       <Label style="-fx-text-fill: #333;" text="Apellido:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+       <TextField fx:id="apellidoField" promptText="Ingrese el apellido" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <VBox GridPane.rowIndex="3">
+         <children>
+         
+                   <!-- Contacto Section -->
+             <Label prefHeight="20.0" prefWidth="199.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Contacto:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0" />
+         </children>
+      </VBox>
+       <Label style="-fx-text-fill: #333;" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+       <TextField fx:id="emailField" promptText="Ingrese el email" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   
+       <Label style="-fx-text-fill: #333;" text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+       <TextField fx:id="telefonoField" promptText="Ingrese el teléfono" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <VBox GridPane.rowIndex="6">
+         <children>
+         
+             <!-- Información Sensible Section -->
+             <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Información Sensible:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0" />
+         </children>
+      </VBox>
+       <Label style="-fx-text-fill: #333;" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+       <PasswordField fx:id="passwordField" promptText="Ingrese la contraseña" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   
+       <!-- Rol del usuario ComboBox -->
+       <Label style="-fx-text-fill: #333;" text="Rol del Usuario:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+       <ComboBox fx:id="rolComboBox" promptText="Seleccione el rol" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Administrador" />
+                   <String fx:value="Usuario" />
+                   <String fx:value="Invitado" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+   
+       <!-- Estado -->
+       <Label style="-fx-text-fill: #333;" text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+       <TextField fx:id="estadoField" promptText="Activo/Inactivo" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+   
+       <!-- Botón Actualizar -->
+       <HBox alignment="center" spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="10">
+      <children>
+              <Button fx:id="actualizarButton" onAction="#handleUpdate" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Actualizar" />
+      </children>
+       </HBox>
+      <VBox prefHeight="0.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+         <padding>
+            <Insets left="-15.0" />
+         </padding>
+      </VBox>
+      <VBox prefHeight="0.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+         <padding>
+            <Insets left="-15.0" />
+         </padding>
+      </VBox>
+      <VBox prefHeight="0.0" prefWidth="201.0" GridPane.columnIndex="1">
+         <children>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="-15.0" top="27.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+      </VBox>
+   </children>
+
+</GridPane>

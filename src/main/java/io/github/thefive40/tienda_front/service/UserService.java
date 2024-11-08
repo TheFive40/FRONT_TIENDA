@@ -35,6 +35,10 @@ public class UserService implements UserRepository {
         return getClients ( "http://localhost:6060/api/users/all" );
     }
 
+    public void update ( ClientDTO clientDTO ) throws JsonProcessingException {
+        postRequest ( "http://localhost:6060/api/users/update", clientDTO );
+    }
+
     @Override
     public String getPasswordByEmail ( String email ) {
         return sendRequest ( "" ).getPassword ( );
@@ -62,8 +66,29 @@ public class UserService implements UserRepository {
         return user;
     }
 
+    public void postRequest ( String url, ClientDTO clientDTO ) throws JsonProcessingException {
+        HttpClient client = HttpClient.newHttpClient ( );
+        String json = mapper.writeValueAsString ( clientDTO );
+        HttpRequest request = HttpRequest.newBuilder ( )
+                .POST ( HttpRequest.BodyPublishers.ofString ( json ) )
+                .uri ( URI.create ( url ) )
+                .header ( "Content-Type", "application/json" )
+                .build ( );
+
+        client.sendAsync ( request, HttpResponse.BodyHandlers.ofString ( ) )
+                .thenApply ( HttpResponse::statusCode )
+                .thenAccept ( e -> {
+                    logger.info ( "Response " + e );
+                } )
+                .exceptionally ( e -> {
+                    logger.error ( Marker.ANY_MARKER, "Error while making the request: " + e.getMessage ( ), e );
+                    return null;
+                } )
+                .join ( );
+    }
+
     private List<ClientDTO> getClients ( String url ) {
-        AtomicReference<List<ClientDTO>> clients = new AtomicReference<> (  );
+        AtomicReference<List<ClientDTO>> clients = new AtomicReference<> ( );
         HttpClient client = HttpClient.newHttpClient ( );
         HttpRequest request = HttpRequest.newBuilder ( )
                 .uri ( URI.create ( url ) )
@@ -74,15 +99,15 @@ public class UserService implements UserRepository {
                 .thenApply ( HttpResponse::body )
                 .thenAcceptAsync ( e -> {
                     try {
-                       ClientDTO[] clientDTO =  mapper.readValue ( e, ClientDTO[].class );
-                       clients.set ( List.of ( clientDTO ) );
+                        ClientDTO[] clientDTO = mapper.readValue ( e, ClientDTO[].class );
+                        clients.set ( List.of ( clientDTO ) );
                     } catch (JsonProcessingException ex) {
                         throw new RuntimeException ( ex );
                     }
                 } )
                 .exceptionally ( e -> null )
                 .join ( );
-        return clients.get ();
+        return clients.get ( );
     }
 
     @Override

@@ -7,7 +7,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1225.0" stylesheets="@../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.ClientController">
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1225.0" stylesheets="@../../../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.client.ClientController">
     <children>
         <BorderPane prefHeight="690.0" prefWidth="1225.0" style="-fx-background-color: white;">
             <top>
@@ -38,14 +38,14 @@
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../static/media/images/icon/inicio-removebg-preview.png" />
+                                    <Image url="@../../../../static/media/images/icon/inicio-removebg-preview.png" />
                                  </image></ImageView>
                            </graphic></Button>
                                 <Button prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../static/media/images/icon/clientes-removebg-preview.png" />
+                                    <Image url="@../../../../static/media/images/icon/clientes-removebg-preview.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -53,7 +53,7 @@
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../static/media/images/icon/producto-removebg-preview.png" />
+                                    <Image url="@../../../../static/media/images/icon/producto-removebg-preview.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -61,7 +61,7 @@
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../static/media/images/icon/compras-removebg-preview.png" />
+                                    <Image url="@../../../../static/media/images/icon/compras-removebg-preview.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -70,7 +70,7 @@
                                     <children>
                                         <ImageView fx:id="imgProfile" fitHeight="41.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-image">
                                  <image>
-                                    <Image url="@../../static/media/images/util/profile.jpeg" />
+                                    <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                  </image></ImageView>
 
                                         <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="128.0">
@@ -84,7 +84,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="36.0" fitWidth="45.0">
                                                     <image>
-                                                        <Image url="@../../static/media/images/util/logout.png" />
+                                                        <Image url="@../../../../static/media/images/util/logout.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -165,26 +165,26 @@
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="clientEdit1" mnemonicParsing="false" onAction="#handleEditClient1" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit1" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/edit-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove1" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient1" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove1" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/remove-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -226,26 +226,26 @@
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="clientEdit2" mnemonicParsing="false" onAction="#handleEditClient2" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit2" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/edit-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient2" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/remove-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -284,26 +284,26 @@
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="clientEdit3" mnemonicParsing="false" onAction="#handleEditClient3" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit3" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/edit-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient3" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/remove-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -342,26 +342,26 @@
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="clientEdit4" mnemonicParsing="false" onAction="#handleEditClient4" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit4" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/edit-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient4" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/remove-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -400,26 +400,26 @@
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="clientEdit5" mnemonicParsing="false" onAction="#handleEditClient5" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit5" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/edit-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/edit-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleRemoveClient5" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="28.0">
                                              <HBox.margin>
                                                 <Insets right="-10.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../static/media/images/icon/remove-removebg-preview.png" />
+                                                      <Image url="@../../../../static/media/images/icon/remove-removebg-preview.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -430,7 +430,7 @@
                               </VBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="254.0" spacing="30.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Registrar" />
+                                    <Button mnemonicParsing="false" onAction="#handleClientRegister" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Registrar" />
                                     <Label prefHeight="17.0" prefWidth="54.0" text="Page:">
                                        <HBox.margin>
                                           <Insets right="-40.0" top="5.0" />
