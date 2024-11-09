@@ -89,7 +89,7 @@ public class UtilityService<T> {
             container.getChildren ( ).stream ( ).filter ( e -> e instanceof HBox ).forEach ( e -> {
                 ((HBox) e).getChildren ( ).stream ( ).filter ( k -> k instanceof VBox )
                         .forEach ( v -> {
-                            ProductDTO product = null;
+                            ProductDTO product = new ProductDTO (  );
                             try {
                                 product = finalProductDTOS.get ( count.get ( ) );
                             } catch (ArrayIndexOutOfBoundsException ex) {
@@ -106,18 +106,20 @@ public class UtilityService<T> {
                                         } else if (controls instanceof ImageView imageView) {
                                             imageView.setImage ( null );
                                         }
-                                        return;
-                                    }
-                                    if (controls instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
-                                        lbl.setText ( finalProduct.getPrice ( ) + "" );
-                                    } else if (controls instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
-                                        lbl.setText ( finalProduct.getName ( ) );
-                                    } else if (controls instanceof ImageView imageView) {
-                                        imageView.setImage ( new Image ( finalProduct.getImg ( ) ) );
-                                    }
-                                } );
 
+                                    }else{
+                                        if (controls instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
+                                            lbl.setText ( finalProduct.getPrice ( ) + "" );
+                                        } else if (controls instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
+                                            lbl.setText ( finalProduct.getName ( ) );
+                                        } else if (controls instanceof ImageView imageView && finalProduct.getImg () != null) {
+                                            imageView.setImage ( new Image ( finalProduct.getImg ( ) ) );
+                                        }
+                                    }
+
+                                } );
                             } );
+                            eraser.set ( false );
                             count.getAndIncrement ( );
                         } );
             } );
