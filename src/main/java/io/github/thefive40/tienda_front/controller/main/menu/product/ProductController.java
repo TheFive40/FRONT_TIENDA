@@ -98,14 +98,14 @@ public class ProductController implements Initializable {
     }
 
     public void refresh () {
-        fillTableProducts ( productService.getProducts ( ) );
+        List<ProductDTO> productDTOS = productService.getProducts ( );
+        txtTotalPage.setText ( utilityService.totalProductsPage ( productDTOS ) + "" );
+        fillTableProducts ( productDTOS );
     }
 
     public void fillTableProducts ( List<ProductDTO> products ) {
-        List<ProductDTO> clientDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), products );
-        Stream<ProductDTO> clientDTOStream = clientDTOS.stream ( ).filter ( ProductDTO::isStatus );
-        clientDTOS = clientDTOStream.toList ( );
-        List<ProductDTO> finalProductDTO = clientDTOS;
+        products = products.stream ( ).filter ( ProductDTO::isStatus ).toList ( );
+        List<ProductDTO> productDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), products );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
 
@@ -119,11 +119,11 @@ public class ProductController implements Initializable {
             Label rolLabel = (Label) container.getChildren ( ).get ( 5 );
             Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
             Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
-            if (count >= finalProductDTO.size ( )) {
+            if (count >= productDTOS.size ( )) {
                 clearProductsInfo ( idLabel, nameLabel, emailLabel, telLabel,
                         rolLabel, imageView, buttonEdit, buttonRemove );
             } else {
-                ProductDTO product = finalProductDTO.get ( count );
+                ProductDTO product = productDTOS.get ( count );
                 if (product.isStatus ( )) {
                     imageView.setImage ( new Image ( product.getImg ( ) ) );
                     idLabel.setText ( String.valueOf ( product.getProductId ( ) ) );
@@ -155,37 +155,47 @@ public class ProductController implements Initializable {
 
     @FXML
     void handleBefore ( ActionEvent event ) {
-
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
+        }
+        refresh ( );
     }
 
     @FXML
     void handleAfter ( ActionEvent event ) {
-
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && utilityService.totalPages ( products ) >
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
+        }
+        refresh ( );
     }
 
     public void handleProductEdit ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
         productEdit = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
-        Stage stage = new Stage (  );
+        Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "productEditParent", GridPane.class ) ) );
-        stage.show ();
+        stage.show ( );
     }
 
     public void handleButtonRemove ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
-        productEdit = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
-        productEdit.setStatus ( false );
-        productService.save ( productEdit );
+        ProductDTO productRemove = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        productRemove.setStatus ( false );
+        productService.save ( productRemove );
         refresh ( );
     }
 
     public void handleMenuInicio ( ActionEvent event ) {
         stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
     }
+
     @FXML
-    void handleMenuClientes(){
+    void handleMenuClientes () {
         stage.setScene ( new Scene ( context.getBean ( "clientParent", AnchorPane.class ) ) );
     }
+
     public void handleProductRegister ( ActionEvent event ) {
         Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "productRegisterParent", AnchorPane.class ) ) );

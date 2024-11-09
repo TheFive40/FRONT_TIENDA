@@ -110,10 +110,12 @@ public class ClientController implements Initializable {
         this.utilityService = utilityService;
         this.context = context;
     }
-    public void refresh(){
+
+    public void refresh () {
         clients = userService.findAll ( );
         fillTableClients ( clients );
     }
+
     @FXML
     void handleEditClient ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
@@ -127,10 +129,11 @@ public class ClientController implements Initializable {
     @FXML
     void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
         Button button = (Button) event.getSource ( );
-        clientEdit = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
-        clientEdit.setStatus ( false );
-        userService.update ( clientEdit );
-        fillTableClients ( clients );
+        ClientDTO clientRemove = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientRemove.setStatus ( false );
+        userService.update ( clientRemove );
+        refresh ( );
+
     }
 
     @FXML
@@ -153,7 +156,7 @@ public class ClientController implements Initializable {
             txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
 
         }
-        fillTableClients ( clients );
+        refresh ( );
     }
 
     @FXML
@@ -162,11 +165,12 @@ public class ClientController implements Initializable {
                 Integer.parseInt ( txtPage.getText ( ) )) {
             txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
         }
-        fillTableClients ( clients );
+        refresh ( );
     }
+
     @FXML
-    void handleMenuProductos(){
-        stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class )) );
+    void handleMenuProductos () {
+        stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class ) ) );
     }
 
 
@@ -184,10 +188,9 @@ public class ClientController implements Initializable {
     }
 
     public void fillTableClients ( List<ClientDTO> clients ) {
+        clients = clients.stream ().filter ( ClientDTO::isStatus ).toList ();
         List<ClientDTO> clientDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
-        Stream<ClientDTO> clientDTOStream = clientDTOS.stream ( ).filter ( ClientDTO::isStatus );
-        clientDTOS = clientDTOStream.toList ( );
-        List<ClientDTO> finalClientDTOS = clientDTOS;
+        clientDTOS.forEach ( e-> System.out.println (e.isStatus ()  +" " +e.getName () ) );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
             Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
@@ -202,11 +205,11 @@ public class ClientController implements Initializable {
             Label rolLabel = (Label) container.getChildren ( ).get ( 5 );
             Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
             Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
-            if (count >= finalClientDTOS.size ( )) {
+            if (count >= clientDTOS.size ( )) {
                 clearUserInfoFields ( idLabel, nameLabel, emailLabel, telLabel,
                         rolLabel, imageView, buttonEdit, buttonRemove );
             } else {
-                ClientDTO client = finalClientDTOS.get ( count );
+                ClientDTO client = clientDTOS.get ( count );
                 if (client.isStatus ( )) {
                     imageView.setImage ( new Image ( client.getUrl ( ) ) );
                     idLabel.setText ( String.valueOf ( client.getIdClient ( ) ) );
@@ -232,6 +235,7 @@ public class ClientController implements Initializable {
         imageView.setImage ( null );
         buttonEdit.setVisible ( false );
         buttonRemove.setVisible ( false );
+
     }
 
     @Autowired

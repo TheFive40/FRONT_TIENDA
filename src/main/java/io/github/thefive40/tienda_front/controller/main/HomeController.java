@@ -2,7 +2,9 @@ package io.github.thefive40.tienda_front.controller.main;
 
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
+import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import io.github.thefive40.tienda_front.model.enums.Profile;
+import io.github.thefive40.tienda_front.service.ProductService;
 import io.github.thefive40.tienda_front.service.ReadImageService;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
@@ -198,6 +200,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private Accordion cartAccordion;
+    @FXML
+    private VBox containerProducts;
 
     private ReadImageService imageService;
 
@@ -209,9 +213,12 @@ public class HomeController implements Initializable {
 
     private UserService userService;
 
-    private UtilityService utility;
+    private UtilityService<ProductDTO> utility;
+
     private Stage stage;
 
+    private int contador = 1;
+    private ProductService productService;
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -238,7 +245,7 @@ public class HomeController implements Initializable {
         imgProfile.setClip ( clip );
         titledCarrito.setExpanded ( true );
         cartAccordion.setExpandedPane ( titledCarrito );
-
+        utility.fillProducts ( containerProducts, productService.getProducts () );
     }
 
     public void handleCart ( ActionEvent event ) {
@@ -274,5 +281,10 @@ public class HomeController implements Initializable {
     @Autowired
     public void setStage ( Stage stage ) {
         this.stage = stage;
+    }
+
+    @Autowired
+    public void setProductService ( ProductService productService ) {
+        this.productService = productService;
     }
 }

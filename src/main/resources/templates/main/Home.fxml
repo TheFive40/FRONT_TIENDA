@@ -101,52 +101,40 @@
                             </children>
                         </VBox>
 
-                        <VBox id="product-area" prefHeight="584.0" prefWidth="594.0" spacing="10">
+                        <VBox id="product-area" fx:id="containerProducts" prefHeight="584.0" prefWidth="594.0" spacing="10">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="644.0" styleClass="section-title" text="Productos Destacados" />
                                 <HBox alignment="center" spacing="10">
                                     <children>
                                         <VBox styleClass="product">
                                             <children>
-                                                <ImageView fx:id="imgProdDest" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product1.jpg" />
-                                       </image></ImageView>
-                                                <Label fx:id="NomProdDest" text="Torre Gamer" />
-                                                <Label fx:id="precioProdDest" styleClass="price" text="3000,999" />
+                                                <ImageView fx:id="imgProdDest" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest" />
+                                                <Label fx:id="precioProdDest" styleClass="price" text="0" />
                                                 <Button fx:id="btnProdDest" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                             </children>
                                         </VBox>
                                         <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
                                             <children>
-                                                <ImageView fx:id="imgProdDest2" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product2.jpg" />
-                                       </image></ImageView>
-                                                <Label fx:id="NomProdDest2" text="Monitor Gamer 4K" />
-                                                <Label fx:id="precioProdDest2" styleClass="price" text="800,000" />
+                                                <ImageView fx:id="imgProdDest2" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest2" />
+                                                <Label fx:id="precioProdDest2" styleClass="price" text="0" />
                                                 <Button fx:id="btnProdDest2" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                             </children>
                                         </VBox>
                                         <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
                                             <children>
-                                                <ImageView fx:id="imgProdDest3" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product3.jpg" />
-                                       </image></ImageView>
-                                                <Label fx:id="NomProdDest3" text="Laptop Asus " />
-                                                <Label fx:id="precioProdDest3" styleClass="price" text="5000,000" />
+                                                <ImageView fx:id="imgProdDest3" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest3" />
+                                                <Label fx:id="precioProdDest3" styleClass="price" text="0" />
                                                 <Button fx:id="btnProdDest3" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                             </children>
                                         </VBox>
                                         <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
                                             <children>
-                                                <ImageView fx:id="imgProdDest4" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product4.jpg" />
-                                       </image></ImageView>
-                                                <Label fx:id="NomProdDest4" text="Monitor 4K" />
-                                                <Label fx:id="precioProdDest4" styleClass="price" text="4000,00" />
+                                                <ImageView fx:id="imgProdDest4" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest4" />
+                                                <Label fx:id="precioProdDest4" styleClass="price" text="0" />
                                                 <Button fx:id="btnProdDest4" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                             </children>
                                         </VBox>
@@ -161,49 +149,33 @@
                            <children>
                               <VBox styleClass="product">
                                  <children>
-                                    <ImageView fx:id="imgProd" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product5.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="NomProd" text="Holla de presion" />
-                                    <Label fx:id="precioProd" styleClass="price" text="50,000" />
+                                    <ImageView fx:id="imgProd" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd" />
+                                    <Label fx:id="precioProd" styleClass="price" text="0" />
                                     <Button fx:id="btnProd" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                  </children>
                               </VBox>
                               <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
                                  <children>
-                                    <ImageView fx:id="imgProd2" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product6.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="NomProd2" text="Holla de cocina" />
-                                    <Label fx:id="precioProd2" styleClass="price" text="70,000" />
+                                    <ImageView fx:id="imgProd2" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd2" />
+                                    <Label fx:id="precioProd2" styleClass="price" text="0" />
                                     <Button fx:id="btnProd2" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                  </children>
                               </VBox>
                               <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
                                  <children>
-                                    <ImageView fx:id="imgProd3" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product7.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="NomProd3" text="Reloj Digital" />
-                                    <Label fx:id="precioProd3" styleClass="price" text="400,000" />
+                                    <ImageView fx:id="imgProd3" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd3" />
+                                    <Label fx:id="precioProd3" styleClass="price" text="0" />
                                     <Button fx:id="btnProd3" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                  </children>
                               </VBox>
                               <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
                                  <children>
-                                    <ImageView fx:id="imgProd4" fitHeight="150" fitWidth="150">
-                                       <image>
-                                          <Image url="@../../static/media/images/products/product8.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="NomProd4" text="Cafetera" />
-                                    <Label fx:id="precioProd4" styleClass="price" text="150,000" />
+                                    <ImageView fx:id="imgProd4" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd4" />
+                                    <Label fx:id="precioProd4" styleClass="price" text="0" />
                                     <Button fx:id="btnProd4" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
                                  </children>
                               </VBox>
