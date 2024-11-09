@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="504.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.product.popups.RegisterProductController">
+   <children>
+      <Pane layoutX="270.0" prefHeight="495.0" prefWidth="162.0" styleClass="pane-section">
+         <children>
+            <ImageView fitHeight="181.0" fitWidth="105.0" layoutX="66.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../static/media/images/icon/pino.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="34.0" layoutY="190.0" text="¡ Hola !" />
+            <Label layoutX="21.0" layoutY="238.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="Registra tu producto" />
+            <Label layoutX="34.0" layoutY="265.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="Para convertirte" />
+            <Label layoutX="26.0" layoutY="285.0" prefHeight="27.0" prefWidth="114.0" styleClass="pane-description" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="En vendedor" />
+            <ImageView fitHeight="139.0" fitWidth="82.0" layoutX="12.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../static/media/images/icon/pino.png" />
+               </image>
+            </ImageView>
+         </children>
+         <stylesheets>
+            <URL value="@../../../../static/css/base/menus/FormClient.css" />
+         </stylesheets>
+      </Pane>
+      <Label layoutX="39.0" layoutY="29.0" styleClass="register-title" text="Formulario de Registro">
+         <stylesheets>
+            <URL value="@../../../../static/css/base/menus/FormClient.css" />
+         </stylesheets></Label>
+      <VBox layoutX="30.0" layoutY="98.0" prefHeight="284.0" prefWidth="222.0">
+         <children>
+            <TextField fx:id="txtName" prefHeight="42.0" prefWidth="269.0" promptText="Nombre" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtDesc" prefHeight="35.0" prefWidth="200.0" promptText="Descripcion" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <TextField fx:id="txtPrice" prefHeight="35.0" prefWidth="200.0" promptText="Precio" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css" />
+            <Label />
+            <HBox>
+               <children>
+                  <TextField fx:id="txtImage" editable="false" layoutX="10.0" layoutY="187.0" onAction="#handleImage" prefHeight="50.0" prefWidth="149.0" promptText="Seleccionar Imagen" styleClass="input-field" stylesheets="@../../../../static/css/base/menus/FormClient.css">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#handleImage" prefHeight="45.0" prefWidth="82.0" styleClass="register-button" stylesheets="@../../../../static/css/base/menus/FormClient.css" text="Buscar">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Label />
+            <Label />
+            <Label />
+            <Button mnemonicParsing="false" onAction="#handleRegisterProduct" prefHeight="45.0" prefWidth="168.0" styleClass="register-button" text="Registrar">
+               <stylesheets>
+                  <URL value="@../../../../static/css/base/menus/FormClient.css" />
+               </stylesheets>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="mainGrid" hgap="15" style="-fx-background-color: #f3f3f3; -fx-padding: 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-width: 1;" stylesheets="@../../../../static/css/base/menus/ClientEdit.css" vgap="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.product.popups.ProductEditController">
+
+    <!-- Column and Row constraints for layout -->
+    <columnConstraints>
+        <ColumnConstraints percentWidth="42.0" />
+        <ColumnConstraints percentWidth="58.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+        <RowConstraints minHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+    </rowConstraints>
+   <children>
+      <VBox prefHeight="14.0" prefWidth="201.0">
+         <children>
+         
+             <!-- Información Personal Section -->
+             <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Detalle del Producto" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0" strokeMiterLimit="20.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+         <padding>
+            <Insets right="-50.0" />
+         </padding>
+      </VBox>
+       <Label style="-fx-text-fill: #333;" text="Nombre:" GridPane.rowIndex="1" />
+       <TextField fx:id="nombreField" promptText="Ingrese el nombre" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   
+       <Label style="-fx-text-fill: #333;" text="Descripcion" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+       <TextField fx:id="descripcionField" promptText="Ingrese la descripcion" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       <Label style="-fx-text-fill: #333;" text="Imagen" GridPane.rowIndex="3" />
+      <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+             <TextField fx:id="imagenField" prefHeight="45.0" prefWidth="158.0" promptText="Ingrese la imagen" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handleImg" prefHeight="44.0" prefWidth="104.0" text="Buscar">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   
+       <Label style="-fx-text-fill: #333;" text="Precio unitario" GridPane.rowIndex="4" />
+       <TextField fx:id="precioField" promptText="Ingrese el precio" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <VBox GridPane.rowIndex="6">
+         <children>
+         
+             <!-- Información Sensible Section -->
+             <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Mas informacion" GridPane.columnIndex="0" GridPane.rowIndex="6">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="100.0" startX="-100.0" />
+         </children>
+      </VBox>
+       <Label prefHeight="20.0" prefWidth="81.0" style="-fx-text-fill: #333;" text="Vendedor" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+       <ComboBox fx:id="estadoComboBox" promptText="Seleccione el estado" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Administrador" />
+                   <String fx:value="Cliente" />
+                   <String fx:value="Vendedor" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+   
+       <!-- Estado -->
+       <Label style="-fx-text-fill: #333;" text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+   
+       <!-- Botón Actualizar -->
+       <HBox alignment="center" spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="10">
+      <children>
+              <Button fx:id="actualizarButton" onAction="#handleUpdate" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Actualizar" />
+      </children>
+       </HBox>
+      <VBox prefHeight="0.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+         <padding>
+            <Insets left="-15.0" />
+         </padding>
+      </VBox>
+      <VBox prefHeight="0.0" prefWidth="201.0" GridPane.columnIndex="1">
+         <children>
+            <Line endX="100.0" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="-15.0" top="27.0" />
+               </VBox.margin>
+            </Line>
+         </children>
+      </VBox>
+      <TextField fx:id="vendedorField" promptText="Email del vendedor" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   </children>
+
+</GridPane>

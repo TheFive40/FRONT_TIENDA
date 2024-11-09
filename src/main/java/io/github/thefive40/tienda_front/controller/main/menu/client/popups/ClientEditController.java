@@ -1,6 +1,6 @@
-package io.github.thefive40.tienda_front.controller.main.client.popups;
+package io.github.thefive40.tienda_front.controller.main.menu.client.popups;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.github.thefive40.tienda_front.controller.main.client.ClientController;
+import io.github.thefive40.tienda_front.controller.main.menu.client.ClientController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.service.UserService;
@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class ClientEditController implements Initializable {
     private TextField emailField;
 
     @FXML
-    private PasswordField passwordField;
+    private TextField passwordField;
 
     @FXML
     private TextField nombreField;
@@ -64,6 +63,7 @@ public class ClientEditController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        TextField textField = new TextField (  );
         client = context.getBean ( "clientController", ClientController.class );
         ClientDTO clientDTO = client.getClientEdit ( );
         nombreField.setText ( clientDTO.getName ( ) );

@@ -1,4 +1,5 @@
-package io.github.thefive40.tienda_front.controller.main.client.popups;
+package io.github.thefive40.tienda_front.controller.main.menu.client.popups;
+import io.github.thefive40.tienda_front.controller.main.menu.client.ClientController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.service.AuthService;
@@ -37,6 +38,12 @@ public class RegisterClientController implements Initializable {
 
     private AuthService authService;
 
+    private ClientController clientController;
+    @Autowired
+    public void setClientController ( ClientController clientController ) {
+        this.clientController = clientController;
+    }
+
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
 
@@ -54,7 +61,8 @@ public class RegisterClientController implements Initializable {
         client.setRole ( txtCargo.getText ( ) );
         authService.commit ();
         authService.register ( client );
-        new AlertRegister ().showRegisterClient ();
+        new AlertRegister ().showClientRegister ();
+        clientController.refresh ();
 
     }
 

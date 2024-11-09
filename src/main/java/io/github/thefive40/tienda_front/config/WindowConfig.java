@@ -52,6 +52,28 @@ public class WindowConfig {
 
     @Bean
     @Scope("prototype")
+    public AnchorPane productParent () throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/product/Product.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
+    public GridPane productEditParent() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/product/ProductEdit.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane productRegisterParent () throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/product/FormProduct.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
+
+    @Bean
+    @Scope("prototype")
     public VBox verificationParent() throws IOException {
         FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/popups/VerificationCode.fxml" ) );
         loader.setControllerFactory ( context::getBean );

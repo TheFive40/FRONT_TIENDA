@@ -26,6 +26,7 @@ public class AppConfig {
         loader.setControllerFactory ( context::getBean );
         return loader;
     }
+
     @Bean
     @Scope("prototype")
     public FXMLLoader signUpFXML () {

@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="619.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.client.popups.RegisterClientController">
+<AnchorPane prefHeight="619.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.client.popups.RegisterClientController">
    <children>
       <Pane layoutX="276.0" prefHeight="649.0" prefWidth="156.0" styleClass="pane-section">
          <children>

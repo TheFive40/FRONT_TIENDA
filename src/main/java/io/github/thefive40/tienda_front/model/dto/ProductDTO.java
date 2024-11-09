@@ -2,13 +2,13 @@ package io.github.thefive40.tienda_front.model.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class ProductDTO {
@@ -26,6 +26,8 @@ public class ProductDTO {
 
     private ClientDTO client;
 
+    private boolean status;
+
     private List<ReviewDTO> reviews = new ArrayList<> ( );
 
     private List<ProductCategoryDTO> productsCategory = new ArrayList<> ( );
@@ -34,4 +36,8 @@ public class ProductDTO {
 
     private List<ItemCartDTO> itemsCart = new ArrayList<> ( );
 
+    public ProductDTO(){
+        dateRegistration = new Date (  );
+        status = true;
+    }
 }

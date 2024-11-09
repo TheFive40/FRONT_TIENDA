@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="mainGrid" hgap="15" style="-fx-background-color: #f3f3f3; -fx-padding: 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-width: 1;" stylesheets="@../../../../static/css/base/menus/ClientEdit.css" vgap="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.client.popups.ClientEditController">
+<GridPane fx:id="mainGrid" hgap="15" style="-fx-background-color: #f3f3f3; -fx-padding: 20; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-width: 1;" stylesheets="@../../../../static/css/base/menus/ClientEdit.css" vgap="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.client.popups.ClientEditController">
 
     <!-- Column and Row constraints for layout -->
     <columnConstraints>
@@ -80,7 +80,6 @@
          </children>
       </VBox>
        <Label style="-fx-text-fill: #333;" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-       <PasswordField fx:id="passwordField" promptText="Ingrese la contraseña" style="-fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 4; -fx-background-radius: 4;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
    
        <!-- Rol del usuario ComboBox -->
        <Label style="-fx-text-fill: #333;" text="Rol del Usuario:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
@@ -137,6 +136,7 @@
             </Line>
          </children>
       </VBox>
+      <TextField fx:id="passwordField" promptText="Ingrese la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="7" />
    </children>
 
 </GridPane>

@@ -26,6 +26,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -228,10 +229,10 @@ public class HomeController implements Initializable {
         signUp = context.getBean ( "SignUpController", SignUpController.class );
         login = context.getBean ( "LoginController", LoginController.class );
         if (signUp.getCurrentUser ( ) != null) {
-            imgProfile.setImage ( new Image ( signUp.getCurrentUser ().getUrl () )  );
-            userName.setText ( signUp.getCurrentUser ().getName () );
-        } else if(login.getCurrentUser () != null){
-            imgProfile.setImage ( new Image ( login.getCurrentUser ().getUrl () ) );
+            imgProfile.setImage ( new Image ( signUp.getCurrentUser ( ).getUrl ( ) ) );
+            userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
+        } else if (login.getCurrentUser ( ) != null) {
+            imgProfile.setImage ( new Image ( login.getCurrentUser ( ).getUrl ( ) ) );
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         }
         imgProfile.setClip ( clip );
@@ -241,12 +242,32 @@ public class HomeController implements Initializable {
     }
 
     public void handleCart ( ActionEvent event ) {
-        utility.addProductToCart ( (Button) event.getSource () );
+        utility.addProductToCart ( (Button) event.getSource ( ) );
 
     }
 
-    public void handleClient ( ActionEvent event ) {
+    public void handleMenuClient ( ActionEvent event ) {
         stage.setScene ( new Scene ( context.getBean ( "clientParent", AnchorPane.class ) ) );
+    }
+
+    @FXML
+    void handleAddCart () {
+        if (utility.isNumber ( quantityTextField.getText ( ) )) {
+            int quantity = Integer.parseInt ( quantityTextField.getText ( ) );
+            quantityTextField.setText ( (quantity + 1) + "" );
+        }
+    }
+
+    @FXML
+    void handleRemoveCart () {
+        getCartListView ( ).getItems ( ).remove (
+                getCartListView ( ).getSelectionModel ( ).getSelectedItem ( ) );
+        quantityTextField.setText ( "" );
+    }
+
+    @FXML
+    void handleMenuProduct () {
+        stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class ) ) );
     }
 
     @Qualifier("stage")

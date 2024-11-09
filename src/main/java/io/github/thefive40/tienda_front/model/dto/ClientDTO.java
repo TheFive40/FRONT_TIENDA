@@ -58,7 +58,7 @@ public class ClientDTO implements Serializable, Cloneable {
 
     private String role;
 
-    private boolean status;
+    private boolean status = true;
 
     private List<ProductDTO> products = new ArrayList<> ();
 

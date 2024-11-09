@@ -1,4 +1,4 @@
-package io.github.thefive40.tienda_front.controller.main.client;
+package io.github.thefive40.tienda_front.controller.main.menu.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
@@ -90,7 +90,7 @@ public class ClientController implements Initializable {
 
     private LoginController login;
 
-    private UtilityService utilityService;
+    private UtilityService<ClientDTO> utilityService;
 
     private List<ClientDTO> clients;
 
@@ -102,7 +102,7 @@ public class ClientController implements Initializable {
 
     @Autowired
     public void inject ( UserService service, Stage stage, LoginController login, SignUpController signUpController
-            , UtilityService utilityService, ApplicationContext context ) {
+            , UtilityService<ClientDTO> utilityService, ApplicationContext context ) {
         this.userService = service;
         this.stage = stage;
         this.login = login;
@@ -110,11 +110,14 @@ public class ClientController implements Initializable {
         this.utilityService = utilityService;
         this.context = context;
     }
-
+    public void refresh(){
+        clients = userService.findAll ( );
+        fillTableClients ( clients );
+    }
     @FXML
     void handleEditClient ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
-        clientEdit = utilityService.findClientDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientEdit = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "clientEdit", GridPane.class ) ) );
         stage.setTitle ( "Actualizar" );
@@ -124,7 +127,7 @@ public class ClientController implements Initializable {
     @FXML
     void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
         Button button = (Button) event.getSource ( );
-        clientEdit = utilityService.findClientDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientEdit = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         clientEdit.setStatus ( false );
         userService.update ( clientEdit );
         fillTableClients ( clients );
@@ -161,6 +164,11 @@ public class ClientController implements Initializable {
         }
         fillTableClients ( clients );
     }
+    @FXML
+    void handleMenuProductos(){
+        stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class )) );
+    }
+
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
@@ -176,7 +184,7 @@ public class ClientController implements Initializable {
     }
 
     public void fillTableClients ( List<ClientDTO> clients ) {
-        List<ClientDTO> clientDTOS = utilityService.getClientsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
+        List<ClientDTO> clientDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
         Stream<ClientDTO> clientDTOStream = clientDTOS.stream ( ).filter ( ClientDTO::isStatus );
         clientDTOS = clientDTOStream.toList ( );
         List<ClientDTO> finalClientDTOS = clientDTOS;
