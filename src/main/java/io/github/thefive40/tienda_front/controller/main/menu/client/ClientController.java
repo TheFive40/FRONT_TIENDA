@@ -190,7 +190,6 @@ public class ClientController implements Initializable {
     public void fillTableClients ( List<ClientDTO> clients ) {
         clients = clients.stream ().filter ( ClientDTO::isStatus ).toList ();
         List<ClientDTO> clientDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
-        clientDTOS.forEach ( e-> System.out.println (e.isStatus ()  +" " +e.getName () ) );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
             Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),

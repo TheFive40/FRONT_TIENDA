@@ -64,17 +64,16 @@ public class UtilityService<T> {
     }
 
     public void addProductToCart ( Button button ) {
-        StringBuilder text = new StringBuilder ( );
+        String price = "";
+        String name = " ";
         for (var e : button.getParent ( ).getChildrenUnmodifiable ( )) {
             if (e instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
-                text.append ( lbl.getText ( ) ).append ( " " );
+                price = lbl.getText ( );
             } else if (e instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
-                text.append ( ";" ).append ( lbl.getText ( ) );
+                name = lbl.getText ( );
             }
         }
-        String textString = text.toString ( );
-        String name = textString.split ( ";" )[1];
-        String price = textString.split ( ";" )[2].replace ( ',', '.' );
+        ;
         homeController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
     }
 
@@ -82,51 +81,83 @@ public class UtilityService<T> {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool ( 1 );
         productDTOS = (List<ProductDTO>) getProductsByPage ( homeController.getContador ( ), (List<T>) productDTOS );
         productDTOS = productDTOS.stream ( ).filter ( ProductDTO::isStatus ).toList ( );
+
         AtomicInteger count = new AtomicInteger ( 0 );
         AtomicBoolean eraser = new AtomicBoolean ( false );
         List<ProductDTO> finalProductDTOS = productDTOS;
         scheduler.schedule ( () -> {
-            container.getChildren ( ).stream ( ).filter ( e -> e instanceof HBox ).forEach ( e -> {
-                ((HBox) e).getChildren ( ).stream ( ).filter ( k -> k instanceof VBox )
-                        .forEach ( v -> {
-                            ProductDTO product = new ProductDTO (  );
-                            try {
-                                product = finalProductDTOS.get ( count.get ( ) );
-                            } catch (ArrayIndexOutOfBoundsException ex) {
-                                eraser.set ( true );
-                            }
-                            ProductDTO finalProduct = product;
-                            ((VBox) v).getChildren ( ).forEach ( controls -> {
-                                Platform.runLater ( () -> {
-                                    if (eraser.get ( )) {
-                                        if (controls instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
-                                            lbl.setText ( "0" );
-                                        } else if (controls instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
-                                            lbl.setText ( "" );
-                                        } else if (controls instanceof ImageView imageView) {
-                                            imageView.setImage ( null );
+            Platform.runLater ( () -> {
+                container.getChildren ( ).stream ( )
+                        .filter ( e -> e instanceof HBox )
+                        .forEach ( e -> {
+                            ((HBox) e).getChildren ( ).stream ( )
+                                    .filter ( k -> k instanceof VBox )
+                                    .forEach ( v -> {
+                                        ProductDTO product = null;
+                                        try {
+                                            product = finalProductDTOS.get ( count.get ( ) );
+                                        } catch (ArrayIndexOutOfBoundsException ex) {
+                                            eraser.set ( true );
+                                            clearProducts ( (VBox) v );
                                         }
 
-                                    }else{
-                                        if (controls instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
-                                            lbl.setText ( finalProduct.getPrice ( ) + "" );
-                                        } else if (controls instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
-                                            lbl.setText ( finalProduct.getName ( ) );
-                                        } else if (controls instanceof ImageView imageView && finalProduct.getImg () != null) {
-                                            imageView.setImage ( new Image ( finalProduct.getImg ( ) ) );
-                                        }
-                                    }
+                                        ProductDTO finalProduct = product;
+                                        ((VBox) v).getChildren ( ).forEach ( controls -> {
+                                            Platform.runLater ( () -> {
+                                                if (eraser.get ( )) {
+                                                    if (controls instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
+                                                        lbl.setText ( "0" );
+                                                    } else if (controls instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
+                                                        lbl.setText ( "" );
+                                                    } else if (controls instanceof ImageView imageView) {
+                                                        imageView.setImage ( null );
+                                                    }
 
-                                } );
-                            } );
-                            eraser.set ( false );
-                            count.getAndIncrement ( );
+                                                } else if (finalProduct != null) {
+                                                    if (controls instanceof Label lbl && lbl.getText ( ) != null && isNumber ( lbl.getText ( ) )) {
+                                                        lbl.setText ( String.valueOf ( finalProduct.getPrice ( ) ) );
+                                                    } else if (controls instanceof Label lbl && lbl.getText ( ) != null && !isNumber ( lbl.getText ( ) )) {
+                                                        lbl.setText ( finalProduct.getName ( ) );
+                                                    } else if (controls instanceof ImageView imageView) {
+                                                        if (finalProduct.getImg ( ) != null && !finalProduct.getImg ( ).isEmpty ( )) {
+                                                            try {
+                                                                imageView.setImage ( new Image ( finalProduct.getImg ( ) ) );
+                                                            } catch (IllegalArgumentException ex) {
+                                                                System.out.println ( "Error al cargar la imagen: " + ex.getMessage ( ) );
+                                                                imageView.setImage ( null );
+                                                            }
+                                                        } else {
+                                                            imageView.setImage ( null );
+                                                        }
+                                                    }
+                                                }
+                                            } );
+                                        } );
+                                        eraser.set ( false );
+                                        count.getAndIncrement ( );
+                                    } );
                         } );
             } );
         }, 30, TimeUnit.MILLISECONDS );
-
     }
 
+
+    void clearProducts ( VBox container ) {
+        Platform.runLater ( () -> {
+            container.getChildren ( ).forEach ( child -> {
+                if (child instanceof Label lbl) {
+                    if (lbl.getId ( ) != null && isNumber ( lbl.getText () )) {
+                        lbl.setText ( "0" );
+                    } else {
+                        lbl.setText ( "" );
+                    }
+                } else if (child instanceof ImageView imageView) {
+                    imageView.setImage ( null );
+                }
+
+            } );
+        } );
+    }
 
     public List<T> getItemsByPage ( int numeroPagina, List<T> clients ) {
         int inicio = (numeroPagina - 1) * ITEMS_PER_PAGE;

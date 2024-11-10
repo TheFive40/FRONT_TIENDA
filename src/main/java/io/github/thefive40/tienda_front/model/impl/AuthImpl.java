@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.thefive40.tienda_front.TiendaFrontApplication;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
-import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.repository.AuthRepository;
 import io.github.thefive40.tienda_front.service.EmailService;
 import lombok.Getter;

@@ -99,46 +99,56 @@ public class ProductController implements Initializable {
 
     public void refresh () {
         List<ProductDTO> productDTOS = productService.getProducts ( );
-        txtTotalPage.setText ( utilityService.totalProductsPage ( productDTOS ) + "" );
         fillTableProducts ( productDTOS );
     }
 
-    public void fillTableProducts ( List<ProductDTO> products ) {
-        products = products.stream ( ).filter ( ProductDTO::isStatus ).toList ( );
-        List<ProductDTO> productDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), products );
-        AtomicInteger contador = new AtomicInteger ( 0 );
-        vboxContainer.getChildren ( ).forEach ( e -> {
+    public void fillTableProducts(List<ProductDTO> products) {
+        products = products.stream().filter(ProductDTO::isStatus).toList();
+        txtTotalPage.setText ( utilityService.totalPages ( products ) + "" );
+        List<ProductDTO> productDTOS = utilityService.getItemsByPage(Integer.parseInt(txtPage.getText()), products);
+        AtomicInteger contador = new AtomicInteger(0);
 
-            int count = contador.getAndIncrement ( );
+        vboxContainer.getChildren().forEach(e -> {
+            int count = contador.getAndIncrement();
             HBox container = (HBox) e;
-            ImageView imageView = (ImageView) container.getChildren ( ).get ( 0 );
-            Label idLabel = (Label) container.getChildren ( ).get ( 1 );
-            Label nameLabel = (Label) container.getChildren ( ).get ( 2 );
-            Label emailLabel = (Label) container.getChildren ( ).get ( 3 );
-            Label telLabel = (Label) container.getChildren ( ).get ( 4 );
-            Label rolLabel = (Label) container.getChildren ( ).get ( 5 );
-            Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
-            Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
-            if (count >= productDTOS.size ( )) {
-                clearProductsInfo ( idLabel, nameLabel, emailLabel, telLabel,
-                        rolLabel, imageView, buttonEdit, buttonRemove );
+            ImageView imageView = (ImageView) container.getChildren().get(0);
+            Label idLabel = (Label) container.getChildren().get(1);
+            Label nameLabel = (Label) container.getChildren().get(2);
+            Label emailLabel = (Label) container.getChildren().get(3);
+            Label telLabel = (Label) container.getChildren().get(4);
+            Label rolLabel = (Label) container.getChildren().get(5);
+            Button buttonEdit = (Button) container.getChildren().get(6);
+            Button buttonRemove = (Button) container.getChildren().get(7);
+            if (count >= productDTOS.size()) {
+                clearProductsInfo(idLabel, nameLabel, emailLabel, telLabel, rolLabel, imageView, buttonEdit, buttonRemove);
             } else {
-                ProductDTO product = productDTOS.get ( count );
-                if (product.isStatus ( )) {
-                    imageView.setImage ( new Image ( product.getImg ( ) ) );
-                    idLabel.setText ( String.valueOf ( product.getProductId ( ) ) );
-                    nameLabel.setText ( product.getName ( ) );
-                    emailLabel.setText ( product.getDescription ( ) );
-                    telLabel.setText ( product.getPrice ( ) + "" );
-                    rolLabel.setText ( product.getClient ( ).getName ( ) );
-                    imageView.setPreserveRatio ( false );
-                    imageView.setSmooth ( false );
-                    buttonEdit.setVisible ( true );
-                    buttonRemove.setVisible ( true );
+                ProductDTO product = productDTOS.get(count);
+
+                if (product.isStatus()) {
+                    if (product.getImg() != null && !product.getImg().isEmpty()) {
+                        try {
+                            imageView.setImage(new Image(product.getImg()));
+                        } catch (IllegalArgumentException ex) {
+                            System.out.println("Error al cargar la imagen: " + ex.getMessage());
+                            imageView.setImage(null);
+                        }
+                    } else {
+                        imageView.setImage(null);
+                    }
+                    idLabel.setText(String.valueOf(product.getProductId()));
+                    nameLabel.setText(product.getName());
+                    emailLabel.setText(product.getDescription());
+                    telLabel.setText(String.valueOf(product.getPrice()));
+                    rolLabel.setText(product.getClient() != null ? product.getClient().getName() : ""); // Verifica que `getClient()` no sea null
+                    imageView.setPreserveRatio(false);
+                    imageView.setSmooth(false);
+                    buttonEdit.setVisible(true);
+                    buttonRemove.setVisible(true);
                 }
             }
-        } );
+        });
     }
+
 
 
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,

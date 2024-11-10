@@ -1,4 +1,4 @@
-package io.github.thefive40.tienda_front.notifications.information;
+package io.github.thefive40.tienda_front.config.notifications.information;
 
 import javafx.scene.control.Alert;
 

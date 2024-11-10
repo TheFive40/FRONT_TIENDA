@@ -3,7 +3,7 @@ package io.github.thefive40.tienda_front.controller.main.menu.product.popups;
 import io.github.thefive40.tienda_front.controller.main.menu.product.ProductController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
-import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
+import io.github.thefive40.tienda_front.config.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.service.ProductService;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;

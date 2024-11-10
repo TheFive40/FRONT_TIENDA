@@ -30,6 +30,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -219,6 +220,7 @@ public class HomeController implements Initializable {
 
     private int contador = 1;
     private ProductService productService;
+    private List<ProductDTO> products;
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -245,7 +247,8 @@ public class HomeController implements Initializable {
         imgProfile.setClip ( clip );
         titledCarrito.setExpanded ( true );
         cartAccordion.setExpandedPane ( titledCarrito );
-        utility.fillProducts ( containerProducts, productService.getProducts () );
+        products = productService.getProducts ( );
+        utility.fillProducts ( containerProducts, products );
     }
 
     public void handleCart ( ActionEvent event ) {
@@ -263,6 +266,21 @@ public class HomeController implements Initializable {
             int quantity = Integer.parseInt ( quantityTextField.getText ( ) );
             quantityTextField.setText ( (quantity + 1) + "" );
         }
+    }
+
+    @FXML
+    void handleBefore () {
+        if (contador != 1) {
+            contador--;
+            utility.fillProducts ( containerProducts,products );
+        }
+    }
+
+    @FXML
+    void handleAfter () {
+        if (contador < utility.totalProductsPage ( products ))
+            contador++;
+        utility.fillProducts ( containerProducts, products );
     }
 
     @FXML

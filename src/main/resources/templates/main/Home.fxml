@@ -7,9 +7,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeParent" prefHeight="673.0" prefWidth="1198.0" stylesheets="@../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.HomeController">
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1260.0" stylesheets="@../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.HomeController">
     <children>
-        <BorderPane prefHeight="673.0" prefWidth="1198.0" style="-fx-background-color: white;">
+        <BorderPane prefHeight="690.0" prefWidth="1268.0" style="-fx-background-color: white;">
             <top>
                 <HBox id="header" alignment="CENTER_RIGHT" spacing="20" styleClass="header">
                     <children>
@@ -31,7 +31,7 @@
             <center>
                 <HBox prefHeight="605.0" prefWidth="1117.0" spacing="10">
                     <children>
-                        <VBox id="aside" prefHeight="604.0" prefWidth="268.0" spacing="10" styleClass="aside">
+                        <VBox id="aside" prefHeight="607.0" prefWidth="293.0" spacing="10" styleClass="aside">
                             <children>
                                 <Label alignment="CENTER" prefHeight="25.0" prefWidth="283.0" styleClass="aside-title" text="Menu principal" />
                                 <Button prefHeight="42.0" prefWidth="149.0" styleClass="aside-button" text="Inicio">
@@ -100,6 +100,18 @@
 
                             </children>
                         </VBox>
+                  <AnchorPane layoutX="921.0" layoutY="10.0" prefHeight="456.0" prefWidth="29.0">
+                     <children>
+                        <Button fx:id="buttonBefore" layoutY="36.0" mnemonicParsing="false" onAction="#handleBefore" prefHeight="495.0" prefWidth="44.0" styleClass="buttonNext" text="&lt;">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
 
                         <VBox id="product-area" fx:id="containerProducts" prefHeight="584.0" prefWidth="594.0" spacing="10">
                             <children>
@@ -185,16 +197,11 @@
                         </VBox>
                         <AnchorPane prefHeight="456.0" prefWidth="29.0">
                             <children>
-                                <Button fx:id="buttonNext1" layoutY="36.0" mnemonicParsing="false" prefHeight="216.0" prefWidth="35.0" styleClass="buttonNext" text="&gt;">
+                                <Button fx:id="buttonAfter" layoutY="36.0" mnemonicParsing="false" onAction="#handleAfter" prefHeight="495.0" prefWidth="44.0" styleClass="buttonNext" text="&gt;">
                                     <font>
                                         <Font name="Arial" size="19.0" />
                                     </font>
                                 </Button>
-                        <Button fx:id="buttonNext2" layoutX="1.0" layoutY="300.0" mnemonicParsing="false" prefHeight="216.0" prefWidth="35.0" styleClass="buttonNext" text="&gt;">
-                           <font>
-                              <Font name="Arial" size="19.0" />
-                           </font>
-                        </Button>
                             </children>
                      <opaqueInsets>
                         <Insets />
@@ -203,11 +210,11 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                         </AnchorPane>
-                        <Accordion id="accordionPane" fx:id="cartAccordion" prefHeight="590.0" prefWidth="229.0">
+                        <Accordion id="accordionPane" fx:id="cartAccordion" prefHeight="607.0" prefWidth="245.0">
                             <panes>
-                                <TitledPane fx:id="titledCarrito" animated="false" prefHeight="595.0" prefWidth="201.0" text="Carrito">
+                                <TitledPane fx:id="titledCarrito" animated="false" prefHeight="629.0" prefWidth="230.0" text="Carrito">
                                     <content>
-                                        <BorderPane fx:id="cartBorderPane" prefHeight="548.0" prefWidth="71.0">
+                                        <BorderPane fx:id="cartBorderPane" prefHeight="576.0" prefWidth="223.0">
                                             <center>
                                                 <!-- Listado de productos en el carrito -->
                                                 <ListView fx:id="cartListView" prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />

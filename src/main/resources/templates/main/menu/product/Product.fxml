@@ -145,14 +145,14 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName1" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
-                                                <Insets left="6.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
+                                                <Insets left="5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -206,14 +206,14 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="6.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
+                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Soporte de rueda de carreras profesional" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="Videojuegos">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -264,14 +264,14 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName3" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
-                                                <Insets left="6.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
+                                                <Insets left="5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -322,14 +322,14 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName4" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
-                                                <Insets left="6.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
+                                                <Insets left="5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -380,14 +380,14 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName5" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
-                                                <Insets left="6.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
+                                                <Insets left="5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">

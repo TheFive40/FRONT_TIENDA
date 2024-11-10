@@ -1,6 +1,6 @@
 package io.github.thefive40.tienda_front.controller.auth;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
-import io.github.thefive40.tienda_front.notifications.error.AuthError;
+import io.github.thefive40.tienda_front.config.notifications.error.AuthError;
 import io.github.thefive40.tienda_front.service.EmailService;
 import io.github.thefive40.tienda_front.service.AuthValidatorService;
 import io.github.thefive40.tienda_front.service.UserRegistrationService;

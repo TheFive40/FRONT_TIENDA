@@ -4,20 +4,16 @@ import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
 import io.github.thefive40.tienda_front.controller.main.menu.product.ProductController;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
-import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
+import io.github.thefive40.tienda_front.config.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.service.ProductService;
 import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Component

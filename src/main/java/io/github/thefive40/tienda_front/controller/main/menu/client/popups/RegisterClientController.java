@@ -1,7 +1,7 @@
 package io.github.thefive40.tienda_front.controller.main.menu.client.popups;
 import io.github.thefive40.tienda_front.controller.main.menu.client.ClientController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
-import io.github.thefive40.tienda_front.notifications.information.AlertRegister;
+import io.github.thefive40.tienda_front.config.notifications.information.AlertRegister;
 import io.github.thefive40.tienda_front.service.AuthService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
