@@ -139,8 +139,11 @@
                                              <HBox.margin>
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
+                                             <image>
+                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                             </image>
                                           </ImageView>
-                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="1">
+                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
@@ -206,7 +209,7 @@
                                                 <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Soporte de rueda de carreras profesional" wrapText="true">
+                                          <Label fx:id="clientName2" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Soporte de rueda de carreras profesional" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
