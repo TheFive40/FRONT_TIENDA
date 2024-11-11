@@ -67,6 +67,34 @@ public class ProductService implements ProductRepository {
         }
     }
 
+    @Override
+    public ProductDTO findProductByNameAndImgAndPrice ( String name, String url, String price ) {
+        AtomicReference<ProductDTO> products = new AtomicReference<> ( );
+        httpClient = HttpClient.newHttpClient ( );
+        String body = "";
+
+        HttpRequest request = HttpRequest.newBuilder ( )
+                .uri ( URI.create ( "http://localhost:6060/api/products/findByName/"+name+"/"+url+"/"+price ) )
+                .GET (  )
+                .header ( "Content-Type", "application/json" )
+                .build ( );
+        httpClient.sendAsync ( request, HttpResponse.BodyHandlers.ofString ( ) )
+                .thenApply ( HttpResponse::body )
+                .thenAccept ( bd -> {
+                    try {
+                        products.set ( mapper.readValue ( bd, ProductDTO.class ) );
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException ( e );
+                    }
+                } )
+                .exceptionally ( err -> {
+                    logger.error ( "Error processing {}", err.getMessage ( ) );
+                    return null;
+                } )
+                .join ( );
+        return products.get ( );
+    }
+
 
     private List<ProductDTO> postRequest ( ProductDTO productDTO, ClientDTO client, String url ) throws JsonProcessingException {
         AtomicReference<List<ProductDTO>> products = new AtomicReference<> ( );

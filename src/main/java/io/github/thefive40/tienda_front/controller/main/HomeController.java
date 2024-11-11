@@ -1,13 +1,14 @@
 package io.github.thefive40.tienda_front.controller.main;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
+import io.github.thefive40.tienda_front.model.dto.ItemCartDTO;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
+import io.github.thefive40.tienda_front.model.dto.ShoppingCartDTO;
 import io.github.thefive40.tienda_front.model.enums.Profile;
-import io.github.thefive40.tienda_front.service.ProductService;
-import io.github.thefive40.tienda_front.service.ReadImageService;
-import io.github.thefive40.tienda_front.service.UserService;
-import io.github.thefive40.tienda_front.service.UtilityService;
+import io.github.thefive40.tienda_front.service.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +31,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -219,8 +221,16 @@ public class HomeController implements Initializable {
     private Stage stage;
 
     private int contador = 1;
+
     private ProductService productService;
+
     private List<ProductDTO> products;
+    @Autowired
+    private ShoppingCartService cartService;
+
+    private ClientDTO currentUser;
+
+    private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap = new HashMap<> ( );
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -240,9 +250,11 @@ public class HomeController implements Initializable {
         if (signUp.getCurrentUser ( ) != null) {
             imgProfile.setImage ( new Image ( signUp.getCurrentUser ( ).getUrl ( ) ) );
             userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
+            currentUser = signUp.getCurrentUser ( );
         } else if (login.getCurrentUser ( ) != null) {
             imgProfile.setImage ( new Image ( login.getCurrentUser ( ).getUrl ( ) ) );
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
+            currentUser = login.getCurrentUser ( );
         }
         imgProfile.setClip ( clip );
         titledCarrito.setExpanded ( true );
@@ -251,9 +263,26 @@ public class HomeController implements Initializable {
         utility.fillProducts ( containerProducts, products );
     }
 
-    public void handleCart ( ActionEvent event ) {
+    public void handleCart ( ActionEvent event ) throws JsonProcessingException {
         utility.addProductToCart ( (Button) event.getSource ( ) );
+        ShoppingCartDTO cart = cartService.findByClient ( currentUser );
+        if (cart == null)
+            cart = new ShoppingCartDTO ( );
+        cart.setClient ( currentUser );
+        var item = new ItemCartDTO ( );
+        var product = utility.getProductByCart ( (Button) event.getSource ( ) );
+        item.setProduct ( product );
+        item.setQuantity ( 1 );
+        itemCartDTOHashMap.put ( cartListView.getItems ( ).size ( ) - 1, item );
+        cart.getItemsCart ( ).add ( item );
+        cartService.save ( cart );
+    }
 
+    @FXML
+    void handleItemClicked () {
+        int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
+        var itemCartDTO = itemCartDTOHashMap.get ( index );
+        quantityTextField.setText ( itemCartDTO.getQuantity ( ) + "" );
     }
 
     public void handleMenuClient ( ActionEvent event ) {
@@ -261,10 +290,21 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void handleAddCart () {
+    void handleAddCart () throws JsonProcessingException {
         if (utility.isNumber ( quantityTextField.getText ( ) )) {
-            int quantity = Integer.parseInt ( quantityTextField.getText ( ) );
-            quantityTextField.setText ( (quantity + 1) + "" );
+            quantityTextField.setText ( "" );
+            int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
+            var item = itemCartDTOHashMap.get ( index );
+            int quantity = item.getQuantity ( ) + 1;
+            var shoppingCartDTO = cartService.findByClient ( currentUser );
+            var product = item.getProduct ( );
+            var itemEntity = cartService.findByProductAndShoppingCart ( shoppingCartDTO, product );
+            quantityTextField.setText ( quantity + "" );
+            item.setQuantity ( quantity );
+            itemEntity.setQuantity ( quantity );
+            itemEntity.setShoppingCart ( shoppingCartDTO );
+            itemCartDTOHashMap.put ( index, item );
+            cartService.updateItemCart ( itemEntity );
         }
     }
 
@@ -272,7 +312,7 @@ public class HomeController implements Initializable {
     void handleBefore () {
         if (contador != 1) {
             contador--;
-            utility.fillProducts ( containerProducts,products );
+            utility.fillProducts ( containerProducts, products );
         }
     }
 

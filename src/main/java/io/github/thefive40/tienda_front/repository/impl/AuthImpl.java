@@ -1,4 +1,4 @@
-package io.github.thefive40.tienda_front.model.impl;
+package io.github.thefive40.tienda_front.repository.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

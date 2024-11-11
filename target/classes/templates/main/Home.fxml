@@ -217,7 +217,7 @@
                                         <BorderPane fx:id="cartBorderPane" prefHeight="576.0" prefWidth="223.0">
                                             <center>
                                                 <!-- Listado de productos en el carrito -->
-                                                <ListView fx:id="cartListView" prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
+                                                <ListView fx:id="cartListView" onMouseClicked="#handleItemClicked" prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
                                             </center>
                                             <bottom>
                                                 <VBox fx:id="cartVBox" alignment="CENTER" spacing="5">

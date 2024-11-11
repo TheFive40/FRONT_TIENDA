@@ -1,5 +1,6 @@
 package io.github.thefive40.tienda_front.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.time.LocalDate;

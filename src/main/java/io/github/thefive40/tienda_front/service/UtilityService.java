@@ -73,8 +73,36 @@ public class UtilityService<T> {
                 name = lbl.getText ( );
             }
         }
-        ;
         homeController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
+    }
+
+    public ProductDTO getProductByCart ( Button button ) {
+        String price = "";
+        String name = " ";
+        ImageView imageView = null;
+        for (var e : button.getParent ( ).getChildrenUnmodifiable ( )) {
+            if (e instanceof Label lbl && isNumber ( lbl.getText ( ) )) {
+                price = lbl.getText ( );
+            } else if (e instanceof Label lbl && !isNumber ( lbl.getText ( ) )) {
+                name = lbl.getText ( );
+            } else if (e instanceof ImageView imageView1) {
+                imageView = imageView1;
+            }
+        }
+        if (imageView != null) {
+            var img = imageView.getImage ( ).getUrl ();
+            return productService.findProductByNameAndImgAndPrice ( name.replace ( " ", "_" ), extractProductName ( img ) , price );
+        }
+        return null;
+    }
+    public static String extractProductName(String filePath) {
+        int lastSlashIndex = filePath.lastIndexOf("/") + 1;
+        int nextSlashIndex = filePath.indexOf("/", lastSlashIndex);
+        if (nextSlashIndex == -1) {
+            nextSlashIndex = filePath.length ( );
+        }
+
+        return filePath.substring(lastSlashIndex, nextSlashIndex);
     }
 
     public void fillProducts ( VBox container, List<ProductDTO> productDTOS ) {
@@ -146,7 +174,7 @@ public class UtilityService<T> {
         Platform.runLater ( () -> {
             container.getChildren ( ).forEach ( child -> {
                 if (child instanceof Label lbl) {
-                    if (lbl.getId ( ) != null && isNumber ( lbl.getText () )) {
+                    if (lbl.getId ( ) != null && isNumber ( lbl.getText ( ) )) {
                         lbl.setText ( "0" );
                     } else {
                         lbl.setText ( "" );

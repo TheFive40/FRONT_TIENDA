@@ -1,6 +1,5 @@
 package io.github.thefive40.tienda_front.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,11 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class ItemCartDTO {
-    private Long idCart;
-    private ShoppingCartDTO shoppingCart;
+public class RequestProductShopDto {
     private ProductDTO product;
-    private int quantity;
-
+    private ShoppingCartDTO shoppingCart;
 }

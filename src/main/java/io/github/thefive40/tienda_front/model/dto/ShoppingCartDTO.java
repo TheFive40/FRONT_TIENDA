@@ -8,13 +8,14 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class ShoppingCartDTO {
     private Long idCart;
     private ClientDTO client;
-    private ProductDTO product;
     private List<ItemCartDTO> itemsCart = new ArrayList<> ();
     private Date startDate;
 
+    public ShoppingCartDTO () {
+        startDate = new Date (  );
+    }
 }
