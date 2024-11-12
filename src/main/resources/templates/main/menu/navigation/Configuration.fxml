@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane fx:id="root" prefHeight="551.0" prefWidth="428.0" stylesheets="@../../../../static/css/base/menus/Configuration.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <VBox alignment="CENTER" layoutX="50" layoutY="30" spacing="20">
+          <children>
+   
+              <!-- Título de Configuración -->
+              <Label styleClass="titulo-configuracion" text="Configuración de Usuario" />
+   
+              <!-- Panel de Sección de Configuración General -->
+              <TitledPane expanded="true" styleClass="titled-pane" text="General">
+      <content>
+                     <VBox spacing="10" styleClass="config-section">
+                        <children>
+                            <Label styleClass="config-label" text="Idioma" />
+                            <ComboBox fx:id="languageComboBox" prefWidth="200" styleClass="config-combo">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Español" />
+                                        <String fx:value="Inglés" />
+                                        <String fx:value="Francés" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+         
+                            <Label styleClass="config-label" text="Zona Horaria" />
+                            <ComboBox fx:id="timezoneComboBox" prefWidth="200" styleClass="config-combo" />
+                        </children>
+                     </VBox>
+      </content>
+              </TitledPane>
+   
+              <!-- Panel de Sección de Configuración de Cuenta -->
+              <TitledPane expanded="false" styleClass="titled-pane" text="Cuenta">
+      <content>
+                     <VBox spacing="10" styleClass="config-section">
+                        <children>
+                            <Label styleClass="config-label" text="Correo Electrónico" />
+                            <TextField fx:id="emailTextField" promptText="Introduce tu correo electrónico" styleClass="config-textfield" />
+         
+                            <Label styleClass="config-label" text="Contraseña" />
+                            <PasswordField fx:id="passwordField" promptText="Introduce tu contraseña" styleClass="config-textfield" />
+                        </children>
+                     </VBox>
+      </content>
+              </TitledPane>
+   
+              <!-- Botón de Guardar Cambios -->
+              <Button fx:id="saveButton" styleClass="boton-guardar" text="Guardar Cambios" />
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>

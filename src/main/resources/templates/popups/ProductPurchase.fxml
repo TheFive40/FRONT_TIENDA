@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="621.0" prefWidth="565.0" stylesheets="@../../static/css/popups/ProductPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="621.0" prefWidth="565.0" stylesheets="@../../static/css/popups/ProductPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.popups.PurchaseController">
     <center>
       <ScrollPane prefViewportHeight="1086.0" prefViewportWidth="605.0">
          <content>
@@ -147,7 +147,7 @@
                      </VBox>
          
                                  <!-- Confirm Payment Button -->
-                     <Button styleClass="btn-confirm-payment" text="Confirm Payment" />
+                     <Button onAction="#handlePurchase" styleClass="btn-confirm-payment" text="Confirm Payment" />
                  </children>
               </VBox>
          </content>
