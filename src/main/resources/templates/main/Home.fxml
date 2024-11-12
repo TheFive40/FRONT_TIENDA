@@ -246,7 +246,7 @@
                                                             </children>
                                                         </HBox>
                                                         <!-- Botón para pagar -->
-                                                        <Button fx:id="payButton" prefWidth="93" text="Pagar">
+                                                        <Button fx:id="payButton" onAction="#handlePay" prefWidth="93" text="Pagar">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" />
                                              </VBox.margin></Button>

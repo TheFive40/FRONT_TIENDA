@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="621.0" prefWidth="565.0" stylesheets="@../../static/css/popups/ProductPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+      <ScrollPane prefViewportHeight="1086.0" prefViewportWidth="605.0">
+         <content>
+              <VBox alignment="CENTER" spacing="20" styleClass="form-container">
+                 <children>
+                     <!-- Title -->
+                     <Label styleClass="form-title" text="Payment Details" />
+         
+                                 <!-- Personal Information Section -->
+                     <VBox spacing="10" styleClass="section-container">
+            <children>
+                            <Label styleClass="section-title" text="Personal Information" />
+            
+                                        <HBox spacing="15">
+               <children>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="First Name" />
+                                          <TextField fx:id="firstName" disable="true" promptText="John" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Last Name" />
+                                          <TextField fx:id="lastName" disable="true" promptText="Doe" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+               </children>
+                            </HBox>
+            
+                                        <HBox spacing="15">
+               <children>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Email" />
+                                          <TextField fx:id="email" disable="true" promptText="john.doe@example.com" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Phone" />
+                                          <TextField fx:id="phone" disable="true" promptText="+1 123 456 7890" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+               </children>
+                            </HBox>
+            </children>
+                     </VBox>
+         
+                                 <!-- Location Section -->
+                     <VBox spacing="10" styleClass="section-container">
+            <children>
+                            <Label styleClass="section-title" text="Shipping Address" />
+            
+                                        <HBox spacing="15">
+               <children>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Country" />
+                                          <TextField fx:id="country" promptText="Country" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Postal Code" />
+                                          <TextField fx:id="postalCode" promptText="12345" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+               </children>
+                            </HBox>
+            
+                                        <HBox spacing="15">
+               <children>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="City" />
+                                          <TextField fx:id="city" promptText="City" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Shipping Address" />
+                                          <TextField fx:id="shippingAddress" promptText="Street address" styleClass="input-field" />
+                                      </children>
+                                   </VBox>
+               </children>
+                            </HBox>
+            </children>
+                     </VBox>
+         
+                                 <!-- Payment Method Section -->
+                     <VBox spacing="10" styleClass="section-container">
+            <children>
+                            <Label styleClass="section-title" text="Payment Method" />
+            
+                                        <VBox alignment="CENTER_LEFT">
+               <children>
+                                   <Label styleClass="label-text" text="Cardholder Name" />
+                                   <TextField fx:id="cardholderName" promptText="Enter name on card" styleClass="input-field" />
+               </children>
+                            </VBox>
+            
+                                        <VBox alignment="CENTER_LEFT">
+               <children>
+                                   <Label styleClass="label-text" text="Card Number" />
+                                   <TextField fx:id="cardNumber" promptText="1234 5678 9012 3456" styleClass="input-field" />
+               </children>
+                            </VBox>
+            
+                                        <HBox spacing="15">
+               <children>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="Expiration Date" />
+                                          <TextField fx:id="expirationDate" promptText="MM/YY" styleClass="input-field-small" />
+                                      </children>
+                                   </VBox>
+                                   <VBox alignment="CENTER_LEFT">
+                                      <children>
+                                          <Label styleClass="label-text" text="CVV" />
+                                          <TextField fx:id="cvv" promptText="123" styleClass="input-field-small" />
+                                      </children>
+                                   </VBox>
+               </children>
+                            </HBox>
+            </children>
+                     </VBox>
+         
+                                 <!-- Order Summary -->
+                     <VBox spacing="10" styleClass="section-container">
+            <children>
+                            <Label styleClass="section-title" text="Order Summary" />
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+                               <children>
+                                   <Label styleClass="total-label" text="Total:" />
+                                   <Label fx:id="orderTotal" styleClass="total-value" text="199.99" />
+                               </children>
+                            </HBox>
+            </children>
+                     </VBox>
+         
+                                 <!-- Confirm Payment Button -->
+                     <Button styleClass="btn-confirm-payment" text="Confirm Payment" />
+                 </children>
+              </VBox>
+         </content>
+      </ScrollPane>
+    </center>
+</BorderPane>

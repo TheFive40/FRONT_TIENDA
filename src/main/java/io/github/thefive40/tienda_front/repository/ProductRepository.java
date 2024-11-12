@@ -14,6 +14,8 @@ public interface ProductRepository {
 
     List<ProductDTO> getProducts ();
 
+    List<ProductDTO> findProductsByClientName(String clientName);
+
     void save(ProductDTO productDTO);
 
     ProductDTO findProductByNameAndImgAndPrice ( String name, String url, String price );

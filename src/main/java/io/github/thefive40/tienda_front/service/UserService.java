@@ -19,7 +19,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class UserService implements UserRepository {
     private ObjectMapper mapper;
-    private ClientDTO user;
     private Logger logger = LoggerFactory.getLogger ( UserService.class );
 
     public UserService ( ObjectMapper mapper ) {
@@ -45,6 +44,7 @@ public class UserService implements UserRepository {
     }
 
     private ClientDTO sendRequest ( String url ) {
+        AtomicReference<ClientDTO> user = new AtomicReference<> ( );
         HttpRequest request = HttpRequest.newBuilder ( )
                 .header ( "Content-Type", "application/json" )
                 .uri ( URI.create ( url ) )
@@ -55,15 +55,15 @@ public class UserService implements UserRepository {
                 .thenApply ( HttpResponse::body )
                 .thenAcceptAsync ( e -> {
                     try {
-                        user = mapper.readValue ( e, ClientDTO.class );
+                        user.set ( mapper.readValue ( e, ClientDTO.class ) );
                     } catch (JsonProcessingException ex) {
-                        throw new RuntimeException ( ex );
+                        logger.error("The server returned an empty response. Please verify that the endpoint {} is working correctly.", url);
                     }
                 } ).exceptionally ( e -> {
                     logger.error ( Marker.ANY_MARKER, "Error while making the request for the user: " + e.getMessage ( ), e );
                     return null;
                 } ).join ( );
-        return user;
+        return user.get ( );
     }
 
     public void postRequest ( String url, ClientDTO clientDTO ) throws JsonProcessingException {
@@ -113,5 +113,31 @@ public class UserService implements UserRepository {
     @Override
     public String getEmailByPhone ( String phone ) {
         return sendRequest ( "" ).getEmail ( );
+    }
+
+    @Override
+    public List<ClientDTO> findClientsByName ( String email ) {
+        AtomicReference<List<ClientDTO>> clientDTO = new AtomicReference<> ( );
+        HttpClient httpClient = HttpClient.newHttpClient ( );
+        HttpRequest request = HttpRequest.newBuilder ( )
+                .uri ( URI.create ( "" ) )
+                .GET ( )
+                .header ( "Content-Type", "application/json" )
+                .build ( );
+        httpClient.sendAsync ( request, HttpResponse.BodyHandlers.ofString ( ) )
+                .thenApply ( HttpResponse::body )
+                .thenAccept ( body -> {
+                    try {
+                        clientDTO.set ( List.of ( mapper.readValue ( body, ClientDTO[].class ) ) );
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException ( e );
+                    }
+                } )
+                .exceptionally ( err -> {
+                    logger.error ( "Error processing {}", err.getMessage ( ) );
+                    return null;
+                } )
+                .join ( );
+        return clientDTO.get ( );
     }
 }

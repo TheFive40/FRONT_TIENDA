@@ -20,8 +20,8 @@
                                 <Button styleClass="nav-button" text="Ofertas" />
                                 <Button styleClass="nav-button" text="Contacto" />
                                 <ComboBox fx:id="filterButton" prefHeight="29.0" prefWidth="78.0" />
-                                <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="174.0" />
-                                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
+                                <TextField fx:id="searchTextField" onKeyPressed="#handlePressed" prefHeight="25.0" prefWidth="174.0" />
+                                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
                             </children>
                         </HBox>
                     </children>

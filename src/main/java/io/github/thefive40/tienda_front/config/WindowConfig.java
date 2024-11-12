@@ -1,7 +1,9 @@
 package io.github.thefive40.tienda_front.config;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -57,6 +59,14 @@ public class WindowConfig {
         fxmlLoader.setControllerFactory ( context::getBean );
         return fxmlLoader.load ( );
     }
+    @Bean
+    @Scope("prototype")
+    public BorderPane productPurchaseParent() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/popups/ProductPurchase.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
+
     @Bean
     @Scope("prototype")
     public GridPane productEditParent() throws IOException {

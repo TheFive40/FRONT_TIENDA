@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
+import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import io.github.thefive40.tienda_front.model.enums.Profile;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
@@ -17,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -150,6 +153,34 @@ public class ClientController implements Initializable {
     }
 
     @FXML
+    void handlePressed ( KeyEvent keyEvent ) {
+        if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
+            ClientDTO clientDTOS = null;
+            if (!searchTextField.getText ( ).isEmpty ( )) {
+                clientDTOS = userService.getUserByEmail ( searchTextField.getText ( ) );
+                if (clientDTOS == null)
+                    fillTableClients ( List.of ( ) );
+                else fillTableClients ( List.of ( clientDTOS ) );
+            } else {
+                refresh ( );
+            }
+        }
+    }
+
+    @FXML
+    void handleSearch () {
+        if (!searchTextField.getText ( ).isEmpty ( )) {
+            var client = userService.getUserByEmail ( searchTextField.getText ( ) );
+            if (client == null)
+                fillTableClients ( List.of ( ) );
+            else
+                fillTableClients ( List.of ( client ) );
+        } else {
+            refresh ( );
+        }
+    }
+
+    @FXML
     void handleBefore () {
         if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
                 Integer.parseInt ( txtPage.getText ( ) )) {
@@ -188,7 +219,7 @@ public class ClientController implements Initializable {
     }
 
     public void fillTableClients ( List<ClientDTO> clients ) {
-        clients = clients.stream ().filter ( ClientDTO::isStatus ).toList ();
+        clients = clients.stream ( ).filter ( ClientDTO::isStatus ).toList ( );
         List<ClientDTO> clientDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), clients );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {

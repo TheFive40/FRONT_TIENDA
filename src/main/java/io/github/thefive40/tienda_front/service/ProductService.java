@@ -59,6 +59,11 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
+    public List<ProductDTO> findProductsByClientName ( String clientName ) {
+        return sendRequest ( "http://localhost:6060/api/products/findProductsByClientName/"+clientName.replace ( " ", "_" ) );
+    }
+
+    @Override
     public void save ( ProductDTO productDTO ) {
         try {
             postRequest ( productDTO, null, "http://localhost:6060/api/products/add" );
@@ -66,6 +71,7 @@ public class ProductService implements ProductRepository {
             throw new RuntimeException ( e );
         }
     }
+
 
     @Override
     public ProductDTO findProductByNameAndImgAndPrice ( String name, String url, String price ) {

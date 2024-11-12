@@ -307,6 +307,14 @@ public class HomeController implements Initializable {
             cartService.updateItemCart ( itemEntity );
         }
     }
+    @FXML
+    void handlePay(){
+        Stage stage = new Stage (  );
+        stage.setScene ( new Scene ( context.getBean ( "productPurchaseParent" ,BorderPane.class)  ) );
+        stage.setTitle ( "Compra de Productos" );
+        stage.centerOnScreen ();
+        stage.show ();
+    }
 
     @FXML
     void handleBefore () {

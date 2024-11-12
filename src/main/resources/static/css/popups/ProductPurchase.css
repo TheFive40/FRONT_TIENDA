@@ -1,0 +1,89 @@
+/* General layout */
+.form-container {
+    -fx-background-color: linear-gradient(to bottom, #f3f5f9, #ffffff);
+    -fx-padding: 30px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.3, 0, 8);
+}
+
+/* Form title */
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px 0;
+}
+
+/* Section container */
+.section-container {
+    -fx-background-color: #e9edf1;
+    -fx-padding: 15px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.1, 0, 4);
+}
+
+/* Section title */
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-padding: 0 0 8px 0;
+}
+
+/* Label text */
+.label-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555;
+}
+
+/* Input fields */
+.input-field {
+    -fx-pref-width: 230px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d4d8;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0.2, 0, 2);
+}
+
+.input-field-small {
+    -fx-pref-width: 90px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d4d8;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 13px;
+}
+
+.input-field:disabled {
+    -fx-background-color: #f0f2f5;
+}
+
+/* Total labels */
+.total-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+.total-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+}
+
+/* Confirm payment button with gradient */
+.btn-confirm-payment {
+    -fx-background-color: linear-gradient(to right, #3498db, #2c81ba);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.3, 0, 5);
+}
+
+.btn-confirm-payment:hover {
+    -fx-background-color: linear-gradient(to right, #3b8ac7, #2a6f98);
+}

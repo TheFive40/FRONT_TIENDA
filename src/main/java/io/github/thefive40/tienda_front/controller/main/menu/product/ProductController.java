@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -57,6 +59,9 @@ public class ProductController implements Initializable {
     @FXML
     private VBox vboxContainer;
 
+    @FXML
+    private TextField searchTextField;
+
     private SignUpController signUp;
 
     private LoginController login;
@@ -72,6 +77,7 @@ public class ProductController implements Initializable {
     private ProductService productService;
 
     private ProductDTO productEdit;
+
 
     @Autowired
     public void inject ( ProductService service, Stage stage, LoginController login, SignUpController signUpController
@@ -102,54 +108,81 @@ public class ProductController implements Initializable {
         fillTableProducts ( productDTOS );
     }
 
-    public void fillTableProducts(List<ProductDTO> products) {
-        products = products.stream().filter(ProductDTO::isStatus).toList();
+    public void fillTableProducts ( List<ProductDTO> products ) {
+        try {
+            products = products.stream ( ).filter ( ProductDTO::isStatus ).toList ( );
+        } catch (NullPointerException exception) {
+            txtTotalPage.setText ( "1" );
+            return;
+        }
         txtTotalPage.setText ( utilityService.totalPages ( products ) + "" );
-        List<ProductDTO> productDTOS = utilityService.getItemsByPage(Integer.parseInt(txtPage.getText()), products);
-        AtomicInteger contador = new AtomicInteger(0);
+        List<ProductDTO> productDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), products );
+        AtomicInteger contador = new AtomicInteger ( 0 );
 
-        vboxContainer.getChildren().forEach(e -> {
-            int count = contador.getAndIncrement();
+        vboxContainer.getChildren ( ).forEach ( e -> {
+            int count = contador.getAndIncrement ( );
             HBox container = (HBox) e;
-            ImageView imageView = (ImageView) container.getChildren().get(0);
-            Label idLabel = (Label) container.getChildren().get(1);
-            Label nameLabel = (Label) container.getChildren().get(2);
-            Label emailLabel = (Label) container.getChildren().get(3);
-            Label telLabel = (Label) container.getChildren().get(4);
-            Label rolLabel = (Label) container.getChildren().get(5);
-            Button buttonEdit = (Button) container.getChildren().get(6);
-            Button buttonRemove = (Button) container.getChildren().get(7);
-            if (count >= productDTOS.size()) {
-                clearProductsInfo(idLabel, nameLabel, emailLabel, telLabel, rolLabel, imageView, buttonEdit, buttonRemove);
+            ImageView imageView = (ImageView) container.getChildren ( ).get ( 0 );
+            Label idLabel = (Label) container.getChildren ( ).get ( 1 );
+            Label nameLabel = (Label) container.getChildren ( ).get ( 2 );
+            Label emailLabel = (Label) container.getChildren ( ).get ( 3 );
+            Label telLabel = (Label) container.getChildren ( ).get ( 4 );
+            Label rolLabel = (Label) container.getChildren ( ).get ( 5 );
+            Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
+            Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
+            if (count >= productDTOS.size ( )) {
+                clearProductsInfo ( idLabel, nameLabel, emailLabel, telLabel, rolLabel, imageView, buttonEdit, buttonRemove );
             } else {
-                ProductDTO product = productDTOS.get(count);
+                ProductDTO product = productDTOS.get ( count );
 
-                if (product.isStatus()) {
-                    if (product.getImg() != null && !product.getImg().isEmpty()) {
+                if (product.isStatus ( )) {
+                    if (product.getImg ( ) != null && !product.getImg ( ).isEmpty ( )) {
                         try {
-                            imageView.setImage(new Image(product.getImg()));
+                            imageView.setImage ( new Image ( product.getImg ( ) ) );
                         } catch (IllegalArgumentException ex) {
-                            System.out.println("Error al cargar la imagen: " + ex.getMessage());
-                            imageView.setImage(null);
+                            System.out.println ( "Error al cargar la imagen: " + ex.getMessage ( ) );
+                            imageView.setImage ( null );
                         }
                     } else {
-                        imageView.setImage(null);
+                        imageView.setImage ( null );
                     }
-                    idLabel.setText(String.valueOf(product.getProductId()));
-                    nameLabel.setText(product.getName());
-                    emailLabel.setText(product.getDescription());
-                    telLabel.setText(String.valueOf(product.getPrice()));
-                    rolLabel.setText(product.getClient() != null ? product.getClient().getName() : ""); // Verifica que `getClient()` no sea null
-                    imageView.setPreserveRatio(false);
-                    imageView.setSmooth(false);
-                    buttonEdit.setVisible(true);
-                    buttonRemove.setVisible(true);
+                    idLabel.setText ( String.valueOf ( product.getProductId ( ) ) );
+                    nameLabel.setText ( product.getName ( ) );
+                    emailLabel.setText ( product.getDescription ( ) );
+                    telLabel.setText ( String.valueOf ( product.getPrice ( ) ) );
+                    rolLabel.setText ( product.getClient ( ) != null ? product.getClient ( ).getName ( ) : "" ); // Verifica que `getClient()` no sea null
+                    imageView.setPreserveRatio ( false );
+                    imageView.setSmooth ( false );
+                    buttonEdit.setVisible ( true );
+                    buttonRemove.setVisible ( true );
                 }
             }
-        });
+        } );
+
     }
 
+    @FXML
+    void handlePressed ( KeyEvent keyEvent ) {
+        if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
+            List<ProductDTO> productDTOS = null;
+            if (!searchTextField.getText ( ).isEmpty ()) {
+                productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
+                fillTableProducts ( productDTOS );
+            }else{
+                refresh ();
+            }
+        }
+    }
 
+    @FXML
+    void handleSearch () {
+        if (!searchTextField.getText ( ).isEmpty ()) {
+            List<ProductDTO> productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
+            fillTableProducts ( productDTOS );
+        }else{
+            refresh ();
+        }
+    }
 
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
                              Label rolLabel, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
