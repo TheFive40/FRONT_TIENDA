@@ -338,3 +338,25 @@
     -fx-font-family: "Berlin Sans FB";
     -fx-font-size: 32px;
 }
+#btnDetails1, #btnDetails2, #btnDetails3, #btnDetails4, #btnDetails5 {
+    -fx-background-color: linear-gradient(#4CAF50, #388E3C);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #2E7D32;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+#btnDetails1:hover, #btnDetails2:hover, #btnDetails3:hover,  #btnDetails4:hover, #btnDetails5:hover {
+    -fx-background-color: linear-gradient(#66BB6A, #43A047);
+    -fx-cursor: hand;
+}
+
+#btnDetails1:pressed, #btnDetails2:pressed, #btnDetails3:pressed, #btnDetails4:pressed, #btnDetails5:pressed {
+    -fx-background-color: linear-gradient(#388E3C, #2E7D32);
+    -fx-effect: none;
+}

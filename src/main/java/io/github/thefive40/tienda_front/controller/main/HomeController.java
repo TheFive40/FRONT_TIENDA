@@ -279,6 +279,11 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    void handlePurchase(){
+        stage.setScene ( new Scene ( context.getBean ( "purchaseParent" , AnchorPane.class) ) );
+    }
+
+    @FXML
     void handleItemClicked () {
         int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
         var itemCartDTO = itemCartDTOHashMap.get ( index );

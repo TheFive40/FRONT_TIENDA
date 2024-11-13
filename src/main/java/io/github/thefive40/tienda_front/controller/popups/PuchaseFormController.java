@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Component
-public class PurchaseController implements Initializable {
+public class PuchaseFormController implements Initializable {
     private final HomeController homeController;
     private final UserService userService;
     @FXML
@@ -61,7 +61,7 @@ public class PurchaseController implements Initializable {
 
     private ClientDTO client;
 
-    public PurchaseController ( HomeController homeController, UserService userService ) {
+    public PuchaseFormController ( HomeController homeController, UserService userService ) {
         this.homeController = homeController;
         this.userService = userService;
     }
@@ -92,9 +92,9 @@ public class PurchaseController implements Initializable {
             detailOrderDTO.setAmount ( v.getQuantity () );
             detailOrderDTO.setUnitPrice ( v.getProduct ().getPrice () );
             orderDTO.getDetailOrder ().add ( detailOrderDTO );
-            //totalAmount.updateAndGet ( (a) -> a + (v.getQuantity () * v.getProduct ().getPrice ()) );
+            totalAmount.set ( (detailOrderDTO.getUnitPrice () * detailOrderDTO.getAmount ()) + totalAmount.get ( ) );
         } );
-        //orderDTO.setTotal ( totalAmount.get () );
+        orderDTO.setTotal ( totalAmount.get () );
         client.getOrders ().add ( orderDTO );
         userService.update ( client );
     }

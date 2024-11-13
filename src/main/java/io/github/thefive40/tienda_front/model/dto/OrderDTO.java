@@ -5,6 +5,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -23,5 +24,17 @@ public class OrderDTO {
     private String discountCode;
     private ClientDTO idClient;
     private List<DetailOrderDTO> detailOrder = new ArrayList<> ( );
+    private List<InvoiceDTO> invoices = new ArrayList<> (  );
 
+    @Override
+    public boolean equals ( Object object ) {
+        if (this == object) return true;
+        if (!(object instanceof OrderDTO orderDTO)) return false;
+        return Objects.equals ( getIdOrder ( ), orderDTO.getIdOrder ( ) );
+    }
+
+    @Override
+    public int hashCode () {
+        return Objects.hashCode ( getIdOrder ( ) );
+    }
 }

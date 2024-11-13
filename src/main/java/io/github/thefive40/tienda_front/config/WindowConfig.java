@@ -66,6 +66,13 @@ public class WindowConfig {
         fxmlLoader.setControllerFactory ( context::getBean );
         return fxmlLoader.load ( );
     }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane purchaseParent () throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/purchase/Purchase.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
 
     @Bean
     @Scope("prototype")
