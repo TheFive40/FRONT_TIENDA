@@ -1,0 +1,122 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f4f6f9;
+    -fx-padding: 30;
+    -fx-spacing: 20;
+}
+
+/* Título */
+#titleLabel {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 10;
+}
+
+/* Selector de periodo */
+.period-selector {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d9e0;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.period-label {
+    -fx-text-fill: #666;
+}
+
+#applyFilterButton {
+    -fx-background-color: #4285f4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 15;
+    -fx-background-radius: 5;
+}
+
+#applyFilterButton:hover {
+    -fx-background-color: #3367d6;
+    -fx-cursor: hand;
+}
+
+/* Gráfica de barras */
+#barChart {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d9e0;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Labels de sección */
+.section-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+    -fx-padding: 5 0;
+}
+
+/* Estadísticas generales */
+.stat-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e3e7;
+    -fx-border-width: 1;
+    -fx-padding: 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.stat-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.stat-text {
+    -fx-text-fill: #555;
+    -fx-font-size: 14px;
+}
+
+.stat-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-background-color: #f1f3f5;
+    -fx-padding: 5;
+    -fx-border-color: #d1d9e0;
+    -fx-border-radius: 5;
+}
+
+/* Apartado de productos más vendidos */
+.top-products-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d9e0;
+    -fx-border-width: 1;
+    -fx-padding: 15;
+    -fx-border-radius: 10;
+}
+
+#topProductsList {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d9e0;
+    -fx-padding: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #333;
+}
+
+/* Botones */
+#updateButton, #exportButton {
+    -fx-background-color: #34a853;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+#updateButton:hover, #exportButton:hover {
+    -fx-background-color: #2c8c44;
+    -fx-cursor: hand;
+}

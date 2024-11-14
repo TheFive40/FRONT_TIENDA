@@ -133,6 +133,13 @@ public class WindowConfig {
     }
     @Bean
     @Scope("prototype")
+    public ScrollPane statisticsParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/navigation/Statistics.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
     public AnchorPane registerParent () throws IOException {
         FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/auth/SignUp.fxml" ) );
         loader.setControllerFactory ( context::getBean );

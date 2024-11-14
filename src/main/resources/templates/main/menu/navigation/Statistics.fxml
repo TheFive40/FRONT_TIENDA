@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
+<ScrollPane prefHeight="775.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.navigation.StatisticsController">
+   <content>
+      <AnchorPane stylesheets="@../../../../static/css/navigation/Statistics.css">
+         <children>
+             <VBox alignment="CENTER" spacing="20" styleClass="root">
+                <children>
+            
+                          <!-- Título Principal -->
+                    <Label id="titleLabel" styleClass="title-label" text="Hyperium Estadisticas" />
+            
+                          <!-- Selector de Periodo -->
+                    <HBox alignment="CENTER" spacing="10" styleClass="period-selector">
+               <children>
+                           <Label id="periodLabel" styleClass="period-label" text="Visor General" />
+               </children>
+                    </HBox>
+            
+                          <!-- Gráfica de Barras -->
+                    <BarChart id="barChart" fx:id="barChart" prefHeight="300" prefWidth="700" title="Distribución de Ventas">
+                        <xAxis>
+                            <CategoryAxis label="Categorías" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Ventas" />
+                        </yAxis>
+                    </BarChart>
+            
+                          <!-- Panel de Estadísticas Generales -->
+                    <VBox id="statBox" spacing="10" styleClass="stat-box">
+               <children>
+                           <Label id="statLabel" styleClass="stat-label" text="Resumen de Estadísticas" />
+               
+                                 <HBox spacing="20">
+                  <children>
+                                  <Label id="averageLabel" styleClass="stat-text" text="Promedio de Ventas:" />
+                                  <Label id="averageValue" fx:id="averageValue" prefHeight="32.0" prefWidth="72.0" styleClass="stat-value" text="0.0" />
+                  </children>
+                           </HBox>
+                           <HBox spacing="20">
+                              <children>
+                                  <Label id="medianLabel" styleClass="stat-text" text="Mejor Categoria" />
+                                  <Label id="medianValue" fx:id="bestCategory" prefHeight="32.0" prefWidth="99.0" styleClass="stat-value" text="Tecnologia" />
+                              </children>
+                           </HBox>
+                           <HBox spacing="20">
+                              <children>
+                                  <Label id="totalSalesLabel" styleClass="stat-text" text="Total de Ventas:" />
+                                  <Label id="totalSalesValue" fx:id="totalSalesValue" prefHeight="32.0" prefWidth="99.0" styleClass="stat-value" text="0.0" />
+                              </children>
+                           </HBox>
+                           <HBox spacing="20">
+                              <children>
+                                  <Label id="activeCustomersLabel" styleClass="stat-text" text="Clientes Activos:" />
+                                  <Label id="activeCustomersValue" fx:id="activeCustomersValue" prefHeight="32.0" prefWidth="94.0" styleClass="stat-value" text="0" />
+                              </children>
+                           </HBox>
+                           <HBox spacing="20">
+                              <children>
+                                  <Label id="conversionRateLabel" styleClass="stat-text" text="Tasa de Conversión:" />
+                                  <Label id="conversionRateValue" fx:id="conversionRateValue" prefHeight="32.0" prefWidth="72.0" styleClass="stat-value" text="0%" />
+                              </children>
+                           </HBox>
+               </children>
+                    </VBox>
+            
+                          <!-- Apartado de Productos Más Vendidos -->
+                    <VBox id="topProductsBox" spacing="10" styleClass="top-products-box">
+               <children>
+                           <Label styleClass="section-label" text="Productos Más Vendidos" />
+                           <ListView id="topProductsList" fx:id="topProductsList" prefHeight="150" />
+               </children>
+                    </VBox>
+            
+                          <!-- Botones de Actualización y Exportación -->
+                    <HBox alignment="CENTER" spacing="15">
+               <children>
+                           <Button id="exportButton" fx:id="exportButton" onAction="#handleExport" text="Exportar Reporte" />
+               </children>
+                    </HBox>
+                </children>
+         
+                   </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

@@ -15,7 +15,7 @@
                     <children>
                         <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
                             <children>
-                                <Button styleClass="nav-button" text="Perfil" />
+                                <Button onAction="#handleEstadistica" styleClass="nav-button" text="Estadisticas" />
                                 <Button onAction="#handleConfig" styleClass="nav-button" text="Configuracion" />
                                 <Button onAction="#handleDevelopers" styleClass="nav-button" text="Programadores" />
                                 <Button onAction="#handleContact" styleClass="nav-button" text="Contacto" />

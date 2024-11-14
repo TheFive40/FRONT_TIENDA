@@ -318,7 +318,12 @@ public class HomeController implements Initializable {
     public void handleMenuClient ( ActionEvent event ) {
         stage.setScene ( new Scene ( context.getBean ( "clientParent", AnchorPane.class ) ) );
     }
-
+    @FXML
+    void handleEstadistica(){
+        Stage stage = new Stage (  );
+        stage.setScene ( new Scene ( context.getBean ( "statisticsParent", ScrollPane.class ) ) );
+        stage.show ();
+    }
     @FXML
     void handleAddCart () throws JsonProcessingException {
         if (utility.isNumber ( quantityTextField.getText ( ) )) {
