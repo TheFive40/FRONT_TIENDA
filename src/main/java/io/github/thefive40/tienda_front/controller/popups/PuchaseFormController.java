@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Component
@@ -85,16 +86,16 @@ public class PuchaseFormController implements Initializable {
         orderDTO.setZipCode ( postalCode.getText ( ) );
         orderDTO.setPaymentMethod ( "Mastercard" );
         orderDTO.setDiscountCode ( "0FGLS" );
-        AtomicReference<Double> totalAmount = new AtomicReference<>();
+        AtomicInteger totalAmount = new AtomicInteger ();
         homeController.getItemCartDTOHashMap ().forEach ( (k,v)->{
             DetailOrderDTO detailOrderDTO = new DetailOrderDTO (  );
             detailOrderDTO.setProduct ( v.getProduct () );
             detailOrderDTO.setAmount ( v.getQuantity () );
             detailOrderDTO.setUnitPrice ( v.getProduct ().getPrice () );
             orderDTO.getDetailOrder ().add ( detailOrderDTO );
-            //totalAmount.set ( (detailOrderDTO.getUnitPrice () * detailOrderDTO.getAmount ()) + totalAmount.get ( ) );
+            totalAmount.set ( (int) ((detailOrderDTO.getUnitPrice () * detailOrderDTO.getAmount ()) + totalAmount.get ( )) );
         } );
-        orderDTO.setTotal ( 0.0 );
+        orderDTO.setTotal ( totalAmount.get () );
         client.getOrders ().add ( orderDTO );
         userService.update ( client );
     }

@@ -34,7 +34,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
 }
 
-/* Botones de Navegación */
 .nav-button {
     -fx-background-color: #374151;
     -fx-text-fill: white;
@@ -49,7 +48,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 2);
 }
 
-/* Sidebar */
 .aside {
     -fx-background-color: #1f2937;
     -fx-padding: 20px;
@@ -78,7 +76,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
 }
 
-/* Título Principal */
 .labelClientes {
     -fx-text-fill: #111827;
     -fx-font-family: 'Berlin Sans FB';
@@ -88,7 +85,6 @@
     -fx-padding: 20px 0;
 }
 
-/* Encabezados de columnas */
 .column-header {
     -fx-background-color: #374151;
     -fx-text-fill: white;
@@ -99,7 +95,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
 }
 
-/* Filas de datos */
 .vboxContainer .hboxRow {
     -fx-background-color: #ffffff;
     -fx-border-color: #e5e7eb;
@@ -115,7 +110,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 2);
 }
 
-/* Botones de Opciones */
 .button {
     -fx-background-color: #4b5563;
     -fx-text-fill: white;
@@ -151,7 +145,6 @@
     -fx-background-color: #f87171;
 }
 
-/* Controles de navegación */
 .footer {
     -fx-background-color: #1f2937;
     -fx-text-fill: #d1d5db;
@@ -159,7 +152,6 @@
     -fx-alignment: center;
 }
 
-/* Efectos en botones de paginación */
 .button-pagination {
     -fx-background-color: #374151;
     -fx-text-fill: white;

@@ -85,7 +85,6 @@
     -fx-background-color: #ff8c00;
 }
 
-/* Footer */
 #footer {
     -fx-background-color: #232f3e;
     -fx-text-fill: white;
@@ -277,7 +276,6 @@
     -fx-background-color: #2980b9;
 }
 
-/* Filas de Datos */
 #idClient1, #clientName1, #clientEmail1, #clientTel1, #clientRol1,
 #idClient2, #clientName2, #clientEmail2, #clientTel2, #clientRol2,
 #idClient3, #clientName3, #clientEmail3, #clientTel3, #clientRol3,
@@ -305,7 +303,6 @@
     -fx-background-color: #c0392b;
 }
 
-/* Paginación */
 #btnBefore, #btnAfter {
     -fx-background-color: #2ecc71;
     -fx-text-fill: white;

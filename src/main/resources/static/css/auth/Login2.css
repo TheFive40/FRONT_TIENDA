@@ -1,9 +1,7 @@
-/* Fondo general de la ventana */
 .root {
     -fx-background-color: linear-gradient(to bottom, #1a1a4f, #0d083f);
 }
 
-/* Contenedor del formulario con degradado */
 .form-container {
     -fx-background-color: #ffffff;
     -fx-border-radius: 20;
@@ -12,7 +10,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 5);
 }
 
-/* Título de cada formulario */
 .form-title {
     -fx-font-size: 28px;
     -fx-text-fill: #5b3ab6;
@@ -20,7 +17,6 @@
     -fx-padding: 20px 0;
 }
 
-/* Fondo degradado en la parte superior del contenedor */
 .form-container:before {
     -fx-background-color: linear-gradient(to bottom, #1a1a4f, transparent);
     -fx-background-radius: 20 20 0 0;
@@ -28,7 +24,6 @@
     -fx-opacity: 0.7;
 }
 
-/* Botón principal del formulario */
 .form-button {
     -fx-background-color: #5b3ab6;
     -fx-text-fill: #ffffff;
@@ -43,7 +38,6 @@
     -fx-background-color: #4e32a1;
 }
 
-/* Campos de entrada */
 .input-field {
     -fx-pref-width: 250px;
     -fx-padding: 10;
@@ -57,7 +51,6 @@
     -fx-border-color: #5b3ab6;
 }
 
-/* Etiqueta para cambiar de formulario */
 .switch-label {
     -fx-text-fill: #5b3ab6;
     -fx-underline: true;

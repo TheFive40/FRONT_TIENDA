@@ -13,10 +13,8 @@
        <VBox alignment="CENTER" layoutX="50" layoutY="30" spacing="20">
           <children>
    
-              <!-- Título de Configuración -->
               <Label styleClass="titulo-configuracion" text="Configuración de Usuario" />
    
-              <!-- Panel de Sección de Configuración General -->
               <TitledPane expanded="true" styleClass="titled-pane" text="General">
       <content>
                      <VBox spacing="10" styleClass="config-section">
@@ -39,7 +37,6 @@
       </content>
               </TitledPane>
    
-              <!-- Panel de Sección de Configuración de Cuenta -->
               <TitledPane expanded="false" styleClass="titled-pane" text="Cuenta">
       <content>
                      <VBox spacing="10" styleClass="config-section">
@@ -54,7 +51,6 @@
       </content>
               </TitledPane>
    
-              <!-- Botón de Guardar Cambios -->
               <Button fx:id="saveButton" styleClass="boton-guardar" text="Guardar Cambios" />
           </children>
        </VBox>

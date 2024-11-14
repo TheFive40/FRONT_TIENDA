@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -54,8 +55,11 @@ public class PurchaseController implements Initializable {
     private List<OrderDTO> orderDTOS;
 
     private List<DetailOrderDTO> clientDetailOrders;
+
+    private OrderDTO currentOrder;
     @Autowired
     private ApplicationContext context;
+    private ClientDTO clientOrder;
     @Qualifier("stage")
     @Autowired
     private Stage stage;
@@ -75,6 +79,7 @@ public class PurchaseController implements Initializable {
                 clientOrders.put ( v, e );
             } );
         } );
+
         filterButton.getItems ( ).addAll ( "Ciudad" );
         filterButton.getSelectionModel ( ).select ( 0 );
         fillTablePurchase ( orderDTOS );
@@ -157,7 +162,12 @@ public class PurchaseController implements Initializable {
 
     @FXML
     void handleProductEdit ( ActionEvent event ) {
-
+        Button button = (Button) event.getSource ( );
+        currentOrder = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientOrder = clientOrders.get ( currentOrder );
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "purchaseEditParent", GridPane.class ) ) );
+        stage.show ( );
     }
 
     @FXML

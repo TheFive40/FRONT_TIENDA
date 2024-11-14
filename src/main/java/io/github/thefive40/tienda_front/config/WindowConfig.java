@@ -138,6 +138,15 @@ public class WindowConfig {
         loader.setControllerFactory ( context::getBean );
         return loader.load ( );
     }
+
+    @Bean
+    @Scope("prototype")
+    public  GridPane purchaseEditParent() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/purchase/PurchaseEdit.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
+
     @Bean
     @Scope("prototype")
     public AnchorPane registerParent () throws IOException {

@@ -79,7 +79,6 @@ public class StatisticsController implements Initializable {
 
     @FXML
     void handleExport(ActionEvent event) {
-        // Mostrar un FileChooser para seleccionar la ubicación de guardado
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Archivo Excel");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos Excel (*.xlsx)", "*.xlsx"));
@@ -232,6 +231,6 @@ public class StatisticsController implements Initializable {
         conversionRateValue.setText(String.format("%.3f", ((double) totalVentas.get() / clientActive)) + " ");
         activeCustomersValue.setText ( clientActive + "");
         barChart.getData ( ).add ( series2 );
-        averageValue.setText ( ( Math.round ( (double) (total.get ( ) / productCategory.size ( ))) + "%" ));
+        averageValue.setText ( ( Math.round ( (double) (total.get ( ) / productCategory.size ( ))) + " " ));
     }
 }

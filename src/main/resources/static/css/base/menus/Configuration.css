@@ -1,10 +1,8 @@
-/* Estilo general de la ventana */
 .root {
     -fx-background-color: #f7f8fa;
     -fx-padding: 30;
 }
 
-/* Título principal de la configuración */
 .titulo-configuracion {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
@@ -12,7 +10,6 @@
     -fx-effect: dropshadow(gaussian, rgba(44, 62, 80, 0.3), 5, 0.5, 0, 2);
 }
 
-/* Estilo de los TitledPane */
 .titled-pane {
     -fx-font-size: 16px;
     -fx-text-fill: #34495e;
@@ -29,14 +26,12 @@
     -fx-padding: 15;
 }
 
-/* Estilo de los Labels */
 .config-label {
     -fx-font-size: 14px;
     -fx-text-fill: #34495e;
     -fx-font-weight: bold;
 }
 
-/* Estilo de los ComboBox y TextField */
 .config-combo, .config-textfield {
     -fx-pref-height: 30;
     -fx-background-color: #ffffff;
@@ -50,7 +45,6 @@
     -fx-border-color: #3498db;
 }
 
-/* Botón de Guardar Cambios */
 .boton-guardar {
     -fx-background-color: #3498db;
     -fx-text-fill: white;
