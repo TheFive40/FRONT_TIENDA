@@ -33,7 +33,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -77,7 +79,7 @@ public class ClientController implements Initializable {
     private Button btnBefore;
 
     @FXML
-    private ComboBox<?> filterButton;
+    private ComboBox<String> filterButton;
 
     @FXML
     private Button columnName;
@@ -155,12 +157,23 @@ public class ClientController implements Initializable {
     @FXML
     void handlePressed ( KeyEvent keyEvent ) {
         if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
-            ClientDTO clientDTOS = null;
+            String item = filterButton.getSelectionModel ().getSelectedItem ();
+            List<ClientDTO> clientDTOS;
+            ClientDTO clientDTO = null;
             if (!searchTextField.getText ( ).isEmpty ( )) {
-                clientDTOS = userService.getUserByEmail ( searchTextField.getText ( ) );
-                if (clientDTOS == null)
-                    fillTableClients ( List.of ( ) );
-                else fillTableClients ( List.of ( clientDTOS ) );
+                if (item.equalsIgnoreCase ( "email" )){
+                    clientDTO = userService.getUserByEmail ( searchTextField.getText ( ) );
+                    if (clientDTO == null)
+                        fillTableClients ( List.of ( ) );
+                    else fillTableClients ( List.of ( clientDTO ) );
+                }else if(item.equalsIgnoreCase ( "Apellidos" )){
+                    clientDTOS = userService.findByLastName ( searchTextField.getText ( ) );
+                    fillTableClients ( Objects.requireNonNullElseGet ( clientDTOS, List::of ) );
+                }else if(item.equalsIgnoreCase ( "Nombres" )){
+                    clientDTOS = userService.findClientsByName ( searchTextField.getText () );
+                    fillTableClients ( Objects.requireNonNullElseGet ( clientDTOS, List::of ) );
+                }
+
             } else {
                 refresh ( );
             }
@@ -170,11 +183,23 @@ public class ClientController implements Initializable {
     @FXML
     void handleSearch () {
         if (!searchTextField.getText ( ).isEmpty ( )) {
-            var client = userService.getUserByEmail ( searchTextField.getText ( ) );
-            if (client == null)
-                fillTableClients ( List.of ( ) );
-            else
-                fillTableClients ( List.of ( client ) );
+            ClientDTO client = null;
+            List<ClientDTO> clientDTOS;
+            String item = filterButton.getSelectionModel ().getSelectedItem ();
+            if (item.equalsIgnoreCase ( "email" )){
+                client = userService.getUserByEmail ( searchTextField.getText ( ) );
+                if (client == null)
+                    fillTableClients ( List.of ( ) );
+                else
+                    fillTableClients ( List.of ( client ) );
+            }else if(item.equalsIgnoreCase ( "Apellidos" )){
+                clientDTOS = userService.findByLastName ( searchTextField.getText ( ) );
+                fillTableClients ( Objects.requireNonNullElseGet ( clientDTOS, List::of ) );
+            }else if(item.equalsIgnoreCase ( "Nombres" )){
+                clientDTOS = userService.findClientsByName ( searchTextField.getText () );
+                fillTableClients ( Objects.requireNonNullElseGet ( clientDTOS, List::of ) );
+            }
+
         } else {
             refresh ( );
         }
@@ -204,6 +229,10 @@ public class ClientController implements Initializable {
         stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class ) ) );
     }
 
+    @FXML
+    void handleMenuCompra(){
+        stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
+    }
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
@@ -216,6 +245,8 @@ public class ClientController implements Initializable {
         if (login.getCurrentUser ( ) != null)
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
+        filterButton.getItems ().addAll ( "Email", "Nombres", "Apellidos" );
+        filterButton.getSelectionModel ().select ( 0 );
     }
 
     public void fillTableClients ( List<ClientDTO> clients ) {

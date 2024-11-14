@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="contact-root" stylesheets="@../../../../static/css/navigation/Contact.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+   
+       <!-- Background Section -->
+       <VBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <children>
+      
+              <!-- Header with Title and Subtitle -->
+              <Label styleClass="title" text="Get in Touch" />
+              <Label styleClass="subtitle" text="We'd love to hear from you. Fill out the form below to reach us!" />
+      
+              <!-- Contact Form -->
+              <VBox alignment="CENTER" maxWidth="500" spacing="15">
+         <children>
+                     <TextField promptText="Your Name" styleClass="contact-input" />
+                     <TextField promptText="Your Email" styleClass="contact-input" />
+                     <TextField promptText="Subject" styleClass="contact-input" />
+                     <TextArea promptText="Message" styleClass="contact-textarea" />
+         
+                     <!-- Send Button -->
+                     <Button styleClass="send-button" text="Send Message" />
+         </children>
+              </VBox>
+      </children>
+       </VBox>
+   </children>
+</AnchorPane>

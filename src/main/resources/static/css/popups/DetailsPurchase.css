@@ -1,0 +1,172 @@
+/* Fondo general */
+.root {
+    -fx-background-color: #f0f2f5;
+}
+
+/* Header */
+.header {
+    -fx-background-color: #1f2937;
+    -fx-padding: 15px;
+}
+
+.header Button {
+    -fx-background-color: #4f46e5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+    -fx-transition: 0.3s ease;
+}
+
+.header Button:hover {
+    -fx-background-color: #6366f1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 2);
+}
+
+.header ComboBox,
+.header TextField {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+}
+
+/* Botones de Navegación */
+.nav-button {
+    -fx-background-color: #374151;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+.nav-button:hover {
+    -fx-background-color: #4b5563;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 2);
+}
+
+/* Sidebar */
+.aside {
+    -fx-background-color: #1f2937;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+}
+
+.aside-button {
+    -fx-background-color: #4b5563;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+    -fx-transition: 0.3s ease;
+}
+
+.aside-button:hover {
+    -fx-background-color: #6b7280;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 2);
+}
+
+.aside-title {
+    -fx-text-fill: #d1d5db;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+/* Título Principal */
+.labelClientes {
+    -fx-text-fill: #111827;
+    -fx-font-family: 'Berlin Sans FB';
+    -fx-font-size: 36px;
+    -fx-effect: dropshadow(gaussian, #374151, 4, 0.5, 0, 2);
+    -fx-alignment: center;
+    -fx-padding: 20px 0;
+}
+
+/* Encabezados de columnas */
+.column-header {
+    -fx-background-color: #374151;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+/* Filas de datos */
+.vboxContainer .hboxRow {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 10px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.2, 0, 2);
+    -fx-transition: 0.3s;
+}
+
+.vboxContainer .hboxRow:hover {
+    -fx-background-color: #f3f4f6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 2);
+}
+
+/* Botones de Opciones */
+.button {
+    -fx-background-color: #4b5563;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 15;
+}
+
+.button:hover {
+    -fx-background-color: #6b7280;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.2, 0, 2);
+}
+
+.iconEdit {
+    -fx-background-color: #10b981;
+    -fx-background-radius: 50%;
+    -fx-padding: 5;
+    -fx-transition: 0.3s;
+}
+
+.iconEdit:hover {
+    -fx-background-color: #34d399;
+}
+
+.iconDelete {
+    -fx-background-color: #ef4444;
+    -fx-background-radius: 50%;
+    -fx-padding: 5;
+    -fx-transition: 0.3s;
+}
+
+.iconDelete:hover {
+    -fx-background-color: #f87171;
+}
+
+/* Controles de navegación */
+.footer {
+    -fx-background-color: #1f2937;
+    -fx-text-fill: #d1d5db;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+/* Efectos en botones de paginación */
+.button-pagination {
+    -fx-background-color: #374151;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+}
+
+.button-pagination:hover {
+    -fx-background-color: #4b5563;
+}

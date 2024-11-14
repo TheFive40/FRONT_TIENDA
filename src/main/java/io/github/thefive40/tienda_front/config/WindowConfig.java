@@ -103,7 +103,34 @@ public class WindowConfig {
         loader.setControllerFactory ( context::getBean );
         return loader.load ( );
     }
-
+    @Bean
+    @Scope("prototype")
+    public AnchorPane contactParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/navigation/Contact.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane configParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/navigation/Configuration.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
+    public VBox developerParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/navigation/Developers.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane detailsPurchaseParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/popups/DetailsPurchase.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load ( );
+    }
     @Bean
     @Scope("prototype")
     public AnchorPane registerParent () throws IOException {

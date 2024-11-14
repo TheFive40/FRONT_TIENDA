@@ -60,7 +60,7 @@ public class ProductService implements ProductRepository {
 
     @Override
     public List<ProductDTO> findProductsByClientName ( String clientName ) {
-        return sendRequest ( "http://localhost:6060/api/products/findProductsByClientName/"+clientName.replace ( " ", "_" ) );
+        return sendRequest ( "http://localhost:6060/api/products/findProductsByClientName/" + clientName.replace ( " ", "_" ) );
     }
 
     @Override
@@ -80,8 +80,8 @@ public class ProductService implements ProductRepository {
         String body = "";
 
         HttpRequest request = HttpRequest.newBuilder ( )
-                .uri ( URI.create ( "http://localhost:6060/api/products/findByName/"+name+"/"+url+"/"+price ) )
-                .GET (  )
+                .uri ( URI.create ( "http://localhost:6060/api/products/findByName/" + name + "/" + url + "/" + price ) )
+                .GET ( )
                 .header ( "Content-Type", "application/json" )
                 .build ( );
         httpClient.sendAsync ( request, HttpResponse.BodyHandlers.ofString ( ) )
@@ -99,6 +99,11 @@ public class ProductService implements ProductRepository {
                 } )
                 .join ( );
         return products.get ( );
+    }
+
+    @Override
+    public List<ProductDTO> findByName ( String text ) {
+        return sendRequest ( "http://localhost:6060/api/products/findProductName/" + text.replace ( " ","_" ) );
     }
 
 

@@ -131,6 +131,33 @@ public class ShoppingCartService implements ShoppingCartRepository {
         return List.of ( );
     }
 
+    public void remove(ItemCartDTO itemCartDTO){
+        httpClient = HttpClient.newHttpClient ( );
+        String body = "";
+        try {
+            body = mapper.writeValueAsString ( itemCartDTO );
+            System.out.println (body
+            );
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException ( e );
+        }
+        HttpRequest request = HttpRequest.newBuilder ( )
+                .uri ( URI.create ( "http://localhost:6060/api/cart/remove" ) )
+                .POST ( HttpRequest.BodyPublishers.ofString ( body ) )
+                .header ( "Content-Type", "application/json" )
+                .build ( );
+        httpClient.sendAsync ( request, HttpResponse.BodyHandlers.ofString ( ) )
+                .thenApply ( HttpResponse::body )
+                .thenAccept ( bd -> {
+                    logger.info ( "Request proccesing" );
+                } )
+                .exceptionally ( err -> {
+                    logger.error ( "Error processing {}", err.getMessage ( ) );
+                    return null;
+                } )
+                .join ( );
+    }
+
     @Override
     public void updateItemCart ( ItemCartDTO itemCartDTO ) {
         httpClient = HttpClient.newHttpClient ( );

@@ -1,5 +1,4 @@
 package io.github.thefive40.tienda_front.controller.main.menu.product;
-
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
@@ -11,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,12 +27,11 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
 @Component
 @Getter
@@ -62,6 +61,9 @@ public class ProductController implements Initializable {
     @FXML
     private TextField searchTextField;
 
+    @FXML
+    private ComboBox<String> filterButton;
+
     private SignUpController signUp;
 
     private LoginController login;
@@ -77,6 +79,7 @@ public class ProductController implements Initializable {
     private ProductService productService;
 
     private ProductDTO productEdit;
+
 
 
     @Autowired
@@ -101,6 +104,8 @@ public class ProductController implements Initializable {
         if (login.getCurrentUser ( ) != null)
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
+        filterButton.getItems ().addAll ( "Nombre", "Vendedor" );
+        filterButton.getSelectionModel ().select ( 0 );
     }
 
     public void refresh () {
@@ -165,20 +170,35 @@ public class ProductController implements Initializable {
     void handlePressed ( KeyEvent keyEvent ) {
         if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
             List<ProductDTO> productDTOS = null;
-            if (!searchTextField.getText ( ).isEmpty ()) {
-                productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
-                fillTableProducts ( productDTOS );
-            }else{
-                refresh ();
+            String item = filterButton.getSelectionModel ().getSelectedItem ();
+            if (item.equalsIgnoreCase ( "Vendedor" )) {
+                if (!searchTextField.getText ( ).isEmpty ()) {
+                    productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
+                    fillTableProducts ( productDTOS );
+                }else{
+                    refresh ();
+                }
+            }else if(item.equalsIgnoreCase ( "Nombre" )){
+                productDTOS = productService.findByName ( searchTextField.getText () );
+                fillTableProducts ( Objects.requireNonNullElseGet ( productDTOS, List::of ) );
             }
+
         }
     }
 
     @FXML
     void handleSearch () {
+        String item = filterButton.getSelectionModel ().getSelectedItem ();
         if (!searchTextField.getText ( ).isEmpty ()) {
-            List<ProductDTO> productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
-            fillTableProducts ( productDTOS );
+            List<ProductDTO> productos;
+
+            if (item.equalsIgnoreCase ( "Vendedor" )){
+                List<ProductDTO> productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
+                fillTableProducts ( productDTOS );
+            }else if(item.equalsIgnoreCase ( "Nombre" )){
+                productos = productService.findByName ( searchTextField.getText ( ) );
+                fillTableProducts ( Objects.requireNonNullElseGet ( productos, List::of ) );
+            }
         }else{
             refresh ();
         }
@@ -203,6 +223,10 @@ public class ProductController implements Initializable {
             txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
         }
         refresh ( );
+    }
+    @FXML
+    void handleMenuCompra(){
+        stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
     }
 
     @FXML

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="959.0" stylesheets="@../../static/css/popups/DetailsPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.purchase.popups.PurchaseDetailsController">
+   <children>
+      <BorderPane prefHeight="690.0" prefWidth="997.0" style="-fx-background-color: white;">
+         <top>
+            <HBox id="header" alignment="CENTER_RIGHT" spacing="20" styleClass="header">
+               <children>
+                  <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
+                     <children>
+                        <Button styleClass="nav-button" text="Perfil" />
+                        <Button styleClass="nav-button" text="Configuracion" />
+                        <Button styleClass="nav-button" text="Ofertas" />
+                        <Button styleClass="nav-button" text="Contacto" />
+                        <ComboBox fx:id="filterButton" prefHeight="29.0" prefWidth="78.0" />
+                        <TextField fx:id="searchTextField" onKeyPressed="#handlePressed" prefHeight="25.0" prefWidth="174.0" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+
+         <center>
+            <HBox prefHeight="607.0" prefWidth="1225.0" spacing="10">
+               <children>
+                  <VBox prefHeight="607.0" prefWidth="964.0">
+                     <children>
+                        <Label fx:id="labelClientes" prefHeight="36.0" prefWidth="367.0" text="Detalles de los Productos">
+                           <font>
+                              <Font name="Berlin Sans FB" size="32.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <AnchorPane>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <HBox prefHeight="26.0" prefWidth="930.0" spacing="150.0">
+                           <children>
+                              <Button fx:id="detailImageLabel" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Imagen" />
+                              <Button fx:id="detailIdLabel" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Producto" />
+                              <Button fx:id="detailNameLabel" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" text="Cantidad" />
+                              <Button fx:id="detailDescriptionLabel" mnemonicParsing="false" prefHeight="36.0" prefWidth="145.0" text="Precio Unitario" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="50.0" left="50.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <VBox fx:id="vboxContainer" prefHeight="126.0" prefWidth="862.0">
+                           <children>
+                              <!-- Ejemplo de fila con IDs ajustados a "detail(campo)1" -->
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="100.0">
+                                 <children>
+                                    <ImageView fx:id="detailImage1" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                       </HBox.margin>
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product2.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="detailProduct1" alignment="CENTER" prefHeight="80.0" prefWidth="105.0" text="105">
+                                       <HBox.margin>
+                                          <Insets left="38.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailQuantity1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="80.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailPrice1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="80.0" prefWidth="144.0" text="PC">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="100.0">
+                                 <children>
+                                    <ImageView fx:id="detailImage2" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product4.jpg" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="detailProduct2" alignment="CENTER" prefHeight="80.0" prefWidth="105.0" text="105">
+                                       <HBox.margin>
+                                          <Insets left="38.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailQuantity2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="80.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailPrice2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="80.0" prefWidth="144.0" text="PC">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="100.0">
+                                 <children>
+                                    <ImageView fx:id="detailImage3" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product1.jpg" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="detailProduct3" alignment="CENTER" prefHeight="80.0" prefWidth="105.0" text="105">
+                                       <HBox.margin>
+                                          <Insets left="38.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailQuantity3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="80.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailPrice3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="80.0" prefWidth="144.0" text="PC">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="100.0">
+                                 <children>
+                                    <ImageView fx:id="detailImage4" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/product7.jpg" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="detailProduct4" alignment="CENTER" prefHeight="80.0" prefWidth="105.0" text="105">
+                                       <HBox.margin>
+                                          <Insets left="38.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailQuantity4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="80.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailPrice4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="80.0" prefWidth="144.0" text="PC">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="100.0">
+                                 <children>
+                                    <ImageView fx:id="detailImage5" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                       <image>
+                                          <Image url="@../../static/media/images/products/Teclado.jpg" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="detailProduct5" alignment="CENTER" prefHeight="80.0" prefWidth="105.0" text="105">
+                                       <HBox.margin>
+                                          <Insets left="38.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailQuantity5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="80.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="detailPrice5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="80.0" prefWidth="144.0" text="PC">
+                                       <HBox.margin>
+                                          <Insets left="55.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="40.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="-50.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <HBox prefHeight="25.0" prefWidth="254.0" spacing="20.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="54.0" text="Page:" />
+                              <TextField fx:id="txtPage" layoutX="20.0" layoutY="10.0" prefHeight="25.0" prefWidth="46.0" />
+                              <TextField fx:id="txtTotalPage" editable="false" prefHeight="25.0" prefWidth="46.0" />
+                              <Button fx:id="btnBefore1" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBefore" prefHeight="25.0" prefWidth="40.0" text="&lt;" />
+                              <Button fx:id="btnAfter1" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAfter" prefHeight="25.0" prefWidth="40.0" text="&gt;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="350.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center>
+
+         <bottom>
+            <HBox id="footer" prefHeight="37.0" prefWidth="1117.0" styleClass="footer">
+               <children>
+                  <Label text="© 2024 Tienda Online. Todos los derechos reservados." />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

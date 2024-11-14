@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="20" styleClass="avatar-container" stylesheets="@../../../../static/css/navigation/Developer.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <Label styleClass="title-label" text="Nuestro Equipo de Desarrolladores" />
+   
+       <!-- Jean Franco - Líder Programador -->
+       <HBox alignment="CENTER" spacing="20" styleClass="developer-profile">
+      <children>
+              <ImageView fx:id="imgJeanFranco" fitHeight="80" fitWidth="80" styleClass="avatar-image">
+               <HBox.margin>
+                  <Insets left="-70.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../../../static/media/images/util/DALLE2~1.PNG" />
+               </image>
+            </ImageView>
+              <VBox>
+                 <children>
+                     <Text styleClass="avatar-name" text="Jean Franco" />
+                     <Text styleClass="avatar-role" text="Líder Programador" />
+                 </children>
+              </VBox>
+      </children>
+       </HBox>
+   
+       <!-- Andrés Felipe - Programador Front-End -->
+       <HBox alignment="CENTER" spacing="20" styleClass="developer-profile">
+      <children>
+              <ImageView fx:id="imgAndresFelipe" fitHeight="80" fitWidth="80" styleClass="avatar-image">
+               <HBox.margin>
+                  <Insets left="-50.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../../../static/media/images/util/DALLE2~2.PNG" />
+               </image>
+            </ImageView>
+              <VBox>
+                 <children>
+                     <Text styleClass="avatar-name" text="Andrés Felipe" />
+                     <Text styleClass="avatar-role" text="Programador Front-End" />
+                 </children>
+              </VBox>
+      </children>
+       </HBox>
+   
+       <!-- Angel Quintero - Administrador de Base de Datos -->
+       <HBox alignment="CENTER" spacing="20" styleClass="developer-profile">
+      <children>
+              <ImageView fx:id="imgAngelQuintero" fitHeight="80" fitWidth="80" styleClass="avatar-image">
+               <image>
+                  <Image url="@../../../../static/media/images/util/DALLE2~3.PNG" />
+               </image>
+            </ImageView>
+              <VBox>
+                 <children>
+                     <Text styleClass="avatar-name" text="Ángel Quintero" />
+                     <Text styleClass="avatar-role" text="Administrador de Base de Datos" />
+                 </children>
+              </VBox>
+      </children>
+       </HBox>
+   
+       <!-- Ivan David - Documentación -->
+       <HBox alignment="CENTER" spacing="20" styleClass="developer-profile">
+      <children>
+              <ImageView fx:id="imgIvanDavid" fitHeight="80" fitWidth="80" styleClass="avatar-image">
+               <HBox.margin>
+                  <Insets left="-100.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../../../static/media/images/util/DALLE2~4.PNG" />
+               </image>
+            </ImageView>
+              <VBox>
+                 <children>
+                     <Text styleClass="avatar-name" text="Iván David" />
+                     <Text styleClass="avatar-role" text="Documentación" />
+                 </children>
+              </VBox>
+      </children>
+       </HBox>
+   
+       <!-- Eduardo Rafael - Documentación -->
+       <HBox alignment="CENTER" spacing="20" styleClass="developer-profile">
+      <children>
+              <ImageView fx:id="imgEduardoRafael" fitHeight="80" fitWidth="80" styleClass="avatar-image">
+               <HBox.margin>
+                  <Insets left="-70.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../../../../static/media/images/util/DALLE2~4.PNG" />
+               </image>
+            </ImageView>
+              <VBox>
+                 <children>
+                     <Text styleClass="avatar-name" text="Eduardo Rafael" />
+                     <Text styleClass="avatar-role" text="Documentación" />
+                 </children>
+              </VBox>
+      </children>
+       </HBox>
+   </children>
+</VBox>

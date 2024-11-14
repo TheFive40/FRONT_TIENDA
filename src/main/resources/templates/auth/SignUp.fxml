@@ -32,18 +32,9 @@
                        </HBox>
                   <HBox prefHeight="42.0" prefWidth="389.0">
                      <children>
-         
-                                                                 <TextField fx:id="userNameField" prefHeight="42.0" prefWidth="351.0" promptText="User Name" styleClass="input-field">
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin>
+                             <TextField fx:id="emailField" prefHeight="42.0" prefWidth="536.0" promptText="Email Address" styleClass="input-field">
                            <HBox.margin>
                               <Insets top="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                             <TextField fx:id="emailField" prefHeight="42.0" prefWidth="304.0" promptText="Email Address" styleClass="input-field">
-                           <HBox.margin>
-                              <Insets left="10.0" top="5.0" />
                            </HBox.margin>
                         </TextField>
                      </children>

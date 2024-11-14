@@ -16,9 +16,9 @@
                         <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
                             <children>
                                 <Button styleClass="nav-button" text="Perfil" />
-                                <Button styleClass="nav-button" text="Configuracion" />
-                                <Button styleClass="nav-button" text="Ofertas" />
-                                <Button styleClass="nav-button" text="Contacto" />
+                                <Button onAction="#handleConfig" styleClass="nav-button" text="Configuracion" />
+                                <Button onAction="#handleDevelopers" styleClass="nav-button" text="Programadores" />
+                                <Button onAction="#handleContact" styleClass="nav-button" text="Contacto" />
                                 <ComboBox fx:id="filterButton" prefHeight="29.0" prefWidth="78.0" />
                                 <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="174.0" />
                                 <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
@@ -80,7 +80,7 @@
                                             </children>
                                         </VBox>
 
-                                        <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
+                                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
                                             <graphic>
                                                 <ImageView fitHeight="36.0" fitWidth="45.0">
                                                     <image>

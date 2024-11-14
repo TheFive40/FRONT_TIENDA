@@ -1,5 +1,6 @@
 package io.github.thefive40.tienda_front.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ShoppingCartDTO {
     private Long idCart;
     private ClientDTO client;

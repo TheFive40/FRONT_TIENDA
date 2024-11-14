@@ -92,9 +92,9 @@ public class PuchaseFormController implements Initializable {
             detailOrderDTO.setAmount ( v.getQuantity () );
             detailOrderDTO.setUnitPrice ( v.getProduct ().getPrice () );
             orderDTO.getDetailOrder ().add ( detailOrderDTO );
-            totalAmount.set ( (detailOrderDTO.getUnitPrice () * detailOrderDTO.getAmount ()) + totalAmount.get ( ) );
+            //totalAmount.set ( (detailOrderDTO.getUnitPrice () * detailOrderDTO.getAmount ()) + totalAmount.get ( ) );
         } );
-        orderDTO.setTotal ( totalAmount.get () );
+        orderDTO.setTotal ( 0.0 );
         client.getOrders ().add ( orderDTO );
         userService.update ( client );
     }

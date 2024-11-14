@@ -31,9 +31,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -199,7 +201,7 @@ public class HomeController implements Initializable {
     private Label NomProd4;
 
     @FXML
-    private ComboBox<?> filterButton;
+    private ComboBox<String> filterButton;
 
     @FXML
     private Accordion cartAccordion;
@@ -256,11 +258,28 @@ public class HomeController implements Initializable {
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
             currentUser = login.getCurrentUser ( );
         }
+        try {
+            ShoppingCartDTO cart = cartService.findByClient ( currentUser );
+            List<String> items = new ArrayList<> ( );
+            AtomicInteger integer = new AtomicInteger ( 0 );
+
+            if (cart != null) {
+                cart.getItemsCart ( ).forEach ( e -> {
+                    itemCartDTOHashMap.put ( integer.get ( ), e );
+                    items.add ( e.getProduct ( ).getName ( ) + " $" + e.getProduct ( ).getPrice ( ) );
+                    integer.set ( integer.get ( ) + 1 );
+                } );
+            }
+            cartListView.getItems ( ).addAll ( items );
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException ( e );
+        }
         imgProfile.setClip ( clip );
         titledCarrito.setExpanded ( true );
         cartAccordion.setExpandedPane ( titledCarrito );
         products = productService.getProducts ( );
         utility.fillProducts ( containerProducts, products );
+
     }
 
     public void handleCart ( ActionEvent event ) throws JsonProcessingException {
@@ -276,11 +295,12 @@ public class HomeController implements Initializable {
         itemCartDTOHashMap.put ( cartListView.getItems ( ).size ( ) - 1, item );
         cart.getItemsCart ( ).add ( item );
         cartService.save ( cart );
+
     }
 
     @FXML
-    void handlePurchase(){
-        stage.setScene ( new Scene ( context.getBean ( "purchaseParent" , AnchorPane.class) ) );
+    void handlePurchase () {
+        stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
     }
 
     @FXML
@@ -288,6 +308,11 @@ public class HomeController implements Initializable {
         int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
         var itemCartDTO = itemCartDTOHashMap.get ( index );
         quantityTextField.setText ( itemCartDTO.getQuantity ( ) + "" );
+    }
+
+    @FXML
+    void handleLogout () {
+        stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
     }
 
     public void handleMenuClient ( ActionEvent event ) {
@@ -312,13 +337,41 @@ public class HomeController implements Initializable {
             cartService.updateItemCart ( itemEntity );
         }
     }
+
     @FXML
-    void handlePay(){
-        Stage stage = new Stage (  );
-        stage.setScene ( new Scene ( context.getBean ( "productPurchaseParent" ,BorderPane.class)  ) );
+    void handlePay () {
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "productPurchaseParent", BorderPane.class ) ) );
         stage.setTitle ( "Compra de Productos" );
-        stage.centerOnScreen ();
-        stage.show ();
+        stage.centerOnScreen ( );
+        stage.show ( );
+    }
+
+    @FXML
+    void handleContact () {
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "contactParent", AnchorPane.class ) ) );
+        stage.setTitle ( "Compra de Productos" );
+        stage.centerOnScreen ( );
+        stage.show ( );
+    }
+
+    @FXML
+    void handleDevelopers () {
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "developerParent", VBox.class ) ) );
+        stage.setTitle ( "Compra de Productos" );
+        stage.centerOnScreen ( );
+        stage.show ( );
+    }
+
+    @FXML
+    void handleConfig () {
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "configParent", AnchorPane.class ) ) );
+        stage.setTitle ( "Compra de Productos" );
+        stage.centerOnScreen ( );
+        stage.show ( );
     }
 
     @FXML
@@ -340,6 +393,10 @@ public class HomeController implements Initializable {
     void handleRemoveCart () {
         getCartListView ( ).getItems ( ).remove (
                 getCartListView ( ).getSelectionModel ( ).getSelectedItem ( ) );
+        int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
+        var item = itemCartDTOHashMap.get ( index );
+        cartService.remove ( item );
+        itemCartDTOHashMap.remove ( index );
         quantityTextField.setText ( "" );
     }
 

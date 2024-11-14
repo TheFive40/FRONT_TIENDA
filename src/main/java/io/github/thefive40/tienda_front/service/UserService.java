@@ -37,6 +37,9 @@ public class UserService implements UserRepository {
     public void update ( ClientDTO clientDTO ) throws JsonProcessingException {
         postRequest ( "http://localhost:6060/api/users/update", clientDTO );
     }
+    public List<ClientDTO> findByLastName(String lastname){
+        return getClients ( "http://localhost:6060/api/users/findByLastName/" + lastname.replace ( " ", "_" ) );
+    }
 
     @Override
     public String getPasswordByEmail ( String email ) {
@@ -116,11 +119,11 @@ public class UserService implements UserRepository {
     }
 
     @Override
-    public List<ClientDTO> findClientsByName ( String email ) {
+    public List<ClientDTO> findClientsByName ( String name ) {
         AtomicReference<List<ClientDTO>> clientDTO = new AtomicReference<> ( );
         HttpClient httpClient = HttpClient.newHttpClient ( );
         HttpRequest request = HttpRequest.newBuilder ( )
-                .uri ( URI.create ( "" ) )
+                .uri ( URI.create ( "http://localhost:6060/api/users/findByName/" + name.replace ( " ", "_" ) ) )
                 .GET ( )
                 .header ( "Content-Type", "application/json" )
                 .build ( );
