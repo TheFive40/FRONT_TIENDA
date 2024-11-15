@@ -136,8 +136,7 @@ public class ShoppingCartService implements ShoppingCartRepository {
         String body = "";
         try {
             body = mapper.writeValueAsString ( itemCartDTO );
-            System.out.println (body
-            );
+            System.out.println (body );
         } catch (JsonProcessingException e) {
             throw new RuntimeException ( e );
         }

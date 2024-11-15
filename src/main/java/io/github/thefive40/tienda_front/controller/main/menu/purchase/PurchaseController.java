@@ -1,5 +1,6 @@
 package io.github.thefive40.tienda_front.controller.main.menu.purchase;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
 import io.github.thefive40.tienda_front.model.dto.OrderDTO;
@@ -10,10 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -50,15 +48,19 @@ public class PurchaseController implements Initializable {
     private TextField txtPage;
 
     private HashMap<OrderDTO, ClientDTO> clientOrders = new HashMap<> ( );
+
     @Autowired
     private OrderService orderService;
+
     private List<OrderDTO> orderDTOS;
 
     private List<DetailOrderDTO> clientDetailOrders;
 
     private OrderDTO currentOrder;
+
     @Autowired
     private ApplicationContext context;
+
     private ClientDTO clientOrder;
     @Qualifier("stage")
     @Autowired
@@ -87,6 +89,7 @@ public class PurchaseController implements Initializable {
     }
 
     void fillTablePurchase ( List<OrderDTO> orders ) {
+        orders = orders.stream ( ).filter ( OrderDTO::isStatus ).toList ();
         txtTotalPage.setText ( utilityService.totalPages ( orders ) + "" );
         List<OrderDTO> ordersDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), orders );
         AtomicInteger contador = new AtomicInteger ( 0 );
@@ -171,8 +174,22 @@ public class PurchaseController implements Initializable {
     }
 
     @FXML
-    void handleButtonRemove ( ActionEvent event ) {
+    void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
+        Button button = (Button) event.getSource ( );
+        var order = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        Alert alert = new Alert ( Alert.AlertType.WARNING );
+        alert.setTitle ( "Confirmación" );
+        alert.setHeaderText ( "¿Está seguro de eliminar el pedido?" );
+        alert.setContentText ( "Si elimina el pedido, no podrá recuperar los datos." );
+        Optional<ButtonType> result = alert.showAndWait ( );
+        if (result.get ( ) == ButtonType.OK) {
+            order.setStatus ( false );
+            var client = clientOrders.get ( order );
 
+            orderDTOS.remove ( order );
+            userService.update ( client );
+            fillTablePurchase ( orderDTOS );
+        }
     }
 
     public void handlePressed ( KeyEvent keyEvent ) {

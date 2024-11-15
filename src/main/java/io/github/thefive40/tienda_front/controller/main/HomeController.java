@@ -318,12 +318,14 @@ public class HomeController implements Initializable {
     public void handleMenuClient ( ActionEvent event ) {
         stage.setScene ( new Scene ( context.getBean ( "clientParent", AnchorPane.class ) ) );
     }
+
     @FXML
-    void handleEstadistica(){
-        Stage stage = new Stage (  );
+    void handleEstadistica () {
+        Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "statisticsParent", ScrollPane.class ) ) );
-        stage.show ();
+        stage.show ( );
     }
+
     @FXML
     void handleAddCart () throws JsonProcessingException {
         if (utility.isNumber ( quantityTextField.getText ( ) )) {
@@ -396,12 +398,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void handleRemoveCart () {
-        getCartListView ( ).getItems ( ).remove (
-                getCartListView ( ).getSelectionModel ( ).getSelectedItem ( ) );
         int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
+        getCartListView ( ).getItems ( ).remove ( index );
         var item = itemCartDTOHashMap.get ( index );
-        cartService.remove ( item );
         itemCartDTOHashMap.remove ( index );
+        cartService.remove ( item );
         quantityTextField.setText ( "" );
     }
 

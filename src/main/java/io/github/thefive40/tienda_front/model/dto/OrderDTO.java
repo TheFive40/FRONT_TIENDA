@@ -24,6 +24,7 @@ public class OrderDTO {
     private String discountCode;
     private ClientDTO idClient;
     private List<DetailOrderDTO> detailOrder = new ArrayList<> ( );
+    private boolean status = true;
     private List<InvoiceDTO> invoices = new ArrayList<> (  );
 
     @Override

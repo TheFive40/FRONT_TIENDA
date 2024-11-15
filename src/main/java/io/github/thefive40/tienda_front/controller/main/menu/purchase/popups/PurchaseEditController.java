@@ -1,6 +1,7 @@
 package io.github.thefive40.tienda_front.controller.main.menu.purchase.popups;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.main.menu.purchase.PurchaseController;
+import io.github.thefive40.tienda_front.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +12,6 @@ import javafx.scene.layout.GridPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,10 +41,20 @@ public class PurchaseEditController  implements Initializable {
     private ApplicationContext context;
 
     private PurchaseController purchaseController;
+    @Autowired
+    private UserService userService;
 
     @FXML
-    void handleUpdate( ActionEvent event) {
-
+    void handleUpdate( ActionEvent event) throws JsonProcessingException {
+        var client = purchaseController.getClientOrder ();
+        var currentOrder = purchaseController.getCurrentOrder ();
+        client.setEmail ( correoField.getText ( ) );
+        currentOrder.setZipCode ( codigoField.getText ( ) );
+        currentOrder.setAddress ( direccionField.getText (  ));
+        currentOrder.setCity ( totalField.getText (  ) );
+        client.getOrders ().remove ( currentOrder );
+        client.getOrders ().add ( currentOrder );
+        userService.update ( client );
     }
 
     @Override

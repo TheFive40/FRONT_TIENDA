@@ -6,11 +6,8 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 
 @Component
