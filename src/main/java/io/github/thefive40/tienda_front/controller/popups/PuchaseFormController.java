@@ -64,6 +64,7 @@ public class PuchaseFormController implements Initializable {
     private TextField expirationDate;
 
     private ClientDTO client;
+    private  OrderDTO orderDTO = new OrderDTO (  );
 
     public PuchaseFormController ( HomeController homeController, UserService userService, ShoppingCartService shoppingCartService ) {
         this.homeController = homeController;
@@ -73,24 +74,12 @@ public class PuchaseFormController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        AtomicInteger totalAmount = new AtomicInteger ( );
         client = homeController.getCurrentUser ( );
         firstName.setText ( client.getName ( ) );
         lastName.setText ( client.getLastname ( ) );
         email.setText ( client.getEmail ( ) );
         phone.setText ( client.getPhone ( ) );
-    }
-
-    @FXML
-    void handlePurchase () throws JsonProcessingException {
-        // TODO: Make purchase request and handle success or failure
-        OrderDTO orderDTO = new OrderDTO ( );
-        orderDTO.setAddress ( shippingAddress.getText ( ) );
-        orderDTO.setCity ( city.getText ( ) );
-        orderDTO.setCountry ( country.getText ( ) );
-        orderDTO.setZipCode ( postalCode.getText ( ) );
-        orderDTO.setPaymentMethod ( "Mastercard" );
-        orderDTO.setDiscountCode ( "0FGLS" );
-        AtomicInteger totalAmount = new AtomicInteger ( );
         homeController.getItemCartDTOHashMap ( ).forEach ( ( k, v ) -> {
             DetailOrderDTO detailOrderDTO = new DetailOrderDTO ( );
             detailOrderDTO.setProduct ( v.getProduct ( ) );
@@ -99,7 +88,19 @@ public class PuchaseFormController implements Initializable {
             orderDTO.getDetailOrder ( ).add ( detailOrderDTO );
             totalAmount.set ( (int) ((detailOrderDTO.getUnitPrice ( ) * detailOrderDTO.getAmount ( )) + totalAmount.get ( )) );
         } );
-        orderDTO.setTotal ( totalAmount.get ( ) );
+        orderTotal.setText ( totalAmount.get ( ) + "" );
+    }
+
+    @FXML
+    void handlePurchase () throws JsonProcessingException {
+        // TODO: Make purchase request and handle success or failure
+        orderDTO.setAddress ( shippingAddress.getText ( ) );
+        orderDTO.setCity ( city.getText ( ) );
+        orderDTO.setCountry ( country.getText ( ) );
+        orderDTO.setZipCode ( postalCode.getText ( ) );
+        orderDTO.setPaymentMethod ( "Mastercard" );
+        orderDTO.setDiscountCode ( "0FGLS" );
+        orderDTO.setTotal ( Integer.parseInt (orderTotal.getText ()) );
         client.getOrders ( ).add ( orderDTO );
         var cart = shoppingCartService.findByClient ( client );
         client.setShoppingCart ( List.of ( cart ) );

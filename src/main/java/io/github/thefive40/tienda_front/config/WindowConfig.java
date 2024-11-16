@@ -76,6 +76,14 @@ public class WindowConfig {
 
     @Bean
     @Scope("prototype")
+    public AnchorPane findProductParent() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/FindProduct.fxml" ) );
+        fxmlLoader.setControllerFactory ( context::getBean );
+        return fxmlLoader.load ( );
+    }
+
+    @Bean
+    @Scope("prototype")
     public GridPane productEditParent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/product/ProductEdit.fxml" ) );
         fxmlLoader.setControllerFactory ( context::getBean );

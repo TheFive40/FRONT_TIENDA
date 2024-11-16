@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+@Component("HomeController")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @Getter
 public class HomeController implements Initializable {
@@ -302,7 +302,18 @@ public class HomeController implements Initializable {
     void handlePurchase () {
         stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
     }
+    @FXML
+    void handleInvoice(){
 
+    }
+    @FXML
+    void handleBtnSearch(){
+        stage.setScene ( new Scene ( context.getBean ( "findProductParent", AnchorPane.class ) ) );
+    }
+    @FXML
+    void handleSearch(){
+        stage.setScene ( new Scene ( context.getBean ( "findProductParent", AnchorPane.class ) ) );
+    }
     @FXML
     void handleItemClicked () {
         int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
