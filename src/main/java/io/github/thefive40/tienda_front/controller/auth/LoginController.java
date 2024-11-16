@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
         this.authService = authService;
         this.userService = userService;
     }
-
+    @FXML
     public void handleLogin () {
         if (authService.login ( emailField.getText ( ), passwordField.getText ( ) )) {
             currentUser = userService.getUserByEmail ( emailField.getText ( ) );

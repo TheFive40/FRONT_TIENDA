@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1260.0" stylesheets="@../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.FindProductController">
+    <children>
+        <BorderPane prefHeight="690.0" prefWidth="1268.0" style="-fx-background-color: white;">
+            <top>
+                <HBox id="header" alignment="CENTER_RIGHT" spacing="20" styleClass="header">
+                    <children>
+                        <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
+                            <children>
+                                <Button onAction="#handleEstadistica" styleClass="nav-button" text="Estadisticas" />
+                                <Button onAction="#handleConfig" styleClass="nav-button" text="Configuracion" />
+                                <Button onAction="#handleDevelopers" styleClass="nav-button" text="Programadores" />
+                                <Button onAction="#handleContact" styleClass="nav-button" text="Contacto" />
+                                <ComboBox fx:id="filterButton" prefHeight="29.0" prefWidth="78.0" />
+                                <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="174.0" />
+                                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="79.0" text="Buscar" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </top>
+
+            <center>
+                <HBox prefHeight="605.0" prefWidth="1117.0" spacing="10">
+                    <children>
+                        <VBox id="aside" prefHeight="607.0" prefWidth="293.0" spacing="10" styleClass="aside">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="283.0" styleClass="aside-title" text="Menu principal" />
+                                <Button onAction="#handleInicio" prefHeight="42.0" prefWidth="149.0" styleClass="aside-button" text="Inicio">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../static/media/images/icon/inicio-removebg-preview.png" />
+                                 </image></ImageView>
+                           </graphic></Button>
+                                <Button onAction="#handleMenuClient" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../static/media/images/icon/clientes-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                                <Button onAction="#handleMenuProduct" prefHeight="42.0" prefWidth="174.0" styleClass="aside-button" text="Productos">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../static/media/images/icon/producto-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                                <Button onAction="#handlePurchase" prefHeight="32.0" prefWidth="165.0" styleClass="aside-button" text="Compras">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../static/media/images/icon/compras-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+      
+                                <HBox fx:id="containerLogout" alignment="CENTER" prefHeight="64.0" prefWidth="241.0" spacing="10">
+                                    <children>
+                                        <ImageView fx:id="imgProfile" fitHeight="41.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-image">
+                                 <image>
+                                    <Image url="@../../static/media/images/util/profile.jpeg" />
+                                 </image></ImageView>
+
+                                        <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="128.0">
+                                            <children>
+                                                <Label fx:id="userName" styleClass="user-name" text="Jean Franco" />
+                                                <Label fx:id="userRole" styleClass="user-role" text="ADMINISTRADOR" />
+                                            </children>
+                                        </VBox>
+
+                                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
+                                            <graphic>
+                                                <ImageView fitHeight="36.0" fitWidth="45.0">
+                                                    <image>
+                                                        <Image url="@../../static/media/images/util/logout.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                        </Button>
+                                    </children>
+                           <VBox.margin>
+                              <Insets top="235.0" />
+                           </VBox.margin>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+                  <AnchorPane layoutX="921.0" layoutY="10.0" prefHeight="456.0" prefWidth="29.0">
+                     <children>
+                        <Button fx:id="buttonBefore" layoutY="36.0" mnemonicParsing="false" onAction="#handleBefore" prefHeight="495.0" prefWidth="44.0" styleClass="buttonNext" text="&lt;">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
+
+                        <VBox id="product-area" fx:id="containerProducts" prefHeight="584.0" prefWidth="594.0" spacing="10">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="644.0" styleClass="section-title" text="Productos similares" />
+                                <HBox alignment="center" spacing="10">
+                                    <children>
+                                        <VBox styleClass="product">
+                                            <children>
+                                                <ImageView fx:id="imgProdDest" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest" />
+                                                <Label fx:id="precioProdDest" styleClass="price" text="0" />
+                                                <Button fx:id="btnProdDest" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fx:id="imgProdDest2" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest2" />
+                                                <Label fx:id="precioProdDest2" styleClass="price" text="0" />
+                                                <Button fx:id="btnProdDest2" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fx:id="imgProdDest3" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest3" />
+                                                <Label fx:id="precioProdDest3" styleClass="price" text="0" />
+                                                <Button fx:id="btnProdDest3" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
+                                            <children>
+                                                <ImageView fx:id="imgProdDest4" fitHeight="150" fitWidth="150" />
+                                                <Label fx:id="NomProdDest4" />
+                                                <Label fx:id="precioProdDest4" styleClass="price" text="0" />
+                                                <Button fx:id="btnProdDest4" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <!-- Repite este bloque para más productos -->
+                                </HBox>
+                        <HBox alignment="center" prefHeight="227.0" prefWidth="638.0" spacing="10">
+                           <children>
+                              <VBox styleClass="product">
+                                 <children>
+                                    <ImageView fx:id="imgProd" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd" />
+                                    <Label fx:id="precioProd" styleClass="price" text="0" />
+                                    <Button fx:id="btnProd" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="227.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fx:id="imgProd2" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd2" />
+                                    <Label fx:id="precioProd2" styleClass="price" text="0" />
+                                    <Button fx:id="btnProd2" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="308.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fx:id="imgProd3" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd3" />
+                                    <Label fx:id="precioProd3" styleClass="price" text="0" />
+                                    <Button fx:id="btnProd3" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="389.0" layoutY="10.0" styleClass="product">
+                                 <children>
+                                    <ImageView fx:id="imgProd4" fitHeight="150" fitWidth="150" />
+                                    <Label fx:id="NomProd4" />
+                                    <Label fx:id="precioProd4" styleClass="price" text="0" />
+                                    <Button fx:id="btnProd4" onAction="#handleCart" styleClass="product-button" text="Añadir al Carrito" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                            </children>
+                        </VBox>
+                        <AnchorPane prefHeight="456.0" prefWidth="29.0">
+                            <children>
+                                <Button fx:id="buttonAfter" layoutY="36.0" mnemonicParsing="false" onAction="#handleAfter" prefHeight="495.0" prefWidth="44.0" styleClass="buttonNext" text="&gt;">
+                                    <font>
+                                        <Font name="Arial" size="19.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                        </AnchorPane>
+                        <Accordion id="accordionPane" fx:id="cartAccordion" prefHeight="607.0" prefWidth="245.0">
+                            <panes>
+                                <TitledPane fx:id="titledCarrito" animated="false" prefHeight="629.0" prefWidth="230.0" text="Carrito">
+                                    <content>
+                                        <BorderPane fx:id="cartBorderPane" prefHeight="576.0" prefWidth="223.0">
+                                            <center>
+                                                <!-- Listado de productos en el carrito -->
+                                                <ListView fx:id="cartListView" onMouseClicked="#handleItemClicked" prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
+                                            </center>
+                                            <bottom>
+                                                <VBox fx:id="cartVBox" alignment="CENTER" spacing="5">
+                                                    <children>
+                                                        <HBox fx:id="cartButtonsHBox" alignment="CENTER" spacing="5">
+                                                            <children>
+                                                                <!-- Botón de agregar producto -->
+                                                                <Button fx:id="addButton" onAction="#handleAddCart" prefHeight="27.0" prefWidth="87.0" text="Agregar">
+                                                                    <HBox.margin>
+                                                                        <Insets top="5.0" />
+                                                                    </HBox.margin>
+                                                                </Button>
+                                                                <!-- Botón de eliminar producto -->
+                                                                <Button fx:id="removeButton" onAction="#handleRemoveCart" prefHeight="27.0" prefWidth="79.0" text="Eliminar">
+                                                                    <HBox.margin>
+                                                                        <Insets top="5.0" />
+                                                                    </HBox.margin>
+                                                                </Button>
+                                                            </children>
+                                                        </HBox>
+                                                        <!-- TextField para la cantidad del producto -->
+                                                        <HBox fx:id="quantityHBox" alignment="CENTER" spacing="5">
+                                                            <children>
+                                                                <Label fx:id="quantityLabel" text="Cantidad:" />
+                                                                <TextField fx:id="quantityTextField" prefWidth="50" text="1" />
+                                                            </children>
+                                                        </HBox>
+                                                        <!-- Botón para pagar -->
+                                                        <Button fx:id="payButton" onAction="#handlePay" prefWidth="93" text="Pagar">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </VBox.margin></Button>
+                                                    </children>
+                                                </VBox>
+                                            </bottom>
+                                        </BorderPane>
+                                    </content>
+                                </TitledPane>
+                            </panes>
+                        </Accordion>
+
+                    </children>
+                </HBox>
+            </center>
+
+            <bottom>
+                <HBox id="footer" prefHeight="37.0" prefWidth="1117.0" styleClass="footer">
+                    <children>
+                        <Label text="© 2024 Tienda Online. Todos los derechos reservados." />
+                    </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+
+
+</AnchorPane>

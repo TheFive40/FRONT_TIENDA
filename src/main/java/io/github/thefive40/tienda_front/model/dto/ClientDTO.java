@@ -68,6 +68,9 @@ public class ClientDTO implements Serializable, Cloneable {
 
     private List<ShoppingCartDTO> shoppingCart = new ArrayList<> ();
 
+    private List<InvoiceDTO> invoices = new ArrayList<> (  );
+
+
     /**
      * Constructor for creating a UserDTO with email and password only.
      *

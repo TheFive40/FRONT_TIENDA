@@ -2,9 +2,7 @@ package io.github.thefive40.tienda_front.controller.popups;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.main.HomeController;
-import io.github.thefive40.tienda_front.model.dto.ClientDTO;
-import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
-import io.github.thefive40.tienda_front.model.dto.OrderDTO;
+import io.github.thefive40.tienda_front.model.dto.*;
 import io.github.thefive40.tienda_front.service.ShoppingCartService;
 import io.github.thefive40.tienda_front.service.UserService;
 import javafx.fxml.FXML;
@@ -14,6 +12,8 @@ import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -64,7 +64,10 @@ public class PuchaseFormController implements Initializable {
     private TextField expirationDate;
 
     private ClientDTO client;
+
     private  OrderDTO orderDTO = new OrderDTO (  );
+
+    private InvoiceDTO invoiceDTO = new InvoiceDTO (  );
 
     public PuchaseFormController ( HomeController homeController, UserService userService, ShoppingCartService shoppingCartService ) {
         this.homeController = homeController;
@@ -81,13 +84,24 @@ public class PuchaseFormController implements Initializable {
         email.setText ( client.getEmail ( ) );
         phone.setText ( client.getPhone ( ) );
         homeController.getItemCartDTOHashMap ( ).forEach ( ( k, v ) -> {
+            DetailInvoiceDTO detailInvoiceDTO = new DetailInvoiceDTO ();
             DetailOrderDTO detailOrderDTO = new DetailOrderDTO ( );
             detailOrderDTO.setProduct ( v.getProduct ( ) );
             detailOrderDTO.setAmount ( v.getQuantity ( ) );
             detailOrderDTO.setUnitPrice ( v.getProduct ( ).getPrice ( ) );
             orderDTO.getDetailOrder ( ).add ( detailOrderDTO );
             totalAmount.set ( (int) ((detailOrderDTO.getUnitPrice ( ) * detailOrderDTO.getAmount ( )) + totalAmount.get ( )) );
+            detailInvoiceDTO.setQuantity ( v.getQuantity () );
+            detailInvoiceDTO.setProduct ( v.getProduct () );
+            detailInvoiceDTO.setUnitPrice ( v.getProduct ().getPrice () );
+            invoiceDTO.getDetailsInvoice ().add ( detailInvoiceDTO );
         } );
+        invoiceDTO.setTax ( 0.19 );
+        invoiceDTO.setSubTotal ( totalAmount.get () );
+        invoiceDTO.setStartDate ( new Date (  ) );
+        invoiceDTO.setDiscount ( 0.0 );
+        var total = totalAmount.get () * invoiceDTO.getTax () + totalAmount.get ();
+        invoiceDTO.setTotal ( total );
         orderTotal.setText ( totalAmount.get ( ) + "" );
     }
 
@@ -104,6 +118,7 @@ public class PuchaseFormController implements Initializable {
         client.getOrders ( ).add ( orderDTO );
         var cart = shoppingCartService.findByClient ( client );
         client.setShoppingCart ( List.of ( cart ) );
+        client.getInvoices ().add ( invoiceDTO );
         userService.update ( client );
     }
 }

@@ -284,7 +284,9 @@ public class HomeController implements Initializable {
 
     public void handleCart ( ActionEvent event ) throws JsonProcessingException {
         utility.addProductToCart ( (Button) event.getSource ( ) );
+        System.out.println (currentUser );
         ShoppingCartDTO cart = cartService.findByClient ( currentUser );
+        System.out.println (cart );
         if (cart == null)
             cart = new ShoppingCartDTO ( );
         cart.setClient ( currentUser );

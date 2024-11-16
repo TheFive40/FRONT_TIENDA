@@ -37,6 +37,8 @@ public class ProductDTO {
 
     private List<ItemCartDTO> itemsCart = new ArrayList<> ( );
 
+    private List<DetailInvoiceDTO> invoices = new ArrayList<> (  );
+
     public ProductDTO(){
         dateRegistration = new Date (  );
         status = true;

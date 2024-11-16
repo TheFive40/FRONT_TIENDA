@@ -65,7 +65,6 @@ public class ShoppingCartService implements ShoppingCartRepository {
     @Override
     public ShoppingCartDTO findByClient ( ClientDTO clientDTO ) throws JsonProcessingException {
         AtomicReference<ShoppingCartDTO> shoppingCart = new AtomicReference<> ( );
-        System.out.println ( clientDTO.getEmail ( ) );
         httpClient = HttpClient.newHttpClient ( );
         String body = "";
         body = mapper.writeValueAsString ( clientDTO );
