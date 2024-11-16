@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
 import io.github.thefive40.tienda_front.model.dto.OrderDTO;
+import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import io.github.thefive40.tienda_front.service.OrderService;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -196,9 +198,22 @@ public class PurchaseController implements Initializable {
 
     }
     public void handlePressed ( KeyEvent keyEvent ) {
+        if (keyEvent.getCode ().equals ( KeyCode.ENTER )){
+            if (!searchTextField.getText ( ).isEmpty ( )) {
+                List<OrderDTO> clientDTOS;
+                String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
+                if (item.equalsIgnoreCase ( "Ciudad" )) {
+                    clientDTOS = orderService.findByCity ( searchTextField.getText ( ) );
+                    fillTablePurchase ( Objects.requireNonNullElseGet ( clientDTOS, List::of ) );
+                }
+
+            } else {
+                fillTablePurchase ( orderDTOS );
+            }
+        }
     }
 
-    public void handleSearch ( ActionEvent event ) {
+    public void handleSearch (   ) {
         if (!searchTextField.getText ( ).isEmpty ( )) {
             List<OrderDTO> clientDTOS;
             String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
@@ -216,8 +231,28 @@ public class PurchaseController implements Initializable {
     }
 
     public void handleAfter ( ActionEvent event ) {
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && utilityService.totalPages ( orderDTOS ) >
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
+        }
+        refresh ();
     }
-
+    public void refresh () {
+        clientOrders = new HashMap<> (  );
+        orderDTOS = new ArrayList<> (  );
+        userService.findAll ().forEach ( e->{
+            orderDTOS.addAll ( e.getOrders ( ) );
+            e.getOrders ( ).forEach ( v -> {
+                clientOrders.put ( v, e );
+            } );
+        } );
+        fillTablePurchase ( orderDTOS );
+    }
     public void handleBefore ( ActionEvent event ) {
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
+        }
+        refresh ();
     }
 }
