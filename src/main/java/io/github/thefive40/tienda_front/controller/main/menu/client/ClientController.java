@@ -130,7 +130,10 @@ public class ClientController implements Initializable {
         stage.setTitle ( "Actualizar" );
         stage.show ( );
     }
+    @FXML
+    void handleInvoice(){
 
+    }
     @FXML
     void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
         Button button = (Button) event.getSource ( );

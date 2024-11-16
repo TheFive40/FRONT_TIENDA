@@ -203,7 +203,10 @@ public class ProductController implements Initializable {
             refresh ();
         }
     }
+    @FXML
+    void handleInvoice(){
 
+    }
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
                              Label rolLabel, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
         idLabel.setText ( "" );

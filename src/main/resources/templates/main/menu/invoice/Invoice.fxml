@@ -7,11 +7,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1260.0" stylesheets="@../../../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.client.ClientController">
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="1260.0" stylesheets="@../../../../static/css/base/Home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.invoice.InvoiceController">
     <children>
         <BorderPane prefHeight="694.0" prefWidth="1260.0" style="-fx-background-color: white;">
             <top>
-                <HBox id="header" alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="1243.0" spacing="20" styleClass="header">
+                <HBox id="header" alignment="CENTER_RIGHT" spacing="20" styleClass="header">
                     <children>
                         <HBox alignment="center" prefHeight="46.0" prefWidth="909.0" spacing="10">
                             <children>
@@ -41,7 +41,7 @@
                                     <Image url="@../../../../static/media/images/icon/inicio-removebg-preview.png" />
                                  </image></ImageView>
                            </graphic></Button>
-                                <Button prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
+                                <Button onAction="#handleMenuClientes" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -49,7 +49,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                                <Button onAction="#handleMenuProductos" prefHeight="42.0" prefWidth="174.0" styleClass="aside-button" text="Productos">
+                                <Button fx:id="btnProductos" prefHeight="42.0" prefWidth="174.0" styleClass="aside-button" text="Productos">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -111,12 +111,12 @@
                         </VBox>
                   <VBox prefHeight="607.0" prefWidth="964.0">
                      <children>
-                        <Label fx:id="labelClientes" prefHeight="32.0" prefWidth="242.0" text="Clientes">
+                        <Label fx:id="labelClientes" prefHeight="32.0" prefWidth="242.0" text="Facturacion">
                            <font>
                               <Font name="Berlin Sans FB" size="32.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="2.0" top="50.0" />
+                              <Insets bottom="2.0" left="10.0" top="50.0" />
                            </VBox.margin>
                         </Label>
                         <AnchorPane>
@@ -129,11 +129,11 @@
                               <HBox prefHeight="26.0" prefWidth="930.0" spacing="30.0">
                                  <children>
                                     <Button fx:id="columnImagen" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Imagen" />
-                                    <Button fx:id="columnId" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Id" />
-                                    <Button fx:id="columnName" layoutX="120.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Nombre" />
-                                    <Button fx:id="columnEmail" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="145.0" text="Correo" />
-                                    <Button fx:id="columnTel" layoutX="560.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Telefono" />
-                                    <Button fx:id="columnRol" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" text="Rol" />
+                                    <Button fx:id="columnId" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Cliente" />
+                                    <Button fx:id="columnName" layoutX="120.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" text="Subtotal" />
+                                    <Button fx:id="columnEmail" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="145.0" text="Impuestos" />
+                                    <Button fx:id="columnTel" layoutX="560.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Total" />
+                                    <Button fx:id="columnRol" layoutX="595.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="101.0" text="Ver mas" />
                                     <Button fx:id="columnOpciones" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="95.0" text="Opciones" />
                                  </children>
                                  <padding>
@@ -144,39 +144,42 @@
                                  <children>
                                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg1" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="clientImg1" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
+                                             <image>
+                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                             </image>
                                           </ImageView>
-                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
+                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Jean Franco">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="12.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
+                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="100.000.000" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
+                                          <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="300.000">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientRol1" alignment="CENTER" layoutX="595.0" layoutY="30.0" prefHeight="40.0" prefWidth="96.0">
-                                             <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Button fx:id="clientEdit1" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="btnDetails1" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="clientEdit1" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                             <HBox.margin>
+                                                <Insets left="40.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -203,42 +206,39 @@
                                           <Insets />
                                        </VBox.margin>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="36.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
                                           <ImageView fx:id="clientImg2" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
+                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Jean Franco">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="12.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
+                                          <Label fx:id="clientName2" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="500.000.000" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
+                                          <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="400.000">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientRol2" alignment="CENTER" layoutX="595.0" layoutY="30.0" prefHeight="40.0" prefWidth="96.0">
-                                             <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Button fx:id="clientEdit2" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="btnDetails2" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="clientEdit2" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -246,11 +246,11 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets left="40.0" right="-15.0" top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientRemove2" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
-                                             <HBox.margin>
-                                                <Insets top="30.0" />
-                                             </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -258,6 +258,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -268,35 +271,32 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
+                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Angel Quintero">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="12.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
+                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="600.000.000" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
+                                          <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="500.000">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientRol3" alignment="CENTER" layoutX="595.0" layoutY="30.0" prefHeight="40.0" prefWidth="96.0">
-                                             <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Button fx:id="clientEdit3" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="btnDetails3" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="clientEdit3" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -304,11 +304,11 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets left="40.0" right="-15.0" top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientRemove3" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
-                                             <HBox.margin>
-                                                <Insets right="-10.0" top="30.0" />
-                                             </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -316,6 +316,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -326,35 +329,32 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
+                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Angel Quintero">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="12.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
+                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="700.000.000" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
+                                          <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="12045">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientRol4" alignment="CENTER" layoutX="595.0" layoutY="30.0" prefHeight="40.0" prefWidth="96.0">
-                                             <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Button fx:id="clientEdit4" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="btnDetails4" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="clientEdit4" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -362,11 +362,11 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets left="40.0" right="-15.0" top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientRemove4" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
-                                             <HBox.margin>
-                                                <Insets right="-10.0" top="30.0" />
-                                             </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -374,6 +374,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -384,35 +387,32 @@
                                                 <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0">
+                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Andres Felipe">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="110.0" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="12.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0">
+                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="80.000.000" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0">
+                                          <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="5604.45">
+                                             <HBox.margin>
+                                                <Insets left="5.0" top="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientRol5" alignment="CENTER" layoutX="595.0" layoutY="30.0" prefHeight="40.0" prefWidth="96.0">
-                                             <HBox.margin>
-                                                <Insets left="10.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Button fx:id="clientEdit5" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="btnDetails5" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="clientEdit5" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -420,11 +420,11 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets left="40.0" right="-15.0" top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientRemove5" layoutX="865.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="25.0" prefWidth="28.0">
-                                             <HBox.margin>
-                                                <Insets right="-10.0" top="30.0" />
-                                             </HBox.margin>
                                              <graphic>
                                                 <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -432,6 +432,9 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <HBox.margin>
+                                                <Insets top="30.0" />
+                                             </HBox.margin>
                                           </Button>
                                        </children>
                                     </HBox>
@@ -439,7 +442,7 @@
                               </VBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="254.0" spacing="30.0">
                                  <children>
-                                    <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#handleClientRegister" prefHeight="27.0" prefWidth="100.0" text="Registrar" />
+                                    <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#handleProductRegister" prefHeight="25.0" prefWidth="100.0" text="Registrar" />
                                     <Label prefHeight="17.0" prefWidth="54.0" text="Page:">
                                        <HBox.margin>
                                           <Insets right="-40.0" top="5.0" />

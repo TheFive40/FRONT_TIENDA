@@ -191,7 +191,10 @@ public class PurchaseController implements Initializable {
             fillTablePurchase ( orderDTOS );
         }
     }
+    @FXML
+    void handleInvoice(){
 
+    }
     public void handlePressed ( KeyEvent keyEvent ) {
     }
 
