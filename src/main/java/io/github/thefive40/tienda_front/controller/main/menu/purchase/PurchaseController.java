@@ -39,7 +39,9 @@ public class PurchaseController implements Initializable {
     private TextField searchTextField;
     @FXML
     private ComboBox<String> filterButton;
+
     private final UtilityService<OrderDTO> utilityService;
+
     private final UserService userService;
     @FXML
     private TextField txtTotalPage;
@@ -195,7 +197,7 @@ public class PurchaseController implements Initializable {
     }
     @FXML
     void handleInvoice(){
-
+        stage.setScene ( new Scene ( context.getBean ( "invoiceParent" , AnchorPane.class) ) );
     }
     public void handlePressed ( KeyEvent keyEvent ) {
         if (keyEvent.getCode ().equals ( KeyCode.ENTER )){

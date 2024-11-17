@@ -205,7 +205,7 @@ public class ProductController implements Initializable {
     }
     @FXML
     void handleInvoice(){
-
+        stage.setScene ( new Scene ( context.getBean ( "invoiceParent" , AnchorPane.class) ) );
     }
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
                              Label rolLabel, ImageView imageView, Button buttonEdit, Button buttonRemove ) {

@@ -1,62 +1,181 @@
 package io.github.thefive40.tienda_front.controller.main.menu.invoice;
 
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
+import io.github.thefive40.tienda_front.model.dto.InvoiceDTO;
+import io.github.thefive40.tienda_front.model.enums.Profile;
+import io.github.thefive40.tienda_front.service.UserService;
+import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
-public class InvoiceController  implements Initializable {
+public class InvoiceController implements Initializable {
+    @FXML
+    private VBox vboxContainer;
+
+    @FXML
+    private TextField txtTotalPage;
+
+    @FXML
+    private TextField txtPage;
+
+    private HashMap<InvoiceDTO, ClientDTO> clientsInvoices = new HashMap<> ( );
+
+    private final UtilityService<InvoiceDTO> utilityService;
+
+    private final Stage stage;
+
+    private UserService userService;
+
+    private List<InvoiceDTO> invoiceDTOS;
+
+    @Autowired
+    private ApplicationContext context;
+
+    public InvoiceController ( UtilityService<InvoiceDTO> utilityService, UserService userService, @Qualifier("stage") Stage stage ) {
+        this.utilityService = utilityService;
+        this.userService = userService;
+        this.stage = stage;
+    }
+
+
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        invoiceDTOS = new ArrayList<> ( );
+        txtPage.setText ( "1" );
+        var user = userService.findAll ( );
+        user.forEach ( e -> {
+            e.getInvoices ( ).forEach ( k -> {
+                clientsInvoices.put ( k, e );
+                invoiceDTOS.add ( k );
+            } );
+        } );
+        fillTableInvoice ( invoiceDTOS );
+    }
+
+    @FXML
+    void handleMenuInicio ( ActionEvent event ) {
+        stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
 
     }
 
     @FXML
-    void handleMenuInicio(ActionEvent event) {
-
-    }
-    @FXML
-    void handleInvoice(){
-
+    void handleMenuClientes ( ActionEvent event ) {
+        stage.setScene ( new Scene ( context.getBean ( "clientParent", AnchorPane.class ) ) );
     }
 
     @FXML
-    void handleMenuClientes(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleMenuCompra(ActionEvent event) {
+    void handleMenuCompra ( ActionEvent event ) {
+        stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
 
     }
 
 
     @FXML
-    void handleProductRegister(ActionEvent event) {
+    void handleInvoiceRegister ( ActionEvent event ) {
 
     }
 
     @FXML
-    void handleBefore(ActionEvent event) {
+    void handleBefore ( ActionEvent event ) {
 
     }
 
     @FXML
-    void handleAfter(ActionEvent event) {
+    void handleAfter ( ActionEvent event ) {
 
     }
 
     @FXML
-    void handlePressed(ActionEvent event) {
+    void handlePressed ( ActionEvent event ) {
 
     }
 
     @FXML
-    void handleSearch( ActionEvent event) {
+    void handleSearch ( ActionEvent event ) {
 
+    }
+
+
+    void fillTableInvoice ( List<InvoiceDTO> invoice ) {
+        invoice = invoice.stream ( ).filter ( InvoiceDTO::isStatus ).toList ( );
+        txtTotalPage.setText ( utilityService.totalPages ( invoice ) + "" );
+        List<InvoiceDTO> invoiceDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), invoice );
+        AtomicInteger contador = new AtomicInteger ( 0 );
+        vboxContainer.getChildren ( ).forEach ( e -> {
+            Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
+                    Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) );
+            int count = contador.getAndIncrement ( );
+            HBox container = (HBox) e;
+            ImageView imageView = (ImageView) container.getChildren ( ).get ( 0 );
+            imageView.setClip ( clip );
+            Label clientName = (Label) container.getChildren ( ).get ( 1 );
+            Label address = (Label) container.getChildren ( ).get ( 2 );
+            Label zipCode = (Label) container.getChildren ( ).get ( 3 );
+            Label total = (Label) container.getChildren ( ).get ( 4 );
+            Button buttonDetail = (Button) container.getChildren ( ).get ( 5 );
+            Button buttonEdit = (Button) container.getChildren ( ).get ( 6 );
+            Button buttonRemove = (Button) container.getChildren ( ).get ( 7 );
+            if (count >= invoiceDTOS.size ( )) {
+                clearProductsInfo ( clientName, address, zipCode, total, buttonDetail, imageView, buttonEdit, buttonRemove );
+            } else {
+                InvoiceDTO invoices = invoiceDTOS.get ( count );
+                var client = clientsInvoices.get ( invoices );
+                imageView.setImage ( new Image ( client.getUrl ( ) ) );
+                clientName.setText ( String.valueOf ( client.getName ( ) ) );
+                address.setText ( invoices.getSubTotal ( ) + "" );
+                zipCode.setText ( invoices.getTax ( ) + "" );
+                total.setText ( String.valueOf ( invoices.getTotal ( ) ) );
+                buttonEdit.setVisible ( true );
+                buttonRemove.setVisible ( true );
+                buttonDetail.setVisible ( true );
+            }
+
+        } );
+    }
+
+    void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
+                             Button buttonDetail, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
+        idLabel.setText ( "" );
+        nameLabel.setText ( "" );
+        emailLabel.setText ( "" );
+        telLabel.setText ( "" );
+        imageView.setImage ( null );
+        buttonEdit.setVisible ( false );
+        buttonRemove.setVisible ( false );
+        buttonDetail.setVisible ( false );
+    }
+
+    public void handleInvoiceEdit ( ActionEvent event ) {
+    }
+
+    public void handleButtonRemove ( ActionEvent event ) {
+    }
+
+    public void handleProduct ( ActionEvent event ) {
+        stage.setScene ( new Scene ( context.getBean ( "productParent", AnchorPane.class ) ) );
     }
 }

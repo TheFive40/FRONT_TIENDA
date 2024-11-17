@@ -28,5 +28,7 @@ public class InvoiceDTO {
 
     private ClientDTO client;
 
+    private boolean status = true;
+
     private List<DetailInvoiceDTO> detailsInvoice = new ArrayList<> (  );
 }

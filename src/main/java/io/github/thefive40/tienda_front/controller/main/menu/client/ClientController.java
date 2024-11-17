@@ -132,7 +132,7 @@ public class ClientController implements Initializable {
     }
     @FXML
     void handleInvoice(){
-
+        stage.setScene ( new Scene ( context.getBean ( "invoiceParent" , AnchorPane.class) ) );
     }
     @FXML
     void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {

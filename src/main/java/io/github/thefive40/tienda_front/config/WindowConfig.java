@@ -35,10 +35,19 @@ public class WindowConfig {
         return loader.load();
     }
 
+
     @Bean
     @Scope("prototype")
     public AnchorPane clientParent() throws IOException {
         FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/client/Client.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+
+    }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane invoiceParent() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/invoice/Invoice.fxml" ) );
         loader.setControllerFactory ( context::getBean );
         return loader.load();
 
