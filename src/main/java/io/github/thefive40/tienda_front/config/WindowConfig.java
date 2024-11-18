@@ -52,6 +52,20 @@ public class WindowConfig {
         return loader.load();
 
     }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane invoiceDetailsParent() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/popups/DetailsInvoice.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+    }
+    @Bean
+    @Scope("prototype")
+    public GridPane invoiceEditParent() throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/menu/invoice/InvoiceEdit.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+    }
 
     @Bean
     @Scope("prototype")

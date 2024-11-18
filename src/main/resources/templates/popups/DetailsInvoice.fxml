@@ -7,7 +7,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="959.0" stylesheets="@../../static/css/popups/DetailsPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.purchase.popups.PurchaseDetailsController">
+<AnchorPane fx:id="homeParent" prefHeight="690.0" prefWidth="959.0" stylesheets="@../../static/css/popups/DetailsPurchase.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.thefive40.tienda_front.controller.main.menu.invoice.popups.InvoiceDetailsController">
    <children>
       <BorderPane prefHeight="690.0" prefWidth="997.0" style="-fx-background-color: white;">
          <top>
@@ -17,7 +17,7 @@
                      <children>
                         <ComboBox fx:id="filterButton" prefHeight="24.0" prefWidth="140.0" />
                         <TextField fx:id="searchTextField" onKeyPressed="#handlePressed" prefHeight="27.0" prefWidth="370.0" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="32.0" prefWidth="100.0" text="Buscar" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch" prefHeight="33.0" prefWidth="100.0" text="Buscar" />
                      </children>
                   </HBox>
                </children>

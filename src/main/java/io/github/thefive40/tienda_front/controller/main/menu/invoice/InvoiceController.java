@@ -1,5 +1,7 @@
 package io.github.thefive40.tienda_front.controller.main.menu.invoice;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import io.github.thefive40.tienda_front.controller.main.HomeController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.InvoiceDTO;
 import io.github.thefive40.tienda_front.model.enums.Profile;
@@ -9,29 +11,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+@Component("InvoiceController")
+@Getter
 public class InvoiceController implements Initializable {
     @FXML
     private VBox vboxContainer;
@@ -41,6 +41,15 @@ public class InvoiceController implements Initializable {
 
     @FXML
     private TextField txtPage;
+
+    @FXML
+    private ImageView imgProfile;
+
+    @FXML
+    private Label userName;
+
+    @FXML
+    private Label userRole;
 
     private HashMap<InvoiceDTO, ClientDTO> clientsInvoices = new HashMap<> ( );
 
@@ -52,8 +61,12 @@ public class InvoiceController implements Initializable {
 
     private List<InvoiceDTO> invoiceDTOS;
 
+    private InvoiceDTO currentInvoice;
+
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private ClientDTO clientDTO;
 
     public InvoiceController ( UtilityService<InvoiceDTO> utilityService, UserService userService, @Qualifier("stage") Stage stage ) {
         this.utilityService = utilityService;
@@ -64,6 +77,7 @@ public class InvoiceController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        var client = context.getBean ( "HomeController", HomeController.class ).getCurrentUser ();
         invoiceDTOS = new ArrayList<> ( );
         txtPage.setText ( "1" );
         var user = userService.findAll ( );
@@ -73,6 +87,10 @@ public class InvoiceController implements Initializable {
                 invoiceDTOS.add ( k );
             } );
         } );
+        imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ), Profile.IMAGE_CENTER_Y.getValue ( ),
+                Profile.IMAGE_RADIUS.getValue ()) );
+        userName.setText ( client.getName () );
+        userRole.setText ( client.getRole ().toUpperCase () );
         fillTableInvoice ( invoiceDTOS );
     }
 
@@ -90,7 +108,6 @@ public class InvoiceController implements Initializable {
     @FXML
     void handleMenuCompra ( ActionEvent event ) {
         stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
-
     }
 
 
@@ -98,7 +115,14 @@ public class InvoiceController implements Initializable {
     void handleInvoiceRegister ( ActionEvent event ) {
 
     }
-
+    @FXML
+    void handleDetails(ActionEvent event){
+        Button button = (Button) event.getSource ( );
+        currentInvoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "invoiceDetailsParent", AnchorPane.class ) ) );
+        stage.show ( );
+    }
     @FXML
     void handleBefore ( ActionEvent event ) {
 
@@ -119,6 +143,18 @@ public class InvoiceController implements Initializable {
 
     }
 
+    public void refresh(){
+        clientsInvoices = new HashMap<> (  );
+        invoiceDTOS = new ArrayList<> (  );
+        var user = userService.findAll ( );
+        user.forEach ( e -> {
+            e.getInvoices ( ).forEach ( k -> {
+                clientsInvoices.put ( k, e );
+                invoiceDTOS.add ( k );
+            } );
+        } );
+        fillTableInvoice ( invoiceDTOS );
+    }
 
     void fillTableInvoice ( List<InvoiceDTO> invoice ) {
         invoice = invoice.stream ( ).filter ( InvoiceDTO::isStatus ).toList ( );
@@ -170,9 +206,30 @@ public class InvoiceController implements Initializable {
     }
 
     public void handleInvoiceEdit ( ActionEvent event ) {
+        Button button = (Button) event.getSource ( );
+        currentInvoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        clientDTO = clientsInvoices.get ( currentInvoice );
+        Stage stage = new Stage ( );
+        stage.setScene ( new Scene ( context.getBean ( "invoiceEditParent", GridPane.class ) ) );
+        stage.show ( );
     }
 
-    public void handleButtonRemove ( ActionEvent event ) {
+    public void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
+        Button button = (Button) event.getSource ( );
+        var invoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
+        Alert alert = new Alert ( Alert.AlertType.WARNING );
+        alert.setTitle ( "Confirmación" );
+        alert.setHeaderText ( "¿Está seguro de eliminar el pedido?" );
+        alert.setContentText ( "Si elimina el pedido, no podrá recuperar los datos." );
+        Optional<ButtonType> result = alert.showAndWait ( );
+        if (result.get ( ) == ButtonType.OK) {
+            var client = getClientsInvoices ().get ( invoice );
+            client.getInvoices ().remove ( invoice );
+            invoice.setStatus ( false );
+            client.getInvoices ().add ( invoice );
+            userService.update ( client );
+            fillTableInvoice ( client.getInvoices () );
+        }
     }
 
     public void handleProduct ( ActionEvent event ) {

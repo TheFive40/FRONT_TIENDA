@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
 import io.github.thefive40.tienda_front.model.dto.OrderDTO;
-import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import io.github.thefive40.tienda_front.service.OrderService;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
@@ -168,7 +167,7 @@ public class PurchaseController implements Initializable {
     }
 
     @FXML
-    void handleProductEdit ( ActionEvent event ) {
+    void handlePurchaseEdit ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
         currentOrder = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         clientOrder = clientOrders.get ( currentOrder );
@@ -189,7 +188,6 @@ public class PurchaseController implements Initializable {
         if (result.get ( ) == ButtonType.OK) {
             order.setStatus ( false );
             var client = clientOrders.get ( order );
-
             orderDTOS.remove ( order );
             userService.update ( client );
             fillTablePurchase ( orderDTOS );

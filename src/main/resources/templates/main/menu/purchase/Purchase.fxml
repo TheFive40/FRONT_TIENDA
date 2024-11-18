@@ -180,7 +180,7 @@
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="clientEdit1" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit1" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -247,7 +247,7 @@
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="clientEdit2" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit2" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -311,7 +311,7 @@
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="clientEdit3" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit3" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -375,7 +375,7 @@
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="clientEdit4" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit4" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -439,7 +439,7 @@
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="clientEdit5" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleProductEdit" prefHeight="25.0" prefWidth="28.0">
+                                          <Button fx:id="clientEdit5" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

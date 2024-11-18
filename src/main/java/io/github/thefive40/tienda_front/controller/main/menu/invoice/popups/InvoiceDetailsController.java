@@ -1,20 +1,18 @@
-package io.github.thefive40.tienda_front.controller.main.menu.purchase.popups;
+package io.github.thefive40.tienda_front.controller.main.menu.invoice.popups;
 
+import io.github.thefive40.tienda_front.controller.main.menu.invoice.InvoiceController;
 import io.github.thefive40.tienda_front.controller.main.menu.purchase.PurchaseController;
-import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
-import io.github.thefive40.tienda_front.model.dto.OrderDTO;
+import io.github.thefive40.tienda_front.model.dto.DetailInvoiceDTO;
 import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
-public class PurchaseDetailsController implements Initializable {
-    private final UtilityService<DetailOrderDTO> utilityService;
+public class InvoiceDetailsController implements Initializable {
+
     @FXML
     private Button searchButton;
 
@@ -46,17 +44,16 @@ public class PurchaseDetailsController implements Initializable {
     @Autowired
     private ApplicationContext context;
     @Autowired
-    private PurchaseController purchaseController;
+    private InvoiceController invoiceController;
+    @Autowired
+    private UtilityService<DetailInvoiceDTO> utilityService;
 
-    public PurchaseDetailsController ( UtilityService<DetailOrderDTO> utilityService ) {
-        this.utilityService = utilityService;
-    }
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
         txtPage.setText ( "1" );
-        purchaseController = context.getBean ( "PurchaseController", PurchaseController.class );
-        fillTablePurchase (  purchaseController.getClientDetailOrders () );
+        invoiceController = context.getBean ( "InvoiceController", InvoiceController.class );
+        fillTablePurchase ( invoiceController.getCurrentInvoice ().getDetailsInvoice () );
     }
 
     public void handlePressed ( KeyEvent keyEvent ) {
@@ -72,9 +69,9 @@ public class PurchaseDetailsController implements Initializable {
     }
 
 
-    void fillTablePurchase ( List<DetailOrderDTO> orders ) {
+    void fillTablePurchase ( List<DetailInvoiceDTO> orders ) {
         txtTotalPage.setText ( utilityService.totalPages ( orders ) + "" );
-        List<DetailOrderDTO> ordersDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), orders );
+        List<DetailInvoiceDTO> ordersDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), orders );
         AtomicInteger contador = new AtomicInteger ( 0 );
         vboxContainer.getChildren ( ).forEach ( e -> {
             int count = contador.getAndIncrement ( );
@@ -84,13 +81,13 @@ public class PurchaseDetailsController implements Initializable {
             Label quantity = (Label) container.getChildren ( ).get ( 2 );
             Label unitPrice = (Label) container.getChildren ( ).get ( 3 );
             if (count >= ordersDTOS.size ( )) {
-                clearProductsInfo ( imageView, productName, quantity, unitPrice);
+                clearProductsInfo ( imageView, productName, quantity, unitPrice );
             } else {
-                DetailOrderDTO order = ordersDTOS.get ( count );
-                imageView.setImage ( new Image (order.getProduct ().getImg () ) );
-                productName.setText ( String.valueOf ( order.getProduct ().getName () ) );
-                unitPrice.setText ( order.getUnitPrice () + "");
-                quantity.setText ( order.getAmount () + "" );
+                DetailInvoiceDTO order = ordersDTOS.get ( count );
+                imageView.setImage ( new Image ( order.getProduct ( ).getImg ( ) ) );
+                productName.setText ( String.valueOf ( order.getProduct ( ).getName ( ) ) );
+                unitPrice.setText ( order.getUnitPrice ( ) + "" );
+                quantity.setText ( order.getQuantity ( ) + "" );
                 imageView.setPreserveRatio ( false );
                 imageView.setSmooth ( false );
 
@@ -99,7 +96,7 @@ public class PurchaseDetailsController implements Initializable {
         } );
     }
 
-    void clearProductsInfo ( ImageView img, Label productName, Label quantity, Label unitPrice){
+    void clearProductsInfo ( ImageView img, Label productName, Label quantity, Label unitPrice ) {
         unitPrice.setText ( "" );
         quantity.setText ( "" );
         productName.setText ( "" );

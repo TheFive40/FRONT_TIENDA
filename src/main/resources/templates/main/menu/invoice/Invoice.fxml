@@ -172,7 +172,7 @@
                                                 <Insets left="10.0" right="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="btnDetails1" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Detalles">
+                                          <Button fx:id="btnDetails1" mnemonicParsing="false" onAction="#handleDetails" prefHeight="27.0" prefWidth="96.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
@@ -236,7 +236,7 @@
                                                 <Insets left="10.0" right="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="btnDetails2" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Detalles">
+                                          <Button fx:id="btnDetails2" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="96.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
@@ -297,7 +297,7 @@
                                                 <Insets left="10.0" right="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="btnDetails3" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Detalles">
+                                          <Button fx:id="btnDetails3" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="96.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
@@ -358,7 +358,7 @@
                                                 <Insets left="10.0" right="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="btnDetails4" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Detalles">
+                                          <Button fx:id="btnDetails4" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="96.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
@@ -419,7 +419,7 @@
                                                 <Insets left="10.0" right="-5.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Button fx:id="btnDetails5" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Detalles">
+                                          <Button fx:id="btnDetails5" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="96.0" text="Detalles">
                                              <HBox.margin>
                                                 <Insets left="20.0" right="-15.0" top="30.0" />
                                              </HBox.margin>
