@@ -10,6 +10,7 @@ import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -49,7 +50,14 @@ public class PurchaseController implements Initializable {
     private VBox vboxContainer;
     @FXML
     private TextField txtPage;
-
+    @FXML
+    private Button btnProductos;
+    @FXML
+    private Button btnClientes;
+    @FXML
+    private HBox containerLogout;
+    @FXML
+    private AnchorPane detailsPurchase;
     private HashMap<OrderDTO, ClientDTO> clientOrders = new HashMap<> ( );
 
     @Autowired
@@ -69,6 +77,7 @@ public class PurchaseController implements Initializable {
     @Autowired
     private Stage stage;
 
+
     public PurchaseController ( UtilityService<OrderDTO> utilityService, UserService userService ) {
         this.utilityService = utilityService;
         this.userService = userService;
@@ -76,23 +85,52 @@ public class PurchaseController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        var currentUser = utilityService.getClientByRol ( );
         txtPage.setText ( "1" );
         orderDTOS = new ArrayList<> ( );
-        userService.findAll ( ).forEach ( e -> {
-            orderDTOS.addAll ( e.getOrders ( ) );
-            e.getOrders ( ).forEach ( v -> {
-                clientOrders.put ( v, e );
-            } );
-        } );
-
+        switch (currentUser.getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                userService.findAll ( ).forEach ( e -> {
+                    orderDTOS.addAll ( e.getOrders ( ) );
+                    e.getOrders ( ).forEach ( v -> {
+                        clientOrders.put ( v, e );
+                    } );
+                } );
+            }
+            case "CLIENTE" -> {
+                btnProductos.setVisible ( false );
+                btnProductos.setManaged ( false );
+                btnClientes.setVisible ( false );
+                btnClientes.setManaged ( false );
+                HBox.setMargin ( containerLogout, new Insets ( 280, 0, 0, 0 ) );
+                containerLogout.setVisible ( false );
+                userService.getUserByEmail ( currentUser.getEmail ( ) )
+                        .getOrders ( ).forEach ( e -> {
+                            orderDTOS.add ( e );
+                            clientOrders.put ( e, currentUser );
+                        } );
+            }
+            case "VENDEDOR"->{
+                btnClientes.setVisible ( false );
+                btnClientes.setManaged ( false );
+                HBox.setMargin ( containerLogout, new Insets ( 280, 0, 0, 0 ) );
+                containerLogout.setVisible ( false );
+                userService.getUserByEmail ( currentUser.getEmail ( ) )
+                        .getOrders ( ).forEach ( e -> {
+                            orderDTOS.add ( e );
+                            clientOrders.put ( e, currentUser );
+                        } );
+            }
+        }
         filterButton.getItems ( ).addAll ( "Ciudad" );
         filterButton.getSelectionModel ( ).select ( 0 );
+
         fillTablePurchase ( orderDTOS );
 
     }
 
     void fillTablePurchase ( List<OrderDTO> orders ) {
-        orders = orders.stream ( ).filter ( OrderDTO::isStatus ).toList ();
+        orders = orders.stream ( ).filter ( OrderDTO::isStatus ).toList ( );
         txtTotalPage.setText ( utilityService.totalPages ( orders ) + "" );
         List<OrderDTO> ordersDTOS = utilityService.getItemsByPage ( Integer.parseInt ( txtPage.getText ( ) ), orders );
         AtomicInteger contador = new AtomicInteger ( 0 );
@@ -123,7 +161,6 @@ public class PurchaseController implements Initializable {
                 buttonRemove.setVisible ( true );
                 buttonDetail.setVisible ( true );
             }
-
         } );
     }
 
@@ -141,7 +178,17 @@ public class PurchaseController implements Initializable {
 
     @FXML
     void handleMenuInicio ( ActionEvent event ) {
-        stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+        switch (utilityService.getClientByRol ( ).getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+            }
+            case "CLIENTE" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeClientParent", AnchorPane.class ) ) );
+            }
+            case "VENDEDOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeSellerParent", AnchorPane.class ) ) );
+            }
+        }
     }
 
     @FXML
@@ -168,6 +215,9 @@ public class PurchaseController implements Initializable {
 
     @FXML
     void handlePurchaseEdit ( ActionEvent event ) {
+        String rol = utilityService.getClientByRol ().getRole ();
+
+        if(utilityService.permsValidate ( rol )) return;
         Button button = (Button) event.getSource ( );
         currentOrder = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         clientOrder = clientOrders.get ( currentOrder );
@@ -178,6 +228,8 @@ public class PurchaseController implements Initializable {
 
     @FXML
     void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
+        String rol = utilityService.getClientByRol ().getRole ();
+        if(utilityService.permsValidate ( rol )) return;
         Button button = (Button) event.getSource ( );
         var order = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         Alert alert = new Alert ( Alert.AlertType.WARNING );
@@ -193,12 +245,15 @@ public class PurchaseController implements Initializable {
             fillTablePurchase ( orderDTOS );
         }
     }
+
     @FXML
-    void handleInvoice(){
-        stage.setScene ( new Scene ( context.getBean ( "invoiceParent" , AnchorPane.class) ) );
+    void handleInvoice () {
+
+        stage.setScene ( new Scene ( context.getBean ( "invoiceParent", AnchorPane.class ) ) );
     }
+
     public void handlePressed ( KeyEvent keyEvent ) {
-        if (keyEvent.getCode ().equals ( KeyCode.ENTER )){
+        if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
             if (!searchTextField.getText ( ).isEmpty ( )) {
                 List<OrderDTO> clientDTOS;
                 String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
@@ -213,7 +268,7 @@ public class PurchaseController implements Initializable {
         }
     }
 
-    public void handleSearch (   ) {
+    public void handleSearch () {
         if (!searchTextField.getText ( ).isEmpty ( )) {
             List<OrderDTO> clientDTOS;
             String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
@@ -235,12 +290,13 @@ public class PurchaseController implements Initializable {
                 Integer.parseInt ( txtPage.getText ( ) )) {
             txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
         }
-        refresh ();
+        refresh ( );
     }
+
     public void refresh () {
-        clientOrders = new HashMap<> (  );
-        orderDTOS = new ArrayList<> (  );
-        userService.findAll ().forEach ( e->{
+        clientOrders = new HashMap<> ( );
+        orderDTOS = new ArrayList<> ( );
+        userService.findAll ( ).forEach ( e -> {
             orderDTOS.addAll ( e.getOrders ( ) );
             e.getOrders ( ).forEach ( v -> {
                 clientOrders.put ( v, e );
@@ -248,11 +304,12 @@ public class PurchaseController implements Initializable {
         } );
         fillTablePurchase ( orderDTOS );
     }
+
     public void handleBefore ( ActionEvent event ) {
         if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
                 Integer.parseInt ( txtPage.getText ( ) )) {
             txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
         }
-        refresh ();
+        refresh ( );
     }
 }

@@ -41,7 +41,7 @@
                                     <Image url="@../../../../static/media/images/icon/inicio-removebg-preview.png" />
                                  </image></ImageView>
                            </graphic></Button>
-                                <Button onAction="#handleMenuClientes" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
+                                <Button fx:id="btnClientes" onAction="#handleMenuClientes" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

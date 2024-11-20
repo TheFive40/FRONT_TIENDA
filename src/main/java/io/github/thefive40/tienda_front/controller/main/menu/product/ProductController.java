@@ -1,4 +1,5 @@
 package io.github.thefive40.tienda_front.controller.main.menu.product;
+
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
 import io.github.thefive40.tienda_front.controller.auth.SignUpController;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
@@ -27,6 +28,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -64,6 +66,12 @@ public class ProductController implements Initializable {
     @FXML
     private ComboBox<String> filterButton;
 
+    @FXML
+    private Button btnClientes;
+
+    @FXML
+    private HBox containerLogout;
+
     private SignUpController signUp;
 
     private LoginController login;
@@ -81,7 +89,6 @@ public class ProductController implements Initializable {
     private ProductDTO productEdit;
 
 
-
     @Autowired
     public void inject ( ProductService service, Stage stage, LoginController login, SignUpController signUpController
             , UtilityService<ProductDTO> utilityService, ApplicationContext context ) {
@@ -95,17 +102,29 @@ public class ProductController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
-        products = productService.getProducts ( );
-        txtTotalPage.setText ( utilityService.totalPages ( products ) + "" );
         txtPage.setText ( "1" );
-        fillTableProducts ( products );
+        products = productService.getProducts ( );
+        switch (utilityService.getClientByRol ( ).getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                fillTableProducts ( products );
+            }
+            case "VENDEDOR" -> {
+                products = products.stream ( ).filter ( e -> e.getClient ( ).getIdClient ( )
+                        .equals ( utilityService.getClientByRol ( ).getIdClient ( ) ) ).toList ( );
+                btnClientes.setVisible ( false );
+                btnClientes.setManaged ( false );
+                containerLogout.setVisible ( false );
+                fillTableProducts ( products );
+            }
+        }
+        txtTotalPage.setText ( utilityService.totalPages ( products ) + "" );
         imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) ) );
         if (login.getCurrentUser ( ) != null)
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
-        filterButton.getItems ().addAll ( "Nombre", "Vendedor" );
-        filterButton.getSelectionModel ().select ( 0 );
+        filterButton.getItems ( ).addAll ( "Nombre", "Vendedor" );
+        filterButton.getSelectionModel ( ).select ( 0 );
     }
 
     public void refresh () {
@@ -170,16 +189,16 @@ public class ProductController implements Initializable {
     void handlePressed ( KeyEvent keyEvent ) {
         if (keyEvent.getCode ( ).equals ( KeyCode.ENTER )) {
             List<ProductDTO> productDTOS = null;
-            String item = filterButton.getSelectionModel ().getSelectedItem ();
+            String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
             if (item.equalsIgnoreCase ( "Vendedor" )) {
-                if (!searchTextField.getText ( ).isEmpty ()) {
+                if (!searchTextField.getText ( ).isEmpty ( )) {
                     productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
                     fillTableProducts ( productDTOS );
-                }else{
-                    refresh ();
+                } else {
+                    refresh ( );
                 }
-            }else if(item.equalsIgnoreCase ( "Nombre" )){
-                productDTOS = productService.findByName ( searchTextField.getText () );
+            } else if (item.equalsIgnoreCase ( "Nombre" )) {
+                productDTOS = productService.findByName ( searchTextField.getText ( ) );
                 fillTableProducts ( Objects.requireNonNullElseGet ( productDTOS, List::of ) );
             }
 
@@ -188,25 +207,27 @@ public class ProductController implements Initializable {
 
     @FXML
     void handleSearch () {
-        String item = filterButton.getSelectionModel ().getSelectedItem ();
-        if (!searchTextField.getText ( ).isEmpty ()) {
+        String item = filterButton.getSelectionModel ( ).getSelectedItem ( );
+        if (!searchTextField.getText ( ).isEmpty ( )) {
             List<ProductDTO> productos;
 
-            if (item.equalsIgnoreCase ( "Vendedor" )){
+            if (item.equalsIgnoreCase ( "Vendedor" )) {
                 List<ProductDTO> productDTOS = productService.findProductsByClientName ( searchTextField.getText ( ) );
                 fillTableProducts ( productDTOS );
-            }else if(item.equalsIgnoreCase ( "Nombre" )){
+            } else if (item.equalsIgnoreCase ( "Nombre" )) {
                 productos = productService.findByName ( searchTextField.getText ( ) );
                 fillTableProducts ( Objects.requireNonNullElseGet ( productos, List::of ) );
             }
-        }else{
-            refresh ();
+        } else {
+            refresh ( );
         }
     }
+
     @FXML
-    void handleInvoice(){
-        stage.setScene ( new Scene ( context.getBean ( "invoiceParent" , AnchorPane.class) ) );
+    void handleInvoice () {
+        stage.setScene ( new Scene ( context.getBean ( "invoiceParent", AnchorPane.class ) ) );
     }
+
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
                              Label rolLabel, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
         idLabel.setText ( "" );
@@ -227,8 +248,9 @@ public class ProductController implements Initializable {
         }
         refresh ( );
     }
+
     @FXML
-    void handleMenuCompra(){
+    void handleMenuCompra () {
         stage.setScene ( new Scene ( context.getBean ( "purchaseParent", AnchorPane.class ) ) );
     }
 
@@ -258,7 +280,17 @@ public class ProductController implements Initializable {
     }
 
     public void handleMenuInicio ( ActionEvent event ) {
-        stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+        switch (utilityService.getClientByRol ( ).getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+            }
+            case "CLIENTE" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeClientParent", AnchorPane.class ) ) );
+            }
+            case "VENDEDOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeSellerParent", AnchorPane.class ) ) );
+            }
+        }
     }
 
     @FXML

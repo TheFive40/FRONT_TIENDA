@@ -1,7 +1,7 @@
 package io.github.thefive40.tienda_front.controller.popups;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.github.thefive40.tienda_front.controller.main.HomeController;
+import io.github.thefive40.tienda_front.controller.main.home.HomeController;
 import io.github.thefive40.tienda_front.model.dto.*;
 import io.github.thefive40.tienda_front.service.ShoppingCartService;
 import io.github.thefive40.tienda_front.service.UserService;
@@ -12,12 +12,10 @@ import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 public class PuchaseFormController implements Initializable {

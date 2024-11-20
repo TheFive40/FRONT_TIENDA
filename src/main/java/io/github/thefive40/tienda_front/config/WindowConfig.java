@@ -34,8 +34,20 @@ public class WindowConfig {
         loader.setControllerFactory ( context::getBean );
         return loader.load();
     }
-
-
+    @Bean
+    @Scope("prototype")
+    public AnchorPane homeClientParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/HomeClient.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+    }
+    @Bean
+    @Scope("prototype")
+    public AnchorPane homeSellerParent () throws IOException {
+        FXMLLoader loader = new FXMLLoader ( AppConfig.class.getResource ( "/templates/main/homeSeller.fxml" ) );
+        loader.setControllerFactory ( context::getBean );
+        return loader.load();
+    }
     @Bean
     @Scope("prototype")
     public AnchorPane clientParent() throws IOException {

@@ -1,8 +1,11 @@
 package io.github.thefive40.tienda_front.service;
-
-import io.github.thefive40.tienda_front.controller.main.HomeController;
+import io.github.thefive40.tienda_front.controller.main.home.HomeClientController;
+import io.github.thefive40.tienda_front.controller.main.home.HomeController;
+import io.github.thefive40.tienda_front.controller.main.home.HomeSellerController;
+import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.ProductDTO;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,9 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +35,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Getter
 @Scope("prototype")
 public class UtilityService<T> {
+
     private List<T> items;
+
     @Setter
     private static int ITEMS_PER_PAGE = 5;
+
     private static int PRODUCT_PER_PAGE = 8;
-    private HomeController homeController;
+
     private Logger logger;
+
     private ProductService productService;
 
     @Autowired
-    public void inject ( HomeController homeController ) {
-        this.homeController = homeController;
-    }
+    private ApplicationContext context;
+
 
     public boolean isNumber ( String text ) {
         try {
@@ -66,6 +72,7 @@ public class UtilityService<T> {
     }
 
     public void addProductToCart ( Button button ) {
+        String rol = getClientByRol ().getRole ();
         String price = "";
         String name = " ";
         for (var e : button.getParent ( ).getChildrenUnmodifiable ( )) {
@@ -75,7 +82,17 @@ public class UtilityService<T> {
                 name = lbl.getText ( );
             }
         }
-        homeController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
+        if (rol.equalsIgnoreCase ( "ADMINISTRADOR" )){
+            HomeController homeController = context.getBean ( "HomeController", HomeController.class );
+            homeController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
+        }else if (rol.equalsIgnoreCase ( "CLIENTE" )){
+            HomeClientController homeClientController = context.getBean ( "HomeClientController", HomeClientController.class );
+            homeClientController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
+        }else{
+            HomeSellerController homeSellerController = context.getBean ( "HomeSellerController", HomeSellerController.class );
+            homeSellerController.getCartListView ( ).getItems ( ).addAll ( name + " $" + price );
+        }
+
     }
 
     public ProductDTO getProductByCart ( Button button ) {
@@ -108,8 +125,23 @@ public class UtilityService<T> {
     }
 
     public void fillProducts ( VBox container, List<ProductDTO> productDTOS ) {
+        String role = getClientByRol ().getRole ();
+        switch (role.toUpperCase ()){
+            case "ADMINISTRADOR"->{
+                HomeController homeController = context.getBean ( "HomeController", HomeController.class );
+                productDTOS = (List<ProductDTO>) getProductsByPage ( homeController.getContador ( ), (List<T>) productDTOS );
+            }
+            case "CLIENTE"->{
+                HomeClientController homeController = context.getBean ( "HomeClientController", HomeClientController.class );
+                productDTOS = (List<ProductDTO>) getProductsByPage ( homeController.getContador ( ), (List<T>) productDTOS );
+            }
+            case "VENDEDOR"->{
+                HomeSellerController homeController = context.getBean ( "HomeSellerController", HomeSellerController.class );
+                productDTOS = (List<ProductDTO>) getProductsByPage ( homeController.getContador ( ), (List<T>) productDTOS );
+            }
+
+        }
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool ( 1 );
-        productDTOS = (List<ProductDTO>) getProductsByPage ( homeController.getContador ( ), (List<T>) productDTOS );
         productDTOS = productDTOS.stream ( ).filter ( ProductDTO::isStatus ).toList ( );
 
         AtomicInteger count = new AtomicInteger ( 0 );
@@ -221,7 +253,19 @@ public class UtilityService<T> {
             txtImage.setText ( "/static/media/images/products/" + file.getName ( ) );
         }
     }
-
+    public ClientDTO getClientByRol(){
+        var homeController = context.getBean ( "HomeController", HomeController.class );
+        var currentUser = homeController.getCurrentUser ( );
+        if( currentUser == null){
+            var clientController = context.getBean ( "HomeClientController", HomeClientController.class );
+            currentUser = clientController.getCurrentUser ();
+            if (currentUser == null){
+                var sellerController = context.getBean ( "HomeSellerController", HomeSellerController.class );
+                currentUser = sellerController.getCurrentUser ();
+            }
+        }
+        return currentUser;
+    }
     public int totalPages ( List<T> clients ) {
         return (int) Math.ceil ( (double) clients.size ( ) / ITEMS_PER_PAGE );
     }
@@ -233,6 +277,18 @@ public class UtilityService<T> {
     @Autowired
     public void setLogger ( Logger logger ) {
         this.logger = logger;
+    }
+
+    public boolean permsValidate(String rol ){
+        if(rol.equalsIgnoreCase ( "ADMINISTRADOR" ) || rol.equalsIgnoreCase ( "CLIENTE" )){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Alerta");
+            alert.setHeaderText("Solo los administradores pueden editar el pedido.");
+            alert.setContentText("Si necesitas realizar cambios en este pedido, por favor contacta con un administrador. Asegúrate de guardar todos los cambios pendientes antes de continuar.");
+            alert.show();
+            return true;
+        }
+        return false;
     }
 
     @Autowired

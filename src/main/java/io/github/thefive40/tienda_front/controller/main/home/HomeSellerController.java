@@ -1,4 +1,4 @@
-package io.github.thefive40.tienda_front.controller.main;
+package io.github.thefive40.tienda_front.controller.main.home;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.controller.auth.LoginController;
@@ -25,9 +25,7 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -36,11 +34,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-
-@Component("HomeController")
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@Component("HomeSellerController")
 @Getter
-public class HomeController implements Initializable {
+public class HomeSellerController implements Initializable {
     @FXML
     private Button btnProdDest4;
 
@@ -227,6 +223,7 @@ public class HomeController implements Initializable {
     private ProductService productService;
 
     private List<ProductDTO> products;
+
     @Autowired
     private ShoppingCartService cartService;
 
@@ -275,6 +272,7 @@ public class HomeController implements Initializable {
             throw new RuntimeException ( e );
         }
         imgProfile.setClip ( clip );
+        userRole.setText ( utility.getClientByRol ().getRole ().toUpperCase () );
         titledCarrito.setExpanded ( true );
         cartAccordion.setExpandedPane ( titledCarrito );
         products = productService.getProducts ( );
@@ -284,7 +282,6 @@ public class HomeController implements Initializable {
 
     public void handleCart ( ActionEvent event ) throws JsonProcessingException {
         utility.addProductToCart ( (Button) event.getSource ( ) );
-        System.out.println (currentUser );
         ShoppingCartDTO cart = cartService.findByClient ( currentUser );
         System.out.println (cart );
         if (cart == null)

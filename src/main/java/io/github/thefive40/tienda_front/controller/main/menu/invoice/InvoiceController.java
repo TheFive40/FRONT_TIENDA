@@ -1,7 +1,6 @@
 package io.github.thefive40.tienda_front.controller.main.menu.invoice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.github.thefive40.tienda_front.controller.main.HomeController;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.InvoiceDTO;
 import io.github.thefive40.tienda_front.model.enums.Profile;
@@ -10,6 +9,7 @@ import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -51,6 +51,15 @@ public class InvoiceController implements Initializable {
     @FXML
     private Label userRole;
 
+    @FXML
+    private Button btnProductos;
+
+    @FXML
+    private Button btnClientes;
+
+    @FXML
+    private HBox containerLogout;
+
     private HashMap<InvoiceDTO, ClientDTO> clientsInvoices = new HashMap<> ( );
 
     private final UtilityService<InvoiceDTO> utilityService;
@@ -77,27 +86,67 @@ public class InvoiceController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
-        var client = context.getBean ( "HomeController", HomeController.class ).getCurrentUser ();
+        //var client = context.getBean ( "HomeController", HomeController.class ).getCurrentUser ();
+        var client = utilityService.getClientByRol ( );
         invoiceDTOS = new ArrayList<> ( );
         txtPage.setText ( "1" );
-        var user = userService.findAll ( );
-        user.forEach ( e -> {
-            e.getInvoices ( ).forEach ( k -> {
-                clientsInvoices.put ( k, e );
-                invoiceDTOS.add ( k );
-            } );
-        } );
+        switch (client.getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                var user = userService.findAll ( );
+                user.forEach ( e -> {
+                    e.getInvoices ( ).forEach ( k -> {
+                        clientsInvoices.put ( k, e );
+                        invoiceDTOS.add ( k );
+                    } );
+                } );
+            }
+            case "CLIENTE" -> {
+                btnProductos.setVisible ( false );
+                btnProductos.setManaged ( false );
+                btnClientes.setVisible ( false );
+                btnClientes.setManaged ( false );
+                HBox.setMargin ( containerLogout, new Insets ( 280, 0, 0, 0 ) );
+                containerLogout.setVisible ( false );
+                userService.getUserByEmail ( client.getEmail ( ) )
+                        .getInvoices ( ).forEach ( e -> {
+                            invoiceDTOS.add ( e );
+                            clientsInvoices.put ( e, client );
+                        } );
+            }
+            case "VENDEDOR"->{
+                btnClientes.setVisible ( false );
+                btnClientes.setManaged ( false );
+                HBox.setMargin ( containerLogout, new Insets ( 280, 0, 0, 0 ) );
+                containerLogout.setVisible ( false );
+                userService.getUserByEmail ( client.getEmail ( ) )
+                        .getInvoices ( ).forEach ( e -> {
+                            invoiceDTOS.add ( e );
+                            clientsInvoices.put ( e, client );
+                        } );
+            }
+        }
+
         imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ), Profile.IMAGE_CENTER_Y.getValue ( ),
-                Profile.IMAGE_RADIUS.getValue ()) );
-        userName.setText ( client.getName () );
-        userRole.setText ( client.getRole ().toUpperCase () );
+                Profile.IMAGE_RADIUS.getValue ( ) ) );
+        userName.setText ( client.getName ( ) );
+        userRole.setText ( client.getRole ( ).toUpperCase ( ) );
         fillTableInvoice ( invoiceDTOS );
     }
 
     @FXML
     void handleMenuInicio ( ActionEvent event ) {
-        stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+        switch (utilityService.getClientByRol ( ).getRole ( ).toUpperCase ( )) {
+            case "ADMINISTRADOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+            }
+            case "CLIENTE" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeClientParent", AnchorPane.class ) ) );
+            }
+            case "VENDEDOR" -> {
+                stage.setScene ( new Scene ( context.getBean ( "homeSellerParent", AnchorPane.class ) ) );
 
+            }
+        }
     }
 
     @FXML
@@ -115,14 +164,16 @@ public class InvoiceController implements Initializable {
     void handleInvoiceRegister ( ActionEvent event ) {
 
     }
+
     @FXML
-    void handleDetails(ActionEvent event){
+    void handleDetails ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );
         currentInvoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         Stage stage = new Stage ( );
         stage.setScene ( new Scene ( context.getBean ( "invoiceDetailsParent", AnchorPane.class ) ) );
         stage.show ( );
     }
+
     @FXML
     void handleBefore ( ActionEvent event ) {
 
@@ -143,9 +194,9 @@ public class InvoiceController implements Initializable {
 
     }
 
-    public void refresh(){
-        clientsInvoices = new HashMap<> (  );
-        invoiceDTOS = new ArrayList<> (  );
+    public void refresh () {
+        clientsInvoices = new HashMap<> ( );
+        invoiceDTOS = new ArrayList<> ( );
         var user = userService.findAll ( );
         user.forEach ( e -> {
             e.getInvoices ( ).forEach ( k -> {
@@ -206,6 +257,7 @@ public class InvoiceController implements Initializable {
     }
 
     public void handleInvoiceEdit ( ActionEvent event ) {
+        if (utilityService.permsValidate ( utilityService.getClientByRol ( ).getRole ( ) )) return;
         Button button = (Button) event.getSource ( );
         currentInvoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         clientDTO = clientsInvoices.get ( currentInvoice );
@@ -215,6 +267,7 @@ public class InvoiceController implements Initializable {
     }
 
     public void handleButtonRemove ( ActionEvent event ) throws JsonProcessingException {
+        if (utilityService.permsValidate ( utilityService.getClientByRol ( ).getRole ( ) )) return;
         Button button = (Button) event.getSource ( );
         var invoice = utilityService.findItemDto ( button, Integer.parseInt ( txtPage.getText ( ) ) );
         Alert alert = new Alert ( Alert.AlertType.WARNING );
@@ -223,12 +276,12 @@ public class InvoiceController implements Initializable {
         alert.setContentText ( "Si elimina el pedido, no podrá recuperar los datos." );
         Optional<ButtonType> result = alert.showAndWait ( );
         if (result.get ( ) == ButtonType.OK) {
-            var client = getClientsInvoices ().get ( invoice );
-            client.getInvoices ().remove ( invoice );
+            var client = getClientsInvoices ( ).get ( invoice );
+            client.getInvoices ( ).remove ( invoice );
             invoice.setStatus ( false );
-            client.getInvoices ().add ( invoice );
+            client.getInvoices ( ).add ( invoice );
             userService.update ( client );
-            fillTableInvoice ( client.getInvoices () );
+            fillTableInvoice ( client.getInvoices ( ) );
         }
     }
 

@@ -66,7 +66,18 @@ public class LoginController implements Initializable {
     public void handleLogin () {
         if (authService.login ( emailField.getText ( ), passwordField.getText ( ) )) {
             currentUser = userService.getUserByEmail ( emailField.getText ( ) );
-            stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+
+            switch (currentUser.getRole ().toUpperCase ()){
+                case "ADMINISTRADOR"->{
+                    stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
+                }
+                case "CLIENTE"->{
+                    stage.setScene ( new Scene ( context.getBean ( "homeClientParent", AnchorPane.class ) ) );
+                }
+                case "VENDEDOR"->{
+                    stage.setScene ( new Scene ( context.getBean ( "homeSellerParent", AnchorPane.class ) ) );
+                }
+            }
             return;
         }
         authError.show ( );

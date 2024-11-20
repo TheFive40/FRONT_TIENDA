@@ -41,7 +41,7 @@
                                     <Image url="@../../../../static/media/images/icon/inicio-removebg-preview.png" />
                                  </image></ImageView>
                            </graphic></Button>
-                                <Button onAction="#handleMenuClientes" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
+                                <Button fx:id="btnClientes" onAction="#handleMenuClientes" prefHeight="42.0" prefWidth="159.0" styleClass="aside-button" text="Clientes">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -144,20 +144,20 @@
                                  <children>
                                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg1" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                          <ImageView fx:id="clientImg1" fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                                <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
                                              </HBox.margin>
                                              <image>
-                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                                <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
+                                          <Label fx:id="idClient1" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Angel">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName1" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName1" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="112.0" text="Cra 52" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -167,7 +167,7 @@
                                           </Label>
                                           <Label fx:id="clientEmail1" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="5.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel1" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -177,7 +177,7 @@
                                           </Label>
                                           <Button fx:id="btnDetails1" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
-                                                <Insets left="20.0" right="-15.0" top="30.0" />
+                                                <Insets left="15.0" right="-10.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientEdit1" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
@@ -211,20 +211,20 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg11" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                          <ImageView fx:id="clientImg11" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                                <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                                <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
+                                          <Label fx:id="idClient2" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Jean">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName2" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName2" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -234,7 +234,7 @@
                                           </Label>
                                           <Label fx:id="clientEmail2" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="5.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel2" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -244,7 +244,7 @@
                                           </Label>
                                           <Button fx:id="btnDetails2" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
-                                                <Insets left="20.0" right="-15.0" top="30.0" />
+                                                <Insets left="15.0" right="-10.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientEdit2" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
@@ -275,20 +275,20 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="90.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                          <ImageView fx:id="clientImg111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                                <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                                <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
+                                          <Label fx:id="idClient3" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Angel">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName3" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName3" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -298,7 +298,7 @@
                                           </Label>
                                           <Label fx:id="clientEmail3" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="5.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel3" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -308,7 +308,7 @@
                                           </Label>
                                           <Button fx:id="btnDetails3" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
-                                                <Insets left="20.0" right="-15.0" top="30.0" />
+                                                <Insets left="15.0" right="-10.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientEdit3" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
@@ -339,20 +339,20 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="170.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg1111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                          <ImageView fx:id="clientImg1111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                                <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                                <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
+                                          <Label fx:id="idClient4" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Felipe">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName4" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName4" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -362,7 +362,7 @@
                                           </Label>
                                           <Label fx:id="clientEmail4" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="5.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel4" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -372,7 +372,7 @@
                                           </Label>
                                           <Button fx:id="btnDetails4" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
-                                                <Insets left="20.0" right="-15.0" top="30.0" />
+                                                <Insets left="15.0" right="-10.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientEdit4" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
@@ -403,20 +403,20 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="250.0" prefHeight="100.0" prefWidth="952.0" spacing="20.0">
                                        <children>
-                                          <ImageView fx:id="clientImg11111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+                                          <ImageView fx:id="clientImg11111" fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../static/media/images/products/product1.jpg" />
+                                                <Image url="@../../../../static/media/images/util/profile.jpeg" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="40.0" right="45.0" top="20.0" />
+                                                <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="105">
+                                          <Label fx:id="idClient5" alignment="CENTER" prefHeight="40.0" prefWidth="110.0" text="Angel">
                                              <HBox.margin>
-                                                <Insets bottom="20.0" left="-5.0" top="20.0" />
+                                                <Insets bottom="20.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="clientName5" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="119.0" text="Torre Gamer" wrapText="true">
+                                          <Label fx:id="clientName5" alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="40.0" prefWidth="112.0" text="Torre Gamer" wrapText="true">
                                              <HBox.margin>
                                                 <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
@@ -426,7 +426,7 @@
                                           </Label>
                                           <Label fx:id="clientEmail5" alignment="CENTER" layoutX="300.0" layoutY="30.0" prefHeight="40.0" prefWidth="145.0" text="PC">
                                              <HBox.margin>
-                                                <Insets left="5.0" top="20.0" />
+                                                <Insets left="10.0" top="20.0" />
                                              </HBox.margin>
                                           </Label>
                                           <Label fx:id="clientTel5" alignment="CENTER" layoutX="440.0" layoutY="30.0" prefHeight="40.0" prefWidth="100.0" text="1000,000">
@@ -436,7 +436,7 @@
                                           </Label>
                                           <Button fx:id="btnDetails5" mnemonicParsing="false" onAction="#handleDetails" prefHeight="25.0" prefWidth="83.0" text="Detalles">
                                              <HBox.margin>
-                                                <Insets left="20.0" right="-15.0" top="30.0" />
+                                                <Insets left="15.0" right="-10.0" top="30.0" />
                                              </HBox.margin>
                                           </Button>
                                           <Button fx:id="clientEdit5" layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#handlePurchaseEdit" prefHeight="25.0" prefWidth="28.0">
