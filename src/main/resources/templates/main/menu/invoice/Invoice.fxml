@@ -454,7 +454,6 @@
                               </VBox>
                               <HBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="254.0" spacing="30.0">
                                  <children>
-                                    <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#handleInvoiceRegister" prefHeight="25.0" prefWidth="100.0" text="Registrar" />
                                     <Label prefHeight="17.0" prefWidth="54.0" text="Page:">
                                        <HBox.margin>
                                           <Insets right="-40.0" top="5.0" />
@@ -480,7 +479,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                                  <VBox.margin>
-                                    <Insets left="568.0" top="10.0" />
+                                    <Insets left="700.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                            </children>

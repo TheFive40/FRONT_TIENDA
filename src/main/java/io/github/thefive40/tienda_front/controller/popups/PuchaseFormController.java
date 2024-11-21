@@ -97,7 +97,7 @@ public class PuchaseFormController implements Initializable {
         lastName.setText ( client.getLastname ( ) );
         email.setText ( client.getEmail ( ) );
         phone.setText ( client.getPhone ( ) );
-        if (!homeController.getItemCartDTOHashMap ().isEmpty ()){
+        if (homeController.getItemCartDTOHashMap ()  != null){
             homeController.getItemCartDTOHashMap ( ).forEach ( ( k, v ) -> {
                 DetailInvoiceDTO detailInvoiceDTO = new DetailInvoiceDTO ( );
                 DetailOrderDTO detailOrderDTO = new DetailOrderDTO ( );
@@ -111,7 +111,7 @@ public class PuchaseFormController implements Initializable {
                 detailInvoiceDTO.setUnitPrice ( v.getProduct ( ).getPrice ( ) );
                 invoiceDTO.getDetailsInvoice ( ).add ( detailInvoiceDTO );
             } );
-        }else if(!sellerController.getItemCartDTOHashMap ().isEmpty ()){
+        }else if(sellerController.getItemCartDTOHashMap () != null){
             sellerController.getItemCartDTOHashMap ( ).forEach ( ( k, v ) -> {
                 DetailInvoiceDTO detailInvoiceDTO = new DetailInvoiceDTO ( );
                 DetailOrderDTO detailOrderDTO = new DetailOrderDTO ( );

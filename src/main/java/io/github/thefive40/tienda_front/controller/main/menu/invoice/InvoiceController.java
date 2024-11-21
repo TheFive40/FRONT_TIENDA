@@ -161,10 +161,6 @@ public class InvoiceController implements Initializable {
 
 
     @FXML
-    void handleInvoiceRegister ( ActionEvent event ) {
-
-    }
-    @FXML
     void handleLogout(){
         stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
 
@@ -294,7 +290,8 @@ public class InvoiceController implements Initializable {
             invoice.setStatus ( false );
             client.getInvoices ( ).add ( invoice );
             userService.update ( client );
-            fillTableInvoice ( client.getInvoices ( ) );
+            //fillTableInvoice ( client.getInvoices ( ) );
+            refresh ();
         }
     }
 

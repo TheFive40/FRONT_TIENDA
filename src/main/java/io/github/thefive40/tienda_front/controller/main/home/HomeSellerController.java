@@ -229,7 +229,7 @@ public class HomeSellerController implements Initializable {
 
     private ClientDTO currentUser;
 
-    private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap = new HashMap<> ( );
+    private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap;
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -242,6 +242,7 @@ public class HomeSellerController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        itemCartDTOHashMap = new HashMap<> ( );
         Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) );
         signUp = context.getBean ( "SignUpController", SignUpController.class );

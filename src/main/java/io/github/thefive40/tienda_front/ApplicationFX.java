@@ -21,7 +21,7 @@ public class ApplicationFX extends Application {
         FXMLLoader loginFXML = context.getBean ( "loginFXML", FXMLLoader.class );
         stage = context.getBean ( "stage", Stage.class );
         Parent loginParent = loginFXML.load ( );
-        stage.setTitle ( "Tienda Online" );
+        stage.setTitle ( "Hyperium" );
         stage.setScene ( new javafx.scene.Scene ( loginParent ) );
         stage.show ( );
     }
