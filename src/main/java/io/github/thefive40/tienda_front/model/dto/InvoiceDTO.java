@@ -37,11 +37,11 @@ public class InvoiceDTO {
     public boolean equals ( Object object ) {
         if (this == object) return true;
         if (!(object instanceof InvoiceDTO that)) return false;
-        return getNroInvoice ( ) == that.getNroInvoice ( );
+        return Objects.equals ( getIdInvoice ( ), that.getIdInvoice ( ) );
     }
 
     @Override
     public int hashCode () {
-        return Objects.hashCode ( getNroInvoice ( ) );
+        return Objects.hashCode ( getIdInvoice ( ) );
     }
 }

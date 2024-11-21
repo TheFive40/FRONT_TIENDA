@@ -280,7 +280,7 @@ public class UtilityService<T> {
     }
 
     public boolean permsValidate(String rol ){
-        if(rol.equalsIgnoreCase ( "ADMINISTRADOR" ) || rol.equalsIgnoreCase ( "CLIENTE" )){
+        if(rol.equalsIgnoreCase ( "VENDEDOR" ) || rol.equalsIgnoreCase ( "CLIENTE" )){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Alerta");
             alert.setHeaderText("Solo los administradores pueden editar el pedido.");

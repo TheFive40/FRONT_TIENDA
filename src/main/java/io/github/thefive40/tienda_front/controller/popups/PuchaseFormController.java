@@ -63,9 +63,9 @@ public class PuchaseFormController implements Initializable {
 
     private ClientDTO client;
 
-    private  OrderDTO orderDTO = new OrderDTO (  );
+    private  OrderDTO orderDTO;
 
-    private InvoiceDTO invoiceDTO = new InvoiceDTO (  );
+    private InvoiceDTO invoiceDTO;
 
     public PuchaseFormController ( HomeController homeController, UserService userService, ShoppingCartService shoppingCartService ) {
         this.homeController = homeController;
@@ -75,6 +75,8 @@ public class PuchaseFormController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        orderDTO = new OrderDTO (  );
+        invoiceDTO = new InvoiceDTO (  );
         AtomicInteger totalAmount = new AtomicInteger ( );
         client = homeController.getCurrentUser ( );
         firstName.setText ( client.getName ( ) );
@@ -106,6 +108,7 @@ public class PuchaseFormController implements Initializable {
     @FXML
     void handlePurchase () throws JsonProcessingException {
         // TODO: Make purchase request and handle success or failure
+
         orderDTO.setAddress ( shippingAddress.getText ( ) );
         orderDTO.setCity ( city.getText ( ) );
         orderDTO.setCountry ( country.getText ( ) );

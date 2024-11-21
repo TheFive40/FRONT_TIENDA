@@ -48,6 +48,10 @@ public class PurchaseEditController  implements Initializable {
     void handleUpdate( ActionEvent event) throws JsonProcessingException {
         var client = purchaseController.getClientOrder ();
         var currentOrder = purchaseController.getCurrentOrder ();
+        if (!client.getEmail ().equals ( correoField.getText () )){
+            client.getOrders ().remove ( currentOrder );
+            client = userService.getUserByEmail ( correoField.getText () );
+        }
         client.setEmail ( correoField.getText ( ) );
         currentOrder.setZipCode ( codigoField.getText ( ) );
         currentOrder.setAddress ( direccionField.getText (  ));

@@ -74,7 +74,7 @@ public class InvoiceEditController implements Initializable {
         invoice.setStatus ( estadoComboBox.getSelectionModel ( ).getSelectedItem ( ).
                 equalsIgnoreCase ( "Activo" ) );
         if (!clientDTO.getInvoices ( ).contains ( invoice )) {
-            currentClient.getInvoices ( ).remove ( invoice );
+            //currentClient.getInvoices ( ).remove ( invoice );
             clientDTO.getInvoices ( ).add ( invoice );
             userService.update ( currentClient );
             userService.update ( clientDTO );
