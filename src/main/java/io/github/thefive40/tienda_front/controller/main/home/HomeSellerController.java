@@ -233,7 +233,7 @@ public class HomeSellerController implements Initializable {
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
-            , UtilityService utility, UserService userService ) {
+            , UtilityService<ProductDTO> utility, UserService userService ) {
         this.imageService = imageService;
         this.context = context;
         this.userService = userService;
