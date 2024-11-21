@@ -176,12 +176,21 @@ public class InvoiceController implements Initializable {
 
     @FXML
     void handleBefore ( ActionEvent event ) {
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && 1 <
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) - 1) + "" );
 
+        }
+        refresh ( );
     }
 
     @FXML
     void handleAfter ( ActionEvent event ) {
-
+        if (utilityService.isNumber ( txtPage.getText ( ) ) && utilityService.totalPages ( invoiceDTOS ) >
+                Integer.parseInt ( txtPage.getText ( ) )) {
+            txtPage.setText ( (Integer.parseInt ( txtPage.getText ( ) ) + 1) + "" );
+        }
+        refresh ( );
     }
 
     @FXML
