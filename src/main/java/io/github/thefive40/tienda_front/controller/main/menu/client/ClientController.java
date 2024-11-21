@@ -148,7 +148,10 @@ public class ClientController implements Initializable {
     void handleMenuInicio () {
         stage.setScene ( new Scene ( context.getBean ( "homeParent", AnchorPane.class ) ) );
     }
-
+    @FXML
+    void handleLogout(){
+        stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
+    }
     @FXML
     void handleClientRegister () {
         Stage root_stage = new Stage ( );
@@ -248,6 +251,7 @@ public class ClientController implements Initializable {
         if (login.getCurrentUser ( ) != null)
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
+        userRole.setText ( "ADMINISTRADOR" );
         filterButton.getItems ().addAll ( "Email", "Nombres", "Apellidos" );
         filterButton.getSelectionModel ().select ( 0 );
     }

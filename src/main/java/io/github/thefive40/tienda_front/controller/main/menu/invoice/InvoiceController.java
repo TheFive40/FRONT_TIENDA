@@ -164,7 +164,11 @@ public class InvoiceController implements Initializable {
     void handleInvoiceRegister ( ActionEvent event ) {
 
     }
+    @FXML
+    void handleLogout(){
+        stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
 
+    }
     @FXML
     void handleDetails ( ActionEvent event ) {
         Button button = (Button) event.getSource ( );

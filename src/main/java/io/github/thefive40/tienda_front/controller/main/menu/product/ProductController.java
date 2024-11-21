@@ -87,7 +87,8 @@ public class ProductController implements Initializable {
     private ProductService productService;
 
     private ProductDTO productEdit;
-
+    @FXML
+    private Label userRole;
 
     @Autowired
     public void inject ( ProductService service, Stage stage, LoginController login, SignUpController signUpController
@@ -120,6 +121,11 @@ public class ProductController implements Initializable {
         txtTotalPage.setText ( utilityService.totalPages ( products ) + "" );
         imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) ) );
+        try{
+            userRole.setText ( utilityService.getClientByRol ().getRole ().toUpperCase () );
+        }catch (NullPointerException ex){
+            userRole.setText ( "ADMINISTRADOR" );
+        }
         if (login.getCurrentUser ( ) != null)
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
         else userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
@@ -183,6 +189,11 @@ public class ProductController implements Initializable {
             }
         } );
 
+    }
+
+    @FXML
+    void handleLogout(){
+        stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
     }
 
     @FXML

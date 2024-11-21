@@ -43,9 +43,11 @@ public class LoginController implements Initializable {
     private AuthService authService;
     private UserService userService;
     private AuthError authError;
-    @Getter
     private ClientDTO currentUser;
 
+    public ClientDTO getCurrentUser () {
+        return userService.getUserByEmail ( currentUser.getEmail ( ) );
+    }
 
     @Autowired
     private void setParents ( AnchorPane registerParent, Logger logger, Stage stage,

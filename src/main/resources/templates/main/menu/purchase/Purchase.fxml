@@ -89,7 +89,7 @@
                                             </children>
                                         </VBox>
 
-                                        <Button fx:id="btnLogout" mnemonicParsing="false" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
+                                        <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" prefHeight="36.0" prefWidth="50.0" styleClass="logout-button">
                                             <graphic>
                                                 <ImageView fitHeight="36.0" fitWidth="45.0">
                                                     <image>

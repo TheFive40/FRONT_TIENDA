@@ -4,6 +4,7 @@ import io.github.thefive40.tienda_front.config.notifications.error.AuthError;
 import io.github.thefive40.tienda_front.service.EmailService;
 import io.github.thefive40.tienda_front.service.AuthValidatorService;
 import io.github.thefive40.tienda_front.service.UserRegistrationService;
+import io.github.thefive40.tienda_front.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -63,9 +64,13 @@ public class SignUpController implements Initializable {
     private ApplicationContext context;
 
     private AuthError authError;
-    @Getter
     @Setter
+    @Getter
     private ClientDTO currentUser;
+    @Autowired
+    private UserService userService;
+
+
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
@@ -149,5 +154,10 @@ public class SignUpController implements Initializable {
         this.emailService = emailService;
         this.userRegistrationService = userRegistrationService;
         this.authValidateService = authValidateService;
+    }
+
+    @Autowired
+    public void setUserService ( UserService userService ) {
+        this.userService = userService;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.DetailOrderDTO;
 import io.github.thefive40.tienda_front.model.dto.OrderDTO;
+import io.github.thefive40.tienda_front.model.enums.Profile;
 import io.github.thefive40.tienda_front.service.OrderService;
 import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
@@ -21,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,6 @@ public class PurchaseController implements Initializable {
     private final UserService userService;
     @FXML
     private TextField txtTotalPage;
-
     @FXML
     private VBox vboxContainer;
     @FXML
@@ -58,8 +59,11 @@ public class PurchaseController implements Initializable {
     private HBox containerLogout;
     @FXML
     private AnchorPane detailsPurchase;
+    @FXML
+    private ImageView imgProfile;
     private HashMap<OrderDTO, ClientDTO> clientOrders;
-
+    @FXML
+    private Label userRole;
     @Autowired
     private OrderService orderService;
 
@@ -68,6 +72,7 @@ public class PurchaseController implements Initializable {
     private List<DetailOrderDTO> clientDetailOrders;
 
     private OrderDTO currentOrder;
+
 
     @Autowired
     private ApplicationContext context;
@@ -123,9 +128,11 @@ public class PurchaseController implements Initializable {
                         } );
             }
         }
+        imgProfile.setClip ( new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
+                Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) ) );
         filterButton.getItems ( ).addAll ( "Ciudad" );
         filterButton.getSelectionModel ( ).select ( 0 );
-
+        userRole.setText ( currentUser.getRole ().toUpperCase () );
         fillTablePurchase ( orderDTOS );
 
     }
@@ -164,7 +171,10 @@ public class PurchaseController implements Initializable {
             }
         } );
     }
-
+    @FXML
+    void handleLogout(){
+        stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
+    }
     void clearProductsInfo ( Label idLabel, Label nameLabel, Label emailLabel, Label telLabel,
                              Button buttonDetail, ImageView imageView, Button buttonEdit, Button buttonRemove ) {
         idLabel.setText ( "" );

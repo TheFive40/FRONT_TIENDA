@@ -10,6 +10,7 @@ import io.github.thefive40.tienda_front.service.UserService;
 import io.github.thefive40.tienda_front.service.UtilityService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -165,5 +166,9 @@ public class PuchaseFormController implements Initializable {
         client.setShoppingCart ( List.of ( cart ) );
         client.getInvoices ( ).add ( invoiceDTO );
         userService.update ( client );
+        Alert alert = new Alert ( Alert.AlertType.CONFIRMATION );
+        alert.setHeaderText ( "Purchase Successful!" );
+        alert.setContentText ( "Your purchase was successful. Your order number is: " + (int)(Math.random ()*100000) );
+        alert.showAndWait ( );
     }
 }

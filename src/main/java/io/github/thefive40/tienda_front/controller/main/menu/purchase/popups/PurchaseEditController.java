@@ -5,6 +5,7 @@ import io.github.thefive40.tienda_front.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -59,6 +60,13 @@ public class PurchaseEditController  implements Initializable {
         client.getOrders ().remove ( currentOrder );
         client.getOrders ().add ( currentOrder );
         userService.update ( client );
+        purchaseController.refresh ();
+        Alert alert = new Alert ( Alert.AlertType.CONFIRMATION );
+        alert.setTitle ( "Confirmación" );
+        alert.setHeaderText ( "Pedido actualizado con éxito" );
+        alert.setContentText ( "Los datos del pedido han sido actualizados correctamente.\n\n"
+                + "Puede verificar los cambios en la lista de pedidos." );
+        alert.showAndWait ( );
     }
 
     @Override
