@@ -58,7 +58,7 @@ public class PurchaseController implements Initializable {
     private HBox containerLogout;
     @FXML
     private AnchorPane detailsPurchase;
-    private HashMap<OrderDTO, ClientDTO> clientOrders = new HashMap<> ( );
+    private HashMap<OrderDTO, ClientDTO> clientOrders;
 
     @Autowired
     private OrderService orderService;
@@ -85,6 +85,7 @@ public class PurchaseController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        clientOrders = new HashMap<> ( );
         var currentUser = utilityService.getClientByRol ( );
         txtPage.setText ( "1" );
         orderDTOS = new ArrayList<> ( );

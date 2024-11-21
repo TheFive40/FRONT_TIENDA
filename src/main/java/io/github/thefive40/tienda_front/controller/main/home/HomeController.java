@@ -232,7 +232,7 @@ public class HomeController implements Initializable {
 
     private ClientDTO currentUser;
 
-    private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap = new HashMap<> ( );
+    private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap;
 
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
@@ -245,6 +245,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
+        itemCartDTOHashMap = new HashMap<> ( );
         Circle clip = new Circle ( Profile.IMAGE_CENTER_X.getValue ( ),
                 Profile.IMAGE_CENTER_Y.getValue ( ), Profile.IMAGE_RADIUS.getValue ( ) );
         signUp = context.getBean ( "SignUpController", SignUpController.class );
@@ -252,11 +253,14 @@ public class HomeController implements Initializable {
         if (signUp.getCurrentUser ( ) != null) {
             imgProfile.setImage ( new Image ( signUp.getCurrentUser ( ).getUrl ( ) ) );
             userName.setText ( signUp.getCurrentUser ( ).getName ( ) );
-            currentUser = signUp.getCurrentUser ( );
+            //currentUser = signUp.getCurrentUser ( );
+            currentUser = userService.getUserByEmail ( signUp.getCurrentUser ().getEmail () );
         } else if (login.getCurrentUser ( ) != null) {
             imgProfile.setImage ( new Image ( login.getCurrentUser ( ).getUrl ( ) ) );
             userName.setText ( login.getCurrentUser ( ).getName ( ) );
-            currentUser = login.getCurrentUser ( );
+            //currentUser = login.getCurrentUser ( );
+            currentUser = userService.getUserByEmail ( login.getCurrentUser ().getEmail () );
+
         }
         try {
             ShoppingCartDTO cart = cartService.findByClient ( currentUser );

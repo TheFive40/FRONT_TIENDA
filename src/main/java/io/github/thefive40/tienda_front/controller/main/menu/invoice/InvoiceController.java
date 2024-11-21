@@ -1,5 +1,4 @@
 package io.github.thefive40.tienda_front.controller.main.menu.invoice;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.thefive40.tienda_front.model.dto.ClientDTO;
 import io.github.thefive40.tienda_front.model.dto.InvoiceDTO;
@@ -60,7 +59,7 @@ public class InvoiceController implements Initializable {
     @FXML
     private HBox containerLogout;
 
-    private HashMap<InvoiceDTO, ClientDTO> clientsInvoices = new HashMap<> ( );
+    private HashMap<InvoiceDTO, ClientDTO> clientsInvoices;
 
     private final UtilityService<InvoiceDTO> utilityService;
 
@@ -87,6 +86,7 @@ public class InvoiceController implements Initializable {
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
         //var client = context.getBean ( "HomeController", HomeController.class ).getCurrentUser ();
+        clientsInvoices = new HashMap<> ( );
         var client = utilityService.getClientByRol ( );
         invoiceDTOS = new ArrayList<> ( );
         txtPage.setText ( "1" );

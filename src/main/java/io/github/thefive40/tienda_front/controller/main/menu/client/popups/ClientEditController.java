@@ -46,8 +46,6 @@ public class ClientEditController implements Initializable {
     @FXML
     private TextField apellidoField;
 
-    private ClientController clientController;
-
     private ApplicationContext context;
 
     private UserService userService;
@@ -89,6 +87,7 @@ public class ClientEditController implements Initializable {
         clientDTO.setStatus ( estadoField.getText ( ).equalsIgnoreCase ( "Activo" ) );
         System.out.println (clientDTO.getInitVector () );
         userService.update ( clientDTO );
+        client.refresh ();
         new AlertRegister ().showUpdateClient ();
     }
 }
