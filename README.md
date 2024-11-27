@@ -127,6 +127,8 @@ Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ✍️ **Author**: Jean Franco Boom Bolaño  
 📧 **Email**: [jeanf2805@gmail.com](mailto:jeanf2805@gmail.com)
+- **Angel de Jesús Quintero Rivera** (Database Designer | Diseñador de la Base de Datos)  
+📧 **Email**: [angelquintero@gmail.com](mailto:angelquinteror@gmail.com)  
 
 Feel free to reach out with any questions or feedback.  
 No dudes en contactarme para cualquier consulta o retroalimentación.
