@@ -122,16 +122,16 @@ Consulta el archivo [LICENSE](LICENSE) para más detalles.
 🎉 ¡Las contribuciones son bienvenidas! No dudes en abrir issues o enviar pull requests para mejorar el proyecto.
 
 ---
-
 ## 📞 Contact | Contacto 📞
 
-✍️ **Author**: Jean Franco Boom Bolaño  
-📧 **Email**: [jeanf2805@gmail.com](mailto:jeanf2805@gmail.com)
+✍️ **Authors | Autores**:  
+- **Jean Franco Boom Bolaño** (Project Lead | Líder del Proyecto)  
+📧 **Email**: [jeanf2805@gmail.com](mailto:jeanf2805@gmail.com)  
+
 - **Angel de Jesús Quintero Rivera** (Database Designer | Diseñador de la Base de Datos)  
-📧 **Email**: [angelquintero@gmail.com](mailto:angelquinteror@gmail.com)  
+📧 **Email**: [angelquinteror@gmail.com](mailto:angelquintero@gmail.com)  
 
 Feel free to reach out with any questions or feedback.  
-No dudes en contactarme para cualquier consulta o retroalimentación.
+No dudes en contactarnos para cualquier consulta o retroalimentación.
 
----
 
