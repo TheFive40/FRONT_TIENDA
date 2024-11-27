@@ -14,23 +14,54 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-
+/**
+ * OrderService is a service component responsible for interacting with the backend
+ * to fetch order data based on specific criteria. It uses Java's HTTP client for asynchronous
+ * communication and Jackson for JSON processing.
+ */
 @Component
 public class OrderService {
 
+    /**
+     * Logger instance for logging events and errors.
+     */
     private final Logger logger;
+
+    /**
+     * ObjectMapper for parsing JSON responses from the backend.
+     */
     private final ObjectMapper mapper;
+
+    /**
+     * HTTP client for sending asynchronous requests.
+     */
     private HttpClient httpClient;
 
+    /**
+     * Constructs an instance of {@code OrderService} with the provided logger and mapper.
+     *
+     * @param logger the logger instance for logging.
+     * @param mapper the {@link ObjectMapper} instance for JSON serialization and deserialization.
+     */
     public OrderService ( Logger logger, @Qualifier("mapper") ObjectMapper mapper ) {
         this.logger = logger;
         this.mapper = mapper;
     }
-
+    /**
+     * Fetches a list of orders based on the specified city.
+     *
+     * @param city the name of the city to filter orders.
+     * @return a {@link List} of {@link OrderDTO} objects representing the orders in the specified city.
+     */
     public List<OrderDTO> findByCity(String city){
         return sendRequest ( "http://localhost:6060/city/" + city.replace ( " ", "_" ) );
     }
-
+    /**
+     * Sends an HTTP GET request to the specified URL and processes the response.
+     *
+     * @param url the URL to send the request to.
+     * @return a {@link List} of {@link OrderDTO} objects obtained from the response.
+     */
     protected List<OrderDTO> sendRequest(String url){
         AtomicReference<List<OrderDTO>> productDTO = new AtomicReference<> ( );
         httpClient = HttpClient.newHttpClient ( );

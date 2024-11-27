@@ -29,6 +29,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * SignUpController handles the registration functionality for the application.
+ * It manages form validation, user creation, and verification workflows.
+ */
 @Component("SignUpController")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class SignUpController implements Initializable {
@@ -72,11 +76,22 @@ public class SignUpController implements Initializable {
 
 
 
+    /**
+     * Initializes the controller after the FXML file is loaded.
+     *
+     * @param url            the location used to resolve relative paths.
+     * @param resourceBundle the resources used to localize the root object.
+     */
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
 
     }
-
+    /**
+     * Handles the user registration process.
+     * Validates the user input, registers the user, and initiates email verification.
+     *
+     * @throws MessagingException if there is an error sending the verification email.
+     */
     @FXML
     void handleSubmit () throws MessagingException {
         currentUser = new ClientDTO (
@@ -93,6 +108,11 @@ public class SignUpController implements Initializable {
     }
 
 
+    /**
+     * Validates the password as the user types, updating the label with strength feedback.
+     *
+     * @param event the key event triggering the validation.
+     */
     @FXML
     void handlePasswordEvent ( KeyEvent event ) {
         String text = passwordField.getText ( ) + event.getText ( );
@@ -105,6 +125,11 @@ public class SignUpController implements Initializable {
         lblPassword.setTextFill ( Color.LIGHTGREEN );
     }
 
+    /**
+     * Validates the password confirmation field as the user types, updating the label with feedback.
+     *
+     * @param event the key event triggering the validation.
+     */
     @FXML
     void handleConfirmPasswordEvent ( KeyEvent event ) {
         String text = confirmPasswordField.getText ( ) + event.getText ( );
@@ -116,18 +141,30 @@ public class SignUpController implements Initializable {
         lblConfirmPassword.setText ( "Incorrect" );
         lblConfirmPassword.setTextFill ( Color.RED );
     }
-
+    /**
+     * Transitions back to the login view.
+     *
+     * @throws IOException if the scene transition fails.
+     */
     @FXML
     void handleBackToLogin () throws IOException {
         stage.setScene ( new Scene ( context.getBean ( "loginParent", AnchorPane.class ) ) );
     }
 
+    /**
+     * Initializes and displays the verification stage.
+     */
     private void initVerificationStage () {
         prototypeStage.initStyle ( StageStyle.UNDECORATED );
         prototypeStage.setScene ( new Scene ( context.getBean ( "verificationParent", VBox.class ) ) );
         prototypeStage.show ( );
     }
-
+    /**
+     * Validates the user's credentials.
+     *
+     * @param clientDTO the {@link ClientDTO} containing the user's information.
+     * @return {@code true} if the user is valid; {@code false} otherwise.
+     */
     protected boolean validateUser ( ClientDTO clientDTO ) {
         if (!           authValidateService.isCredentialsValid ( clientDTO )) {
             authError.show ( );
@@ -136,18 +173,35 @@ public class SignUpController implements Initializable {
         return true;
     }
 
+    /**
+     * Injects the main and prototype stages.
+     *
+     * @param stage           the main stage.
+     * @param prototypeStage  the prototype stage for verification.
+     */
     @Autowired
     public void injectWindows ( Stage stage , Stage prototypeStage ) {
         this.stage = stage;
         this.prototypeStage = prototypeStage;
     }
-
+    /**
+     * Injects the application context and authentication error components.
+     *
+     * @param context   the {@link ApplicationContext} for accessing beans.
+     * @param authError the {@link AuthError} for handling authentication errors.
+     */
     @Autowired
     public void inject ( ApplicationContext context, AuthError authError ) {
         this.authError = authError;
         this.context = context;
     }
-
+    /**
+     * Injects the email, registration, and validation services.
+     *
+     * @param emailService            the {@link EmailService} for email-related operations.
+     * @param userRegistrationService the {@link UserRegistrationService} for user registration.
+     * @param authValidateService     the {@link AuthValidatorService} for authentication validation.
+     */
     @Autowired
     public void injectService ( EmailService emailService, UserRegistrationService userRegistrationService,
                                 AuthValidatorService authValidateService ) {
@@ -155,7 +209,11 @@ public class SignUpController implements Initializable {
         this.userRegistrationService = userRegistrationService;
         this.authValidateService = authValidateService;
     }
-
+    /**
+     * Sets the user service instance.
+     *
+     * @param userService the {@link UserService} for managing user operations.
+     */
     @Autowired
     public void setUserService ( UserService userService ) {
         this.userService = userService;

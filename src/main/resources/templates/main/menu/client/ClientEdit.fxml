@@ -32,7 +32,6 @@
       <VBox prefHeight="14.0" prefWidth="201.0">
          <children>
          
-             <!-- Información Personal Section -->
              <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Información Personal:" GridPane.columnIndex="0" GridPane.rowIndex="0">
                <VBox.margin>
                   <Insets top="2.0" />
@@ -53,7 +52,6 @@
       <VBox GridPane.rowIndex="3">
          <children>
          
-                   <!-- Contacto Section -->
              <Label prefHeight="20.0" prefWidth="199.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Contacto:" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
@@ -70,7 +68,6 @@
       <VBox GridPane.rowIndex="6">
          <children>
          
-             <!-- Información Sensible Section -->
              <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #555;" text="Información Sensible:" GridPane.columnIndex="0" GridPane.rowIndex="6">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />

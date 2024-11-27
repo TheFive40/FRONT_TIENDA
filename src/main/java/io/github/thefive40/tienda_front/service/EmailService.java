@@ -6,11 +6,26 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-
+/**
+ * EmailService is a service class responsible for sending verification codes via email.
+ * It uses the JavaMail API to handle email communication and generates random
+ * verification codes.
+ */
 @Service
 @Getter
 public class EmailService {
+    /**
+     * Stores the latest verification code sent.
+     */
     private String code;
+
+    /**
+     * Sends a verification code to the specified recipient email address.
+     * This method runs the email sending operation in a background thread using JavaFX's {@link Task}.
+     *
+     * @param recipient the recipient's email address.
+     * @param code      the verification code to be sent.
+     */
     protected void sendVerificationCode ( String recipient, String code ) {
         Task<Void> task = new Task<Void> ( ) {
             @Override
@@ -43,7 +58,12 @@ public class EmailService {
         };
         new Thread(task).start();
     }
-
+    /**
+     * Generates a random verification code and sends it to the provided email address.
+     *
+     * @param email the recipient's email address.
+     * @throws MessagingException if there is an error while sending the email.
+     */
     public void sendVerificationCode ( String email ) throws MessagingException {
         String verificationCode = String.valueOf ( (int) (Math.random ( ) * 900000) + 100000 );
         code = verificationCode;

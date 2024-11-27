@@ -26,6 +26,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+/**
+ * LoginController handles the login functionality for the application.
+ * It manages user authentication, scene transitions, and error handling.
+ */
 @Component("LoginController")
 @Lazy
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -44,11 +48,23 @@ public class LoginController implements Initializable {
     private UserService userService;
     private AuthError authError;
     private ClientDTO currentUser;
-
+    /**
+     * Retrieves the current user from the database.
+     *
+     * @return a {@link ClientDTO} representing the current user.
+     */
     public ClientDTO getCurrentUser () {
         return userService.getUserByEmail ( currentUser.getEmail ( ) );
     }
-
+    /**
+     * Sets various dependencies for the controller.
+     *
+     * @param registerParent the parent AnchorPane for the registration view.
+     * @param logger         the {@link Logger} instance for logging.
+     * @param stage          the main application stage.
+     * @param context        the {@link ApplicationContext} for accessing beans.
+     * @param authError      the {@link AuthError} for displaying login errors.
+     */
     @Autowired
     private void setParents ( AnchorPane registerParent, Logger logger, Stage stage,
                               ApplicationContext context, AuthError authError ) {
@@ -58,12 +74,23 @@ public class LoginController implements Initializable {
         this.context = context;
         this.authError = authError;
     }
-
+    /**
+     * Injects the authentication and user services into the controller.
+     *
+     * @param authService the {@link AuthService} for authentication logic.
+     * @param userService the {@link UserService} for user-related operations.
+     */
     @Autowired
     private void injectServices ( AuthService authService, UserService userService ) {
         this.authService = authService;
         this.userService = userService;
     }
+
+    /**
+     * Handles the login action triggered by the user.
+     * Authenticates the user and transitions to the appropriate home scene
+     * based on their role.
+     */
     @FXML
     public void handleLogin () {
         if (authService.login ( emailField.getText ( ), passwordField.getText ( ) )) {
@@ -85,14 +112,28 @@ public class LoginController implements Initializable {
         authError.show ( );
         logger.info ( "Invalid credentials for user: {}", emailField.getText ( ) );
     }
-
+    /**
+     * Handles the forgot password action (currently not implemented).
+     *
+     * @param event the action event triggering the method.
+     */
     public void handleForgotPassword ( ActionEvent event ) {
     }
-
+    /**
+     * Handles the register action, transitioning to the registration scene.
+     *
+     * @throws IOException if the scene transition fails.
+     */
     public void handleRegister () throws IOException {
         stage.setScene ( new Scene ( context.getBean ( "registerParent", AnchorPane.class ) ) );
     }
 
+    /**
+     * Initializes the controller after the FXML file is loaded.
+     *
+     * @param url            the location used to resolve relative paths.
+     * @param resourceBundle the resources used to localize the root object.
+     */
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
 

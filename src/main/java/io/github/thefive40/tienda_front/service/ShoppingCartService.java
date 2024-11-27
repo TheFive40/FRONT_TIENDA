@@ -15,19 +15,44 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
-
+/**
+ * ShoppingCartService is a service class that implements {@link ShoppingCartRepository}.
+ * It provides methods to manage shopping cart operations, including saving,
+ * finding, updating, and removing items from a shopping cart by interacting with
+ * a backend API through HTTP requests.
+ */
 @Service
 public class ShoppingCartService implements ShoppingCartRepository {
-
+    /**
+     * ObjectMapper for JSON serialization and deserialization.
+     */
     private final ObjectMapper mapper;
+    /**
+     * Logger instance for logging events and errors.
+     */
     private final Logger logger;
+    /**
+     * HTTP client for making asynchronous requests to the backend.
+     */
     private HttpClient httpClient;
-
+    /**
+     * Constructs a ShoppingCartService instance with dependencies injected.
+     *
+     * @param mapper the {@link ObjectMapper} for handling JSON.
+     * @param logger the {@link Logger} for logging events and errors.
+     */
     public ShoppingCartService ( @Qualifier("mapper") ObjectMapper mapper, Logger logger ) {
         this.mapper = mapper;
         this.logger = logger;
     }
-
+    /**
+     * Sends a POST request to save a shopping cart to the backend.
+     *
+     * @param cartDTO the {@link ShoppingCartDTO} representing the shopping cart to save.
+     * @param url     the URL of the backend endpoint.
+     * @return a {@link List} of {@link ShoppingCartDTO} objects.
+     * @throws JsonProcessingException if JSON serialization fails.
+     */
     private List<ShoppingCartDTO> saveRequest ( ShoppingCartDTO cartDTO, String url ) throws JsonProcessingException {
         AtomicReference<List<ShoppingCartDTO>> products = new AtomicReference<> ( );
         httpClient = HttpClient.newHttpClient ( );
@@ -52,6 +77,11 @@ public class ShoppingCartService implements ShoppingCartRepository {
         return products.get ( );
     }
 
+    /**
+     * Saves a shopping cart to the backend.
+     *
+     * @param shoppingCartDTO the {@link ShoppingCartDTO} to save.
+     */
     @Override
     public void save ( ShoppingCartDTO shoppingCartDTO ) {
         try {
@@ -61,7 +91,13 @@ public class ShoppingCartService implements ShoppingCartRepository {
         }
     }
 
-
+    /**
+     * Finds a shopping cart by a client.
+     *
+     * @param clientDTO the {@link ClientDTO} representing the client.
+     * @return the {@link ShoppingCartDTO} for the specified client.
+     * @throws JsonProcessingException if JSON serialization fails.
+     */
     @Override
     public ShoppingCartDTO findByClient ( ClientDTO clientDTO ) throws JsonProcessingException {
         AtomicReference<ShoppingCartDTO> shoppingCart = new AtomicReference<> ( );
@@ -90,7 +126,14 @@ public class ShoppingCartService implements ShoppingCartRepository {
                 .join ( );
         return shoppingCart.get ( );
     }
-
+    /**
+     * Finds an item in a shopping cart by the product and the shopping cart.
+     *
+     * @param shoppingCartDTO the {@link ShoppingCartDTO}.
+     * @param productDTO       the {@link ProductDTO}.
+     * @return the {@link ItemCartDTO} representing the found item.
+     * @throws JsonProcessingException if JSON serialization fails.
+     */
     public ItemCartDTO findByProductAndShoppingCart ( ShoppingCartDTO shoppingCartDTO, ProductDTO productDTO ) throws JsonProcessingException {
         RequestProductShopDto requestProductShopDto = new RequestProductShopDto ( );
         requestProductShopDto.setShoppingCart ( shoppingCartDTO );
@@ -124,12 +167,20 @@ public class ShoppingCartService implements ShoppingCartRepository {
 
         return items.get ( );
     }
-
+    /**
+     * Finds all shopping carts (not implemented).
+     *
+     * @return an empty {@link List}.
+     */
     @Override
     public List<ShoppingCartDTO> findAll () {
         return List.of ( );
     }
-
+    /**
+     * Removes an item from a shopping cart.
+     *
+     * @param itemCartDTO the {@link ItemCartDTO} to remove.
+     */
     public void remove(ItemCartDTO itemCartDTO){
         httpClient = HttpClient.newHttpClient ( );
         String body = "";
@@ -155,7 +206,11 @@ public class ShoppingCartService implements ShoppingCartRepository {
                 } )
                 .join ( );
     }
-
+    /**
+     * Updates an item in the shopping cart.
+     *
+     * @param itemCartDTO the {@link ItemCartDTO} to update.
+     */
     @Override
     public void updateItemCart ( ItemCartDTO itemCartDTO ) {
         httpClient = HttpClient.newHttpClient ( );

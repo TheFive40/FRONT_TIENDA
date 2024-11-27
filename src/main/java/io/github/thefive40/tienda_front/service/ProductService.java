@@ -15,22 +15,50 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-
+/**
+ * ProductService is a service class that implements the {@link ProductRepository} interface,
+ * responsible for interacting with the backend API to perform operations related to products.
+ * It provides methods to fetch, save, and search for products using HTTP requests.
+ */
 @Service
 public class ProductService implements ProductRepository {
+
+    /**
+     * HTTP client used for sending requests to the backend API.
+     */
     private HttpClient httpClient;
 
-
+    /**
+     * ObjectMapper for converting objects to JSON and vice versa.
+     */
     private final ObjectMapper mapper;
+    /**
+     * Logger instance for logging events and errors.
+     */
     private final Logger logger;
-    private final ClientDTO clientDTO;
 
+    /**
+     * Client information used for product operations.
+     */
+    private final ClientDTO clientDTO;
+    /**
+     * Constructs an instance of {@code ProductService} with dependencies injected.
+     *
+     * @param mapper    the {@link ObjectMapper} instance for JSON processing.
+     * @param logger    the {@link Logger} instance for logging.
+     * @param clientDTO the {@link ClientDTO} instance representing the client.
+     */
     public ProductService ( @Qualifier("mapper") ObjectMapper mapper, Logger logger, ClientDTO clientDTO ) {
         this.mapper = mapper;
         this.logger = logger;
         this.clientDTO = clientDTO;
     }
-
+    /**
+     * Fetches a product by its ID.
+     *
+     * @param id the ID of the product.
+     * @return a {@link ProductDTO} representing the product.
+     */
     @Override
     public ProductDTO getProductById ( long id ) {
         ProductDTO productDTO = new ProductDTO ( );
@@ -42,7 +70,12 @@ public class ProductService implements ProductRepository {
             throw new RuntimeException ( e );
         }
     }
-
+    /**
+     * Fetches products associated with a specific client.
+     *
+     * @param client the {@link ClientDTO} representing the client.
+     * @return a {@link List} of {@link ProductDTO} objects.
+     */
     @Override
     public List<ProductDTO> getProductByClient ( ClientDTO client ) {
         try {
@@ -52,17 +85,32 @@ public class ProductService implements ProductRepository {
         }
 
     }
-
+    /**
+     * Fetches all products.
+     *
+     * @return a {@link List} of {@link ProductDTO} objects representing all products.
+     */
     @Override
     public List<ProductDTO> getProducts () {
         return sendRequest ( "http://localhost:6060/api/products/findAll" );
     }
 
+    /**
+     * Finds products by the client's name.
+     *
+     * @param clientName the name of the client.
+     * @return a {@link List} of {@link ProductDTO} objects.
+     */
     @Override
     public List<ProductDTO> findProductsByClientName ( String clientName ) {
         return sendRequest ( "http://localhost:6060/api/products/findProductsByClientName/" + clientName.replace ( " ", "_" ) );
     }
 
+    /**
+     * Saves a product to the backend.
+     *
+     * @param productDTO the {@link ProductDTO} object to be saved.
+     */
     @Override
     public void save ( ProductDTO productDTO ) {
         try {
@@ -72,7 +120,14 @@ public class ProductService implements ProductRepository {
         }
     }
 
-
+    /**
+     * Finds a product by its name, image URL, and price.
+     *
+     * @param name  the product name.
+     * @param url   the product's image URL.
+     * @param price the product's price.
+     * @return a {@link ProductDTO} object representing the product.
+     */
     @Override
     public ProductDTO findProductByNameAndImgAndPrice ( String name, String url, String price ) {
         AtomicReference<ProductDTO> products = new AtomicReference<> ( );
@@ -100,13 +155,26 @@ public class ProductService implements ProductRepository {
                 .join ( );
         return products.get ( );
     }
-
+    /**
+     * Finds products by their name.
+     *
+     * @param text the product name or a part of it.
+     * @return a {@link List} of {@link ProductDTO} objects.
+     */
     @Override
     public List<ProductDTO> findByName ( String text ) {
         return sendRequest ( "http://localhost:6060/api/products/findProductName/" + text.replace ( " ","_" ) );
     }
 
-
+    /**
+     * Sends a POST request to the backend.
+     *
+     * @param productDTO the product data to be sent.
+     * @param client     the client data to be sent.
+     * @param url        the target URL.
+     * @return a {@link List} of {@link ProductDTO} objects.
+     * @throws JsonProcessingException if JSON serialization fails.
+     */
     private List<ProductDTO> postRequest ( ProductDTO productDTO, ClientDTO client, String url ) throws JsonProcessingException {
         AtomicReference<List<ProductDTO>> products = new AtomicReference<> ( );
         httpClient = HttpClient.newHttpClient ( );
@@ -137,7 +205,12 @@ public class ProductService implements ProductRepository {
                 .join ( );
         return products.get ( );
     }
-
+    /**
+     * Sends a GET request to the backend.
+     *
+     * @param url the target URL.
+     * @return a {@link List} of {@link ProductDTO} objects.
+     */
     private List<ProductDTO> sendRequest ( String url ) {
         AtomicReference<List<ProductDTO>> productDTO = new AtomicReference<> ( );
         httpClient = HttpClient.newHttpClient ( );

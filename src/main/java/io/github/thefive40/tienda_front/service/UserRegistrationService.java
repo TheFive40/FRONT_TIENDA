@@ -8,12 +8,22 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * UserRegistrationService is a service class responsible for handling
+ * user registration tasks in a non-blocking, asynchronous manner.
+ * It interacts with the {@link AuthService} to register new users.
+ */
 @Service
 public class UserRegistrationService {
-
+    /**
+     * AuthService instance to manage authentication and registration tasks.
+     */
     private AuthService service;
-
+    /**
+     * Constructs a {@code UserRegistrationService} with the specified {@link AuthService}.
+     *
+     * @param service the {@link AuthService} instance used for managing user registration.
+     */
     public UserRegistrationService ( AuthService service ) {
         this.service = service;
     }

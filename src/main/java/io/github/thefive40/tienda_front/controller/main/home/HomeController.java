@@ -36,204 +36,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * HomeController manages the main home view for administrative users in the application.
+ * It provides functionality for product browsing, shopping cart operations, and navigation to other views.
+ */
 @Component("HomeController")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @Getter
 public class HomeController implements Initializable {
-    @FXML
-    private Button btnProdDest4;
+    // FXML Elements
+    @FXML private ListView<String> cartListView;
+    @FXML private AnchorPane homeParent;
+    @FXML private VBox containerProducts;
+    @FXML private Label userName;
+    @FXML private Label userRole;
+    @FXML private ImageView imgProfile;
+    @FXML private Accordion cartAccordion;
+    @FXML private TitledPane titledCarrito;
+    @FXML private TextField searchTextField;
+    @FXML private TextField quantityTextField;
 
-    @FXML
-    private Button btnProdDest3;
-
-    @FXML
-    private Button btnProdDest2;
-
-    @FXML
-    private ListView<String> cartListView;
-
-    @FXML
-    private TitledPane titledCarrito;
-
-    @FXML
-    private Label NomProd;
-
-    @FXML
-    private Button btnProd4;
-
-    @FXML
-    private Button btnProd3;
-
-    @FXML
-    private Button btnProd;
-
-    @FXML
-    private Button payButton;
-
-    @FXML
-    private Button btnLogout;
-
-    @FXML
-    private Button buttonNext2;
-
-    @FXML
-    private Button buttonNext1;
-
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private AnchorPane homeParent;
-
-    @FXML
-    private HBox quantityHBox;
-
-    @FXML
-    private HBox containerLogout;
-
-    @FXML
-    private Button btnProdDest;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
-    private ImageView imgProfile;
-
-    @FXML
-    private Label precioProdDest2;
-
-    @FXML
-    private BorderPane cartBorderPane;
-
-    @FXML
-    private TextField searchTextField;
-
-    @FXML
-    private Label precioProdDest4;
-
-    @FXML
-    private Label precioProdDest3;
-
-    @FXML
-    private VBox cartVBox;
-
-    @FXML
-    private Label precioProd;
-
-    @FXML
-    private Label precioProdDest;
-
-    @FXML
-    private Label precioProd4;
-
-    @FXML
-    private Label precioProd3;
-
-    @FXML
-    private Label precioProd2;
-
-    @FXML
-    private TextField quantityTextField;
-
-    @FXML
-    private ImageView imgProdDest4;
-
-    @FXML
-    private Label NomProd2;
-
-    @FXML
-    private Button btnProd2;
-
-    @FXML
-    private Label userName;
-
-    @FXML
-    private Label quantityLabel;
-
-    @FXML
-    private ImageView imgProdDest2;
-
-    @FXML
-    private ImageView imgProdDest3;
-
-    @FXML
-    private HBox cartButtonsHBox;
-
-    @FXML
-    private Label NomProdDest2;
-
-    @FXML
-    private Label NomProdDest4;
-
-    @FXML
-    private Label NomProdDest3;
-
-    @FXML
-    private ImageView imgProdDest;
-
-    @FXML
-    private ImageView imgProd4;
-
-    @FXML
-    private Button removeButton;
-
-    @FXML
-    private ImageView imgProd;
-
-    @FXML
-    private ImageView imgProd2;
-
-    @FXML
-    private ImageView imgProd3;
-
-    @FXML
-    private Label userRole;
-
-    @FXML
-    private Label NomProdDest;
-
-    @FXML
-    private Label NomProd3;
-
-    @FXML
-    private Label NomProd4;
-
-    @FXML
-    private ComboBox<String> filterButton;
-
-    @FXML
-    private Accordion cartAccordion;
-    @FXML
-    private VBox containerProducts;
-
+    // Services and dependencies
     private ReadImageService imageService;
-
     private ApplicationContext context;
-
     private SignUpController signUp;
-
     private LoginController login;
-
     private UserService userService;
-
     private UtilityService<ProductDTO> utility;
-
-    private Stage stage;
-
-    private int contador = 1;
-
     private ProductService productService;
-
-    private List<ProductDTO> products;
-    @Autowired
     private ShoppingCartService cartService;
 
+    // State management
+    private Stage stage;
     private ClientDTO currentUser;
-
+    private int contador = 1;
+    private List<ProductDTO> products;
     private HashMap<Integer, ItemCartDTO> itemCartDTOHashMap;
-
+    /**
+     * Injects required dependencies into the controller.
+     *
+     * @param imageService the {@link ReadImageService} for image handling.
+     * @param context the {@link ApplicationContext} for accessing Spring beans.
+     * @param utility the {@link UtilityService} for product-related operations.
+     * @param userService the {@link UserService} for user operations.
+     */
     @Autowired
     public void inject ( ReadImageService imageService, ApplicationContext context
             , UtilityService utility, UserService userService ) {
@@ -242,7 +88,13 @@ public class HomeController implements Initializable {
         this.userService = userService;
         this.utility = utility;
     }
-
+    /**
+     * Initializes the home view.
+     * Configures user-specific settings, shopping cart, and product display.
+     *
+     * @param url the location used to resolve relative paths.
+     * @param resourceBundle the resources used to localize the root object.
+     */
     @Override
     public void initialize ( URL url, ResourceBundle resourceBundle ) {
         itemCartDTOHashMap = new HashMap<> ( );
@@ -285,7 +137,12 @@ public class HomeController implements Initializable {
         utility.fillProducts ( containerProducts, products );
 
     }
-
+    /**
+     * Handles adding a product to the user's shopping cart.
+     *
+     * @param event the action event triggered by the add-to-cart button.
+     * @throws JsonProcessingException if an error occurs during cart data processing.
+     */
     public void handleCart ( ActionEvent event ) throws JsonProcessingException {
         utility.addProductToCart ( (Button) event.getSource ( ) );
         System.out.println (currentUser );
@@ -342,7 +199,11 @@ public class HomeController implements Initializable {
         stage.setScene ( new Scene ( context.getBean ( "statisticsParent", ScrollPane.class ) ) );
         stage.show ( );
     }
-
+    /**
+     * Handles adding an item to the cart.
+     *
+     * @throws JsonProcessingException if an error occurs during cart update.
+     */
     @FXML
     void handleAddCart () throws JsonProcessingException {
         if (utility.isNumber ( quantityTextField.getText ( ) )) {
@@ -397,7 +258,12 @@ public class HomeController implements Initializable {
         stage.centerOnScreen ( );
         stage.show ( );
     }
-
+    /**
+     * Handles navigation to the previous page of products.
+     * <p>
+     * Decrements the page counter and updates the product display in the container
+     * if the current page is not the first one.
+     */
     @FXML
     void handleBefore () {
         if (contador != 1) {
@@ -405,14 +271,21 @@ public class HomeController implements Initializable {
             utility.fillProducts ( containerProducts, products );
         }
     }
-
+    /**
+     * Handles navigation to the next page of products.
+     * <p>
+     * Increments the page counter and updates the product display in the container
+     * if the current page is not the last one.
+     */
     @FXML
     void handleAfter () {
         if (contador < utility.totalProductsPage ( products ))
             contador++;
         utility.fillProducts ( containerProducts, products );
     }
-
+    /**
+     * Removes an item from the user's shopping cart.
+     */
     @FXML
     void handleRemoveCart () {
         int index = cartListView.getSelectionModel ( ).getSelectedIndex ( );
