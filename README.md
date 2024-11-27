@@ -48,15 +48,16 @@
 ## 📸 Screenshots | Capturas de pantalla 📸
 
 ### 📊 Dashboard
-![Dashboard]![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
+![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
 
 
 ### 📦 Product Management
-![Product Management]![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
+![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
 
 
 ### 🔐 Login Page
-![Login Page]![image](https://github.com/user-attachments/assets/1494bf77-026c-40cd-82f9-0bcf4efa8e65)
+![image](https://github.com/user-attachments/assets/cb87297f-5e8d-481c-af99-e83190b27bc2)
+
 
 
 ---
