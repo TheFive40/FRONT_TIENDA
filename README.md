@@ -48,19 +48,49 @@
 ## 📸 Screenshots | Capturas de pantalla 📸
 
 ### 📊 Dashboard
-![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
+![Dashboard]![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
 
 
 ### 📦 Product Management
-![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
+![Product Management]![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
 
 
 ### 🔐 Login Page
-![image](https://github.com/user-attachments/assets/cb87297f-5e8d-481c-af99-e83190b27bc2)
+![Login Page]![image](https://github.com/user-attachments/assets/1494bf77-026c-40cd-82f9-0bcf4efa8e65)
 
+### 👥 Clients View
+![image](https://github.com/user-attachments/assets/b35710d7-b052-4185-9309-c6d0fdfb73da)
 
+### 🛒 Purchases View
+![image](https://github.com/user-attachments/assets/73f50ceb-2520-4b11-a7b4-b4fc3b5b0a03)
+
+### 🛍️ Buy View
+![image](https://github.com/user-attachments/assets/b0817098-6446-42eb-9c95-148bad87b637)
+![image](https://github.com/user-attachments/assets/34cd9ad3-1bc3-44fb-adc6-fea22d714811)
 
 ---
+
+## 🗃️ Database Design | Diseño de Base de Datos 🗃️
+
+Below is the **Entity-Relationship Model (ERM)** for the database used in Hyperium:
+
+A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de datos utilizada en Hyperium:
+
+![Imagen de WhatsApp 2024-11-27 a las 11 29 13_dfecb285](https://github.com/user-attachments/assets/94f07534-d97f-4d15-b446-fafa4ab83628)
+
+
+**Key Entities | Entidades Clave:**
+- **Users**: Stores user data and roles (Administrator, Seller, Client).
+- **Products**: Contains product details such as name, price, and stock.
+- **Orders**: Tracks purchase transactions.
+- **Order Details**: Links products to orders with quantities and pricing.
+- **Roles**: Defines user roles for access control.
+
+**Relational Database System | Sistema de Base de Datos Relacional**: ORACLE
+
+---
+
+
 
 ## 💻 Setup | Configuración 💻
 
