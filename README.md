@@ -114,17 +114,17 @@ Aquí está el texto actualizado para incluir un apartado de descargas para el *
 ### 🛠️ Backend JAR | JAR del Backend
 You can download the executable backend file, which includes all the server functionalities:  
 Puedes descargar el archivo ejecutable del backend, que incluye todas las funcionalidades del servidor:  
-- **Backend JAR**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/tienda_back.jar)
+- **Backend JAR**: [Download here | Descargar aquí](https://download1501.mediafire.com/p8d9687tw4vgR_2DSuMLLcJ82kw-kBizevfdQtONbpVwVzuba8OxdzYmuphDpv_vUQC8fjVEtE_QJdCnK0LzZPqqGONyEAI8s97H5x-0SD_Bi438EnCMCEz3F3gN7uhNwOWOG4TdKKD8U_g5hij2z8MKX4Qpu2lo0koEswt5CAf4Sg/otcokczha7opsuv/BACK_TIENDA.jar)
 
 ### 🎨 Frontend JAR | JAR del Frontend
 The executable frontend file includes the graphical interface developed with **JavaFX**:  
 El archivo ejecutable del cliente (frontend) incluye la interfaz gráfica desarrollada en **JavaFX**:  
-- **Frontend JAR**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/tienda_front.jar)
+- **Frontend JAR**: [Download here | Descargar aquí](https://download1529.mediafire.com/w8pdlnz2cdogKiQyew0oFlPR1gsEMEMgLb1bJStlizvFY7jah2qZexaWxkFTMG_5u1TLh86dT_B0sBZRrfBPCiqhJ0DwfcG_uDj-OLMep3EXJdVbujECOOtPdanKwosxmu2Pv0crsx31ZM4Kbb6429rBAjOHloYdXSkv2Cdc3GCfxQ/k4i3tkqgdnmzqhj/Hyperium.jar)
 
 ### 📄 Javadoc
 The documentation generated automatically with **Javadoc** details the classes, methods, and attributes of the project. It’s ideal for developers interested in contributing or understanding the codebase:  
 La documentación generada automáticamente con **Javadoc** detalla las clases, métodos y atributos del proyecto. Es ideal para desarrolladores interesados en contribuir o entender el código base:  
-- **Javadoc**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/javadoc.zip)
+- **Javadoc**: [Download here | Descargar aquí](https://download1501.mediafire.com/5m5vzh7stvigg19UsdjgFic-scepI_AKHUfLHDz3yBkKj8y2AEt-5fn7G9kI3fSY4TRjR-T1Xhu6dMusDLvlnOkIiM6Bt7XJPfygIQ9fMHXaiYBV_tcXasVbtasv2Bp-9dkSoqkdfGnb3nXgdfC3QKYQG3oYlDrpOQhet_d1CoryBg/189jt0x4wag8mz4/javadoc.rar)
 
 ---
 
