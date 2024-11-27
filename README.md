@@ -86,9 +86,8 @@ A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de
 - **Order Details**: Links products to orders with quantities and pricing.
 - **Roles**: Defines user roles for access control.
 
-**Relational Database System | Sistema de Base de Datos Relacional**: ORACLE
-By Angel de Jesus Quintero Rivera
----
+**Relational Database System | Sistema de Base de Datos Relacional**: **Oracle**  
+**Database Design and Implementation | Diseño e Implementación de la Base de Datos**: Angel de Jesús Quintero Rivera
 
 
 
