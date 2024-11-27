@@ -56,7 +56,7 @@
 
 
 ### 🔐 Login Page
-![Login Page]![image](https://github.com/user-attachments/assets/1494bf77-026c-40cd-82f9-0bcf4efa8e65)
+![image](https://github.com/user-attachments/assets/1494bf77-026c-40cd-82f9-0bcf4efa8e65)
 
 ### 👥 Clients View
 ![image](https://github.com/user-attachments/assets/b35710d7-b052-4185-9309-c6d0fdfb73da)
@@ -87,7 +87,7 @@ A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de
 - **Roles**: Defines user roles for access control.
 
 **Relational Database System | Sistema de Base de Datos Relacional**: **Oracle**  
-**Database Design and Implementation | Diseño e Implementación de la Base de Datos**: Angel de Jesús Quintero Rivera
+📋 **Database Design and Implementation | Diseño e Implementación de la Base de Datos**: **Angel de Jesús Quintero Rivera**
 
 
 
