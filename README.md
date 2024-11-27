@@ -35,7 +35,7 @@
 
 ## 🚀 Technologies | Tecnologías 🚀
 
-- ☕ **Java 17**: Core programming language.
+- ☕ **Java 21**: Core programming language.
 - 🎨 **JavaFX**: Frontend framework for rich client applications.
 - 🌱 **Spring Boot**: Backend framework for building APIs and managing business logic.
 - 🗃️ **MySQL**: Database for persistent data storage.
@@ -48,11 +48,11 @@
 ## 📸 Screenshots | Capturas de pantalla 📸
 
 ### 📊 Dashboard
-![Dashboard]![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
+![image](https://github.com/user-attachments/assets/2d2c2508-ac8f-4284-9a3d-4aadb319889d)
 
 
 ### 📦 Product Management
-![Product Management]![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
+![image](https://github.com/user-attachments/assets/8e204550-a25c-4c9a-8192-329ab1c8f8c7)
 
 
 ### 🔐 Login Page
