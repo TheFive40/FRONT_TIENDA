@@ -87,7 +87,7 @@ A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de
 - **Roles**: Defines user roles for access control.
 
 **Relational Database System | Sistema de Base de Datos Relacional**: ORACLE
-
+By Angel de Jesus Quintero Rivera
 ---
 
 
@@ -106,19 +106,31 @@ A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de
    ```bash
    git clone https://github.com/TheFive40/FRONT_TIENDA.git
 
+## 🛡️ License | Licencia 🛡️
 
-🛡️ License | Licencia 🛡️
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for more details.
 
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la **Licencia MIT**.  
+Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-🤝 Contributing | Contribuciones 🤝
+---
+
+## 🤝 Contributing | Contribuciones 🤝
+
 🎉 Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
 
 🎉 ¡Las contribuciones son bienvenidas! No dudes en abrir issues o enviar pull requests para mejorar el proyecto.
 
-📞 Contact | Contacto 📞
-✍️ Author: Jean Franco Boom Bolaño
-📧 Email: jeanf2805@gmail.com
-Feel free to reach out with any questions or feedback.
+---
+
+## 📞 Contact | Contacto 📞
+
+✍️ **Author**: Jean Franco Boom Bolaño  
+📧 **Email**: [jeanf2805@gmail.com](mailto:jeanf2805@gmail.com)
+
+Feel free to reach out with any questions or feedback.  
 No dudes en contactarme para cualquier consulta o retroalimentación.
+
+---
+
