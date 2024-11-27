@@ -38,7 +38,7 @@
 - ☕ **Java 21**: Core programming language.
 - 🎨 **JavaFX**: Frontend framework for rich client applications.
 - 🌱 **Spring Boot**: Backend framework for building APIs and managing business logic.
-- 🗃️ **MySQL**: Database for persistent data storage.
+- 🗃️ **Oracle**: Database for persistent data storage.
 - 📦 **Maven**: Dependency management and build tool.
 - 🖍️ **FXML**: Markup language for JavaFX user interfaces.
 - 🎨 **CSS**: Custom styling for an attractive UI.
