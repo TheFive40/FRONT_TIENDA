@@ -105,6 +105,50 @@ A continuación se muestra el **Modelo Entidad-Relación (MER)** para la base de
    ```bash
    git clone https://github.com/TheFive40/FRONT_TIENDA.git
 
+Aquí está el texto actualizado para incluir un apartado de descargas para el **JAR del Backend**, **JAR del Frontend**, y el **Javadoc**:
+
+---
+
+## 📥 Downloads | Descargas 📥
+
+### 🛠️ Backend JAR | JAR del Backend
+You can download the executable backend file, which includes all the server functionalities:  
+Puedes descargar el archivo ejecutable del backend, que incluye todas las funcionalidades del servidor:  
+- **Backend JAR**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/tienda_back.jar)
+
+### 🎨 Frontend JAR | JAR del Frontend
+The executable frontend file includes the graphical interface developed with **JavaFX**:  
+El archivo ejecutable del cliente (frontend) incluye la interfaz gráfica desarrollada en **JavaFX**:  
+- **Frontend JAR**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/tienda_front.jar)
+
+### 📄 Javadoc
+The documentation generated automatically with **Javadoc** details the classes, methods, and attributes of the project. It’s ideal for developers interested in contributing or understanding the codebase:  
+La documentación generada automáticamente con **Javadoc** detalla las clases, métodos y atributos del proyecto. Es ideal para desarrolladores interesados en contribuir o entender el código base:  
+- **Javadoc**: [Download here | Descargar aquí](https://github.com/TheFive40/FRONT_TIENDA/releases/latest/download/javadoc.zip)
+
+---
+
+### 📝 How to Run the JARs | Cómo Ejecutar los JARs  
+1. Make sure you have **Java 17** or higher installed on your system.  
+   Asegúrate de tener **Java 17** o superior instalado en tu sistema.  
+2. Download the backend and frontend JAR files.  
+   Descarga los archivos JAR del backend y frontend.  
+3. **Run the Backend | Ejecuta el Backend**:  
+   ```bash
+   java -jar tienda_back.jar
+   ```
+   This starts the application server.  
+   Esto inicia el servidor de la aplicación.  
+4. **Run the Frontend | Ejecuta el Frontend**:  
+   ```bash
+   java -jar tienda_front.jar
+   ```
+   This opens the graphical user interface (GUI).  
+   Esto abre la interfaz gráfica de usuario (GUI).
+
+---
+
+
 ## 🛡️ License | Licencia 🛡️
 
 This project is licensed under the **MIT License**.  
