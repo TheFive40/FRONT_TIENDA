@@ -151,13 +151,14 @@ La documentación generada automáticamente con **Javadoc** detalla las clases, 
 
 ## 🛡️ License | Licencia 🛡️
 
-This project is licensed under the **MIT License**.  
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
 See the [LICENSE](LICENSE) file for more details.
 
-Este proyecto está bajo la **Licencia MIT**.  
+Este proyecto está bajo la **Licencia Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
+
 
 ## 🤝 Contributing | Contribuciones 🤝
 
