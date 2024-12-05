@@ -151,13 +151,14 @@ La documentación generada automáticamente con **Javadoc** detalla las clases, 
 
 ## 🛡️ License | Licencia 🛡️
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** with additional terms for recognition of intellectual property and restrictions on commercial use.  
 See the [LICENSE](LICENSE) file for more details.
 
-Este proyecto está bajo la **Licencia Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
+Este proyecto está bajo la **Licencia Pública General Affero de GNU v3.0 (AGPL-3.0)** con términos adicionales para el reconocimiento de la propiedad intelectual y restricciones sobre el uso comercial.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
+
 
 
 ## 🤝 Contributing | Contribuciones 🤝
